@@ -536,13 +536,6 @@ ul { list-style: none; }
 
 
 /* ── Final CTA ──────────────────────────── */
-.final-cta {
-  background:
-    linear-gradient(135deg, rgba(114, 186, 180, .10), rgba(245, 238, 231, .98) 48%, rgba(228, 190, 124, .12));
-}
-.final-cta-inner { text-align: center; }
-.final-cta .h2 { max-width: 720px; margin-inline: auto; }
-.final-cta .hero-actions { margin-top: 40px; }
 
 /* ── Contact ────────────────────────────── */
 .contact { background: var(--xy-ivory); }

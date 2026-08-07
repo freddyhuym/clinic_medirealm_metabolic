@@ -222,16 +222,6 @@
     setActive(0);
   }
 
-  function renderFinalCta(d) {
-    var f = d.finalCta || {};
-    setText('fcEyebrow', f.eyebrow);
-    setText('fcTitle', f.title);
-    var acts = [];
-    if (f.cta)    acts.push('<a class="btn btn-solid" href="' + esc(f.cta.href) + '">' + esc(f.cta.label) + '</a>');
-    if (f.ctaAlt) acts.push('<a class="btn btn-ghost" href="' + esc(f.ctaAlt.href) + '">' + esc(f.ctaAlt.label) + '</a>');
-    setHTML('fcActions', acts.join(''));
-  }
-
   function renderContact(d) {
     var c = d.contact || {};
     setText('contactEyebrow', c.eyebrow);
@@ -390,7 +380,7 @@
     .then(function (d) {
       renderNav(d); renderHero(d); renderAbout(d); renderPillars(d);
       renderUnderstand(d); renderClinics(d); renderTeam(d);
-      renderKnowledge(d); renderFinalCta(d);
+      renderKnowledge(d);
       renderContact(d); renderFooter(d);
 
       initNav(); initReveal(); initForm();

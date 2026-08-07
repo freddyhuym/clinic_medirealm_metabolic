@@ -330,18 +330,6 @@
     ],
     "placeholderNote": "本篇完整文章內容目前由醫療團隊審閱籌備中，正式版本將於近期發布。"
   },
-  "finalCta": {
-    "eyebrow": "START YOUR JOURNEY",
-    "title": "從理解自己開始，找到適合你的健康與美管理。",
-    "cta": {
-      "label": "預約諮詢",
-      "href": "#contact"
-    },
-    "ctaAlt": {
-      "label": "尋找適合我的院所",
-      "href": "#locations"
-    }
-  },
   "contact": {
     "eyebrow": "RESERVATION",
     "title": "預約諮詢",
