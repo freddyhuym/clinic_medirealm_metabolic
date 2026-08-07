@@ -2,7 +2,7 @@
   "name": "clinic-medirealm-metabolic",
   "version": "1.0.0",
   "private": true,
-  "description": "雲纖醫境 YUN XIAN — 代謝美學診所官網",
+  "description": "纖顏醫境 XIAN YAN · MEDIREALM — 都會代謝美學官網",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {

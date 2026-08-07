@@ -3,20 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雲纖醫境 YUN XIAN｜代謝美學診所・減重 × 代謝 × 輕齡 × 美學</title>
-<meta name="description" content="雲纖醫境 YUN XIAN — 台灣代謝 × 輕齡 × 美學連鎖品牌。從代謝開始，讓健康與美麗同行。醫療減重、體雕減脂、電音波拉提、微整注射、雷射美膚、預防醫學。台北信義館（東門館）、中正館、竹北旗艦館。">
-<meta name="theme-color" content="#2E4A35">
-<link rel="icon" href="/images/logo.png" type="image/png">
+<title>纖顏醫境｜都會代謝美學・體態管理・精緻醫美</title>
+<meta name="description" content="纖顏醫境以代謝健康、體態管理與精緻美學為核心，由多位醫師共同組成醫療團隊，旗下包含初纖顏台北信義館、沐纖顏台北中正館與森纖顏新北新莊館，依不同需求提供專業醫療評估與健康美學管理方向。">
+<meta name="theme-color" content="#FBF8F3">
+<link rel="icon" href="/images/chu-logo.png" type="image/png">
+<link rel="canonical" href="https://medirealm-metabolic.com/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="雲纖醫境 YUN XIAN｜代謝美學診所">
-<meta property="og:description" content="從代謝開始，讓健康與美麗同行。看見健康・看見自己。">
-<meta property="og:image" content="/images/hero-team.jpg">
+<meta property="og:title" content="纖顏醫境｜都會代謝美學・體態管理・精緻醫美">
+<meta property="og:description" content="纖顏醫境體系 XIAN YAN · MEDIREALM — 都會代謝 × 體態 × 精緻美學。多位醫師共同主理的團隊型醫療體系。">
+<meta property="og:locale" content="zh_TW">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@350;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  "name": "纖顏醫境",
+  "alternateName": "XIAN YAN · MEDIREALM",
+  "url": "https://medirealm-metabolic.com/",
+  "description": "纖顏醫境體系 — 都會代謝 × 體態 × 精緻美學。由多位醫師共同組成醫療團隊的都會型代謝美學連鎖。",
+  "parentOrganization": { "@type": "Organization", "name": "醫境醫療集團", "url": "https://medirealms.org/" },
+  "subOrganization": [
+    {
+      "@type": "MedicalClinic",
+      "name": "初纖顏醫境診所",
+      "alternateName": "初纖顏醫境診所・台北信義館",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "大安區信義路二段207號3樓",
+        "addressLocality": "台北市",
+        "addressRegion": "台北市",
+        "addressCountry": "TW"
+      }
+    },
+    { "@type": "MedicalClinic", "name": "沐纖顏醫境診所", "alternateName": "沐纖顏醫境診所・台北中正館" },
+    { "@type": "MedicalClinic", "name": "森纖顏醫境診所", "alternateName": "森纖顏醫境診所・新北新莊館" }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -25,11 +54,10 @@
 <!-- ── 導覽列 ───────────────────────────── -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="#top" aria-label="雲纖醫境 首頁">
-      <img class="nav-logo" src="/images/logo.png" alt="" width="52" height="52">
-      <span class="nav-brand-text">
-        <b id="navNameZh">雲纖醫境</b>
-        <i id="navNameEn">YUN XIAN</i>
+    <a class="nav-brand" href="#top" aria-label="纖顏醫境 首頁">
+      <span class="nav-wordmark">
+        <b>纖顏醫境</b>
+        <i>XIAN YAN · MEDIREALM</i>
       </span>
     </a>
 
@@ -45,141 +73,117 @@
 
 <main id="main">
 
-<!-- ── 主視覺 ───────────────────────────── -->
+<!-- ── 01 Hero ─────────────────────────── -->
 <section class="hero" id="top">
-  <!-- 主視覺本身已含 LOGO、品牌名、標語、四大特質，
-       故一律不在圖上疊字；重複的文字用 .in-kv 於桌機隱藏（僅保留給 SEO／螢幕閱讀器） -->
-  <div class="hero-media">
-    <img id="heroImg" src="/images/hero-team.jpg" alt="" fetchpriority="high" width="1684" height="934">
+  <div class="hero-deco" aria-hidden="true">
+    <svg class="hero-arc" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="arcTeal" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#72BAB4" stop-opacity=".16"/>
+          <stop offset="100%" stop-color="#72BAB4" stop-opacity=".04"/>
+        </linearGradient>
+        <linearGradient id="arcGold" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#CE9A4B" stop-opacity="0"/>
+          <stop offset="50%" stop-color="#CE9A4B" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#CE9A4B" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#arcTeal)" d="M-80,540 C280,380 620,660 1000,470 C1220,360 1380,420 1520,340 L1520,760 L-80,760 Z"/>
+      <path fill="none" stroke="url(#arcGold)" stroke-width="1.2" d="M-60,500 C300,340 640,620 1020,430 C1240,320 1400,380 1520,300"/>
+      <path fill="none" stroke="#72BAB4" stroke-opacity=".25" stroke-width="1" d="M-60,560 C300,410 660,690 1040,500 C1260,390 1420,450 1520,370"/>
+      <circle cx="1150" cy="170" r="120" fill="none" stroke="#CE9A4B" stroke-opacity=".2" stroke-width="1"/>
+      <circle cx="1150" cy="170" r="88" fill="#72BAB4" fill-opacity=".05"/>
+    </svg>
   </div>
 
-  <div class="hero-body">
-    <h1 class="hero-title in-kv" id="heroTitle"></h1>
-    <ul class="hero-traits in-kv" id="heroTraits"></ul>
+  <div class="hero-body wrap">
+    <p class="hero-eyebrow" id="heroEyebrow"></p>
+    <h1 class="hero-title" id="heroTitle"></h1>
+    <p class="hero-positioning" id="heroPositioning"></p>
     <p class="hero-lead" id="heroLead"></p>
-    <p class="hero-sub" id="heroSub"></p>
     <div class="hero-actions" id="heroActions"></div>
   </div>
-
-  <div class="hero-scroll" aria-hidden="true"><span></span></div>
 </section>
 
-<!-- ── 品牌理念 ─────────────────────────── -->
+<!-- ── 02 關於纖顏 ─────────────────────── -->
 <section class="section about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy">
-      <p class="eyebrow" id="aboutEyebrow"></p>
-      <h2 class="h2" id="aboutTitle"></h2>
-      <p class="h2-sub" id="aboutTitleSub"></p>
-      <div class="prose" id="aboutBody"></div>
-      <blockquote class="pull" id="aboutQuote"></blockquote>
-    </div>
-    <figure class="about-figure">
-      <!-- 水墨山霧：純 SVG，不用圖檔，呼應品牌雲霧山水意象 -->
-      <div class="ink-scene">
-        <svg class="ink-svg" viewBox="0 0 600 430" role="img" aria-label="水墨山霧意象">
-          <defs>
-            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stop-color="#F7F9F6"/>
-              <stop offset="58%"  stop-color="#E8EEE7"/>
-              <stop offset="100%" stop-color="#DCE5DC"/>
-            </linearGradient>
-            <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#B7C7B8"/><stop offset="100%" stop-color="#CBD7CB"/>
-            </linearGradient>
-            <linearGradient id="mid" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7E9A85"/><stop offset="100%" stop-color="#9DB3A1"/>
-            </linearGradient>
-            <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#41603F"/><stop offset="100%" stop-color="#5E7B5C"/>
-            </linearGradient>
-            <filter id="soft" x="-25%" y="-60%" width="150%" height="220%">
-              <feGaussianBlur stdDeviation="13"/>
-            </filter>
-          </defs>
-
-          <rect width="600" height="430" fill="url(#sky)"/>
-          <circle cx="432" cy="112" r="46" fill="#C6A76B" opacity=".26"/>
-          <circle cx="432" cy="112" r="46" fill="none" stroke="#C6A76B" stroke-width="1" opacity=".55"/>
-
-          <path fill="url(#far)" opacity=".62"
-                d="M0,236 L62,172 L112,208 L168,141 L228,202 L282,161 L342,217 L402,150 L462,202 L522,166 L600,222 L600,430 L0,430 Z"/>
-          <ellipse cx="300" cy="236" rx="330" ry="20" fill="#FFFFFF" opacity=".8" filter="url(#soft)"/>
-
-          <path fill="url(#mid)" opacity=".78"
-                d="M0,276 L72,218 L132,258 L202,196 L268,252 L332,212 L398,262 L472,206 L542,252 L600,228 L600,430 L0,430 Z"/>
-          <ellipse cx="270" cy="288" rx="340" ry="17" fill="#FFFFFF" opacity=".74" filter="url(#soft)"/>
-
-          <path fill="url(#near)"
-                d="M0,330 L82,282 L152,318 L232,270 L302,322 L382,276 L452,316 L532,286 L600,320 L600,430 L0,430 Z"/>
-          <ellipse cx="330" cy="342" rx="300" ry="12" fill="#FFFFFF" opacity=".42" filter="url(#soft)"/>
-
-          <path d="M96,392 h408" stroke="#C6A76B" stroke-width="1" opacity=".5"/>
-        </svg>
-
-        <ul class="ink-axes" id="inkAxes"></ul>
-      </div>
-      <figcaption id="aboutCaption"></figcaption>
-    </figure>
+  <div class="wrap about-inner">
+    <p class="eyebrow" id="aboutEyebrow"></p>
+    <h2 class="h2 serif" id="aboutTitle"></h2>
+    <div class="gold-divider" aria-hidden="true"></div>
+    <div class="about-prose" id="aboutBody"></div>
   </div>
 </section>
 
-<!-- ── 核心價值 ─────────────────────────── -->
-<section class="section values" id="values">
+<!-- ── 03 三大核心 ─────────────────────── -->
+<section class="section pillars" id="services">
   <div class="wrap">
-    <p class="eyebrow center" id="valuesEyebrow"></p>
-    <h2 class="h2 center" id="valuesTitle"></h2>
-    <div class="value-grid" id="valueGrid"></div>
+    <p class="eyebrow center" id="pillarsEyebrow"></p>
+    <h2 class="h2 serif center" id="pillarsTitle"></h2>
+    <div class="pillar-grid" id="pillarGrid"></div>
   </div>
 </section>
 
-<!-- ── 服務項目 ─────────────────────────── -->
-<section class="section services" id="services">
+<!-- ── 04 不是先選療程 ─────────────────── -->
+<section class="section understand" id="understand">
+  <div class="wrap understand-inner">
+    <p class="eyebrow" id="undEyebrow"></p>
+    <h2 class="h2 serif" id="undTitle"></h2>
+    <p class="und-lead" id="undLead"></p>
+    <ul class="und-questions" id="undQuestions"></ul>
+    <p class="und-body" id="undBody"></p>
+    <div id="undCta"></div>
+  </div>
+</section>
+
+<!-- ── 05 三大院所（保留 #locations anchor）── -->
+<section class="section clinics" id="locations">
   <div class="wrap">
-    <p class="eyebrow center" id="servicesEyebrow"></p>
-    <h2 class="h2 center" id="servicesTitle"></h2>
-    <p class="h2-sub center" id="servicesSubtitle"></p>
-    <div class="service-grid" id="serviceGrid"></div>
+    <p class="eyebrow center" id="clinicsEyebrow"></p>
+    <h2 class="h2 serif center" id="clinicsTitle"></h2>
+    <p class="section-intro center" id="clinicsIntro"></p>
+    <div class="clinic-panels" id="clinicPanels"></div>
   </div>
 </section>
 
-<!-- ── 醫療團隊 ─────────────────────────── -->
-<section class="section doctor" id="doctor">
-  <div class="wrap doctor-grid">
-    <figure class="doctor-photo">
-      <img id="doctorImg" src="/images/doctor-chiu.jpg" alt="" loading="lazy">
-    </figure>
-    <div class="doctor-copy">
-      <p class="eyebrow" id="doctorEyebrow"></p>
-      <h2 class="h2" id="doctorTitle"></h2>
-      <p class="doctor-name"><span id="doctorNameZh"></span><i id="doctorNameEn"></i></p>
-      <p class="doctor-role" id="doctorRole"></p>
-      <blockquote class="pull" id="doctorQuote"></blockquote>
-      <div class="prose" id="doctorBio"></div>
-      <ul class="doctor-cred" id="doctorCred"></ul>
-    </div>
+<!-- ── 06 多位醫師共同主理 ─────────────── -->
+<section class="section team" id="team">
+  <div class="wrap team-inner">
+    <p class="eyebrow center" id="teamEyebrow"></p>
+    <h2 class="h2 serif center" id="teamTitle"></h2>
+    <p class="team-subtitle center" id="teamSubtitle"></p>
+    <div class="team-prose" id="teamBody"></div>
+    <div class="doctor-grid" id="doctorGrid"></div>
+    <p class="team-note center" id="teamNote"></p>
   </div>
 </section>
 
-<!-- ── 全台據點 ─────────────────────────── -->
-<section class="section locations" id="locations">
+<!-- ── 07 品牌核心 Statement ───────────── -->
+<section class="section statement" aria-label="品牌核心理念">
+  <div class="wrap statement-inner">
+    <div class="gold-divider" aria-hidden="true"></div>
+    <p class="statement-text serif" id="statementText"></p>
+    <div class="gold-divider" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ── 08 醫境知識 ─────────────────────── -->
+<section class="section knowledge" id="knowledge">
   <div class="wrap">
-    <p class="eyebrow center" id="locEyebrow"></p>
-    <h2 class="h2 center" id="locTitle"></h2>
-    <p class="h2-sub center" id="locSubtitle"></p>
-    <div class="loc-grid" id="locGrid"></div>
+    <p class="eyebrow center" id="knEyebrow"></p>
+    <h2 class="h2 serif center" id="knTitle"></h2>
+    <ul class="kn-topics" id="knTopics"></ul>
+    <div class="kn-articles" id="knArticles"></div>
+    <p class="kn-note center" id="knNote"></p>
   </div>
 </section>
 
-<!-- ── 醫旅禮遇 ─────────────────────────── -->
-<section class="section gifts" id="gifts">
-  <div class="wrap">
-    <p class="eyebrow center" id="giftEyebrow"></p>
-    <h2 class="h2 center" id="giftTitle"></h2>
-    <p class="h2-sub center" id="giftSubtitle"></p>
-    <div class="gift-tote" id="giftTote"></div>
-    <div class="gift-grid" id="giftGrid"></div>
-    <p class="note center" id="giftNote"></p>
+<!-- ── 09 Final CTA ────────────────────── -->
+<section class="section final-cta" aria-label="開始你的旅程">
+  <div class="wrap final-cta-inner">
+    <p class="eyebrow center" id="fcEyebrow"></p>
+    <h2 class="h2 serif center" id="fcTitle"></h2>
+    <div class="hero-actions center" id="fcActions"></div>
   </div>
 </section>
 
@@ -188,8 +192,8 @@
   <div class="wrap contact-grid">
     <div class="contact-info">
       <p class="eyebrow" id="contactEyebrow"></p>
-      <h2 class="h2" id="contactTitle"></h2>
-      <p class="h2-sub" id="contactSubtitle"></p>
+      <h2 class="h2 serif" id="contactTitle"></h2>
+      <p class="section-intro" id="contactSubtitle"></p>
       <dl class="hours" id="hours"></dl>
       <div class="contact-lines" id="contactLines"></div>
     </div>
@@ -204,11 +208,11 @@
         <input id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
       </div>
       <div class="field">
-        <label for="fClinic">希望門診據點</label>
+        <label for="fClinic">希望院所</label>
         <select id="fClinic" name="clinic"></select>
       </div>
       <div class="field">
-        <label for="fTopic">諮詢項目</label>
+        <label for="fTopic">諮詢方向</label>
         <select id="fTopic" name="topic"></select>
       </div>
       <div class="field field-full">
@@ -227,9 +231,9 @@
 <!-- ── 頁尾 ─────────────────────────────── -->
 <footer class="footer">
   <div class="wrap">
-    <img class="footer-logo" src="/images/logo.png" alt="" width="86" height="86" loading="lazy">
-    <p class="footer-line" id="footerLine"></p>
-    <p class="footer-keywords" id="footerKeywords"></p>
+    <p class="footer-wordmark">纖顏醫境<i>XIAN YAN · MEDIREALM</i></p>
+    <p class="footer-desc" id="footerDesc"></p>
+    <ul class="footer-clinics" id="footerClinics"></ul>
     <nav class="footer-nav" id="footerNav" aria-label="頁尾選單"></nav>
     <p class="footer-disclaimer" id="footerDisclaimer"></p>
     <small class="footer-copy">© <span id="year"></span> <span id="footerGroup"></span>　|　<a id="footerGroupLink" href="#" target="_blank" rel="noopener noreferrer"></a></small>

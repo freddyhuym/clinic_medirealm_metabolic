@@ -1,5 +1,5 @@
 /**
- * 雲纖醫境 YUN XIAN — 代謝美學診所官網
+ * 纖顏醫境 XIAN YAN · MEDIREALM — 都會代謝美學官網
  * 零依賴靜態伺服器 + /api/site
  */
 const http = require('http');
@@ -148,7 +148,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log('');
-  console.log('  雲纖醫境 YUN XIAN — 代謝美學診所');
+  console.log('  纖顏醫境 XIAN YAN · MEDIREALM');
   console.log(`  ▸ http://localhost:${PORT}`);
   console.log('  ▸ 站台文案：data/site.json（改完重新整理即可生效）');
   console.log('');

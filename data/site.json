@@ -1,191 +1,193 @@
 {
   "brand": {
-    "nameZh": "雲纖醫境",
-    "nameEn": "YUN XIAN",
-    "subtitle": "國際・代謝・醫美・診所",
-    "badge": "醫療本位",
-    "group": "雲纖醫境醫療集團",
-    "positioning": "台灣代謝 × 輕齡 × 美學連鎖品牌",
-    "keywords": "減重 × 代謝 × 輕齡 × 美學",
-    "slogan": "看見健康・看見自己",
-    "philosophy": "從代謝開始，讓健康與美麗同行。",
-    "traits": ["專業", "細膩", "溫度", "信任"],
-    "companion": "我們用心陪伴，每一段蛻變的旅程"
+    "nameZh": "纖顏醫境",
+    "nameEn": "XIAN YAN · MEDIREALM",
+    "system": "纖顏醫境體系",
+    "subtitle": "都會代謝 × 體態 × 精緻美學",
+    "group": "醫境醫療集團",
+    "positioning": "都會型代謝美學連鎖",
+    "keywords": "代謝健康 × 體態管理 × 精緻醫美 × 健康抗老",
+    "philosophy": "從代謝、體態到外在美學，以醫療專業評估為核心。",
+    "teamModel": "多位醫師共同主理"
   },
 
   "hero": {
-    "image": "/images/hero-team.jpg",
-    "alt": "雲纖醫境醫療團隊",
-    "titleLines": ["看見健康", "看見自己"],
-    "lead": "一場穿越迷霧的旅程，遇見更好的自己",
-    "sub": "雲中有答案・人生自有方向",
-    "cta": { "label": "預約諮詢", "href": "#contact" },
-    "ctaAlt": { "label": "了解療程", "href": "#services" }
+    "eyebrow": "XIAN YAN · MEDIREALM",
+    "title": "纖顏醫境",
+    "positioning": "都會代謝 × 體態 × 精緻美學",
+    "lead": "從代謝、體態到外在美學，以醫療專業評估為核心，為不同生活階段建立更完整的健康與美管理。",
+    "cta": { "label": "探索三大院所", "href": "#locations" },
+    "ctaAlt": { "label": "預約諮詢", "href": "#contact" }
   },
 
   "about": {
-    "eyebrow": "BRAND PHILOSOPHY",
-    "title": "從代謝開始",
-    "titleSub": "讓健康與美麗同行",
+    "eyebrow": "ABOUT XIAN YAN",
+    "title": "纖顏，是一個走進城市生活的醫療品牌。",
     "paragraphs": [
-      "雲纖醫境以代謝醫學為基礎，將減重、輕齡與美學整合為一套完整的醫療思維。我們相信，真正的美不是短暫的修飾，而是身體回到平衡之後，自然顯現的狀態。",
-      "每一位來到雲纖的人，都會先被理解，才被治療。從代謝評估、個人化療程規劃到長期健康管理，我們陪你走完整段旅程，而不只是完成一次療程。"
-    ],
-    "quote": "重新校準，妳與身體的頻率。",
-    "axes": [
-      { "zh": "減重", "en": "WEIGHT" },
-      { "zh": "代謝", "en": "METABOLIC" },
-      { "zh": "輕齡", "en": "AGELESS" },
-      { "zh": "美學", "en": "AESTHETICS" }
+      "不同城市，不同生活節奏，不同的人生階段，需要的醫療與美學管理也不相同。",
+      "纖顏醫境以代謝、體態與精緻美學為核心，透過專業醫療評估，建立更貼近日常生活的健康與美管理。",
+      "從健康狀態開始理解，再走向適合自己的體態與美學管理。"
     ]
   },
 
-  "values": {
-    "eyebrow": "CORE VALUES",
-    "title": "四大核心價值",
+  "pillars": {
+    "eyebrow": "OUR APPROACH",
+    "title": "從健康，到體態，再到美。",
     "items": [
-      { "icon": "team",  "zh": "專業醫師團隊", "en": "Professional Team",   "desc": "醫師群聯合會診，跨科別整合評估，讓每個決定都有醫療根據。" },
-      { "icon": "dna",   "zh": "代謝醫學為基礎", "en": "Metabolic Medicine", "desc": "從代謝、荷爾蒙與體組成著手，處理成因而非只處理外觀。" },
-      { "icon": "lotus", "zh": "個人化治療",   "en": "Personalized Care",  "desc": "依體質、生活型態與目標客製療程，沒有一體適用的方案。" },
-      { "icon": "heart", "zh": "長期健康管理", "en": "Long-term Care",     "desc": "療程結束不是終點，持續追蹤與調整，把成果穩定留下來。" }
+      { "no": "01", "en": "METABOLIC", "zh": "代謝健康", "icon": "metabolic",
+        "desc": "從代謝狀態理解身體，建立健康管理的根本。",
+        "tags": ["體重管理", "代謝評估", "健康管理", "更年期代謝"] },
+      { "no": "02", "en": "BODY", "zh": "體態管理", "icon": "body",
+        "desc": "以醫療評估為基礎，規劃適合的體態管理方向。",
+        "tags": ["脂肪管理", "肌肉與代謝", "身體緊實", "非侵入式體態管理"] },
+      { "no": "03", "en": "AESTHETICS", "zh": "精緻美學", "icon": "aesthetics",
+        "desc": "在健康的基礎上，追求細膩自然的外在美學。",
+        "tags": ["拉提", "微整", "肌膚管理", "膠原", "輪廓管理"] }
     ]
   },
 
-  "services": {
-    "eyebrow": "TREATMENTS",
-    "title": "服務項目",
-    "subtitle": "減重 × 代謝 × 輕齡 × 美學　四軸整合",
-    "items": [
-      { "no": "01", "zh": "代謝減重", "en": "Metabolic Weight Management",
-        "desc": "代謝評估、體組成分析與醫療減重計畫，從根本調整身體的能量運用方式。",
-        "tags": ["代謝評估", "醫療減重", "體組成分析", "營養處方"] },
-      { "no": "02", "zh": "體雕減脂", "en": "Body Contouring",
-        "desc": "針對局部脂肪與線條做精準處理，讓體態的比例與輪廓一起到位。",
-        "tags": ["非侵入減脂", "線條雕塑", "緊實課程"] },
-      { "no": "03", "zh": "電音波拉提", "en": "Lifting & Tightening",
-        "desc": "以能量儀器作用於不同深度的組織，改善鬆弛與輪廓，維持自然表情。",
-        "tags": ["音波拉提", "電波緊緻", "輪廓提升"] },
-      { "no": "04", "zh": "微整注射", "en": "Injectable Aesthetics",
-        "desc": "劑量與層次的細節決定成果，我們追求的是看不出來的自然。",
-        "tags": ["玻尿酸", "肉毒", "膠原增生", "淚溝修飾"] },
-      { "no": "05", "zh": "雷射美膚", "en": "Laser & Skin",
-        "desc": "針對膚色、毛孔、細紋與痘疤，安排階段性的光電療程與術後養護。",
-        "tags": ["皮秒雷射", "膚色調理", "毛孔緊緻", "術後養護"] },
-      { "no": "06", "zh": "預防醫學", "en": "Preventive Medicine",
-        "desc": "健康檢測與慢性風險管理，把問題處理在發生之前。",
-        "tags": ["健康檢測", "慢性病管理", "荷爾蒙評估", "營養諮詢"] }
-    ]
-  },
-
-  "doctor": {
-    "eyebrow": "MEDICAL TEAM",
-    "title": "醫療團隊",
-    "image": "/images/doctor-chiu.jpg",
-    "nameZh": "邱文瑾 醫師",
-    "nameEn": "Dr. Chin",
-    "role": "雲纖醫境　院長",
-    "quote": "一場穿越迷霧的旅程，遇見更好的自己。",
-    "bio": [
-      "以代謝醫學為核心，結合美學治療與長期健康管理，擅長從整體評估找出體重與體態問題的真正成因。",
-      "相信醫療的價值在於陪伴——先理解一個人的生活，才能給出真正做得到的方案。"
+  "understand": {
+    "eyebrow": "UNDERSTAND FIRST",
+    "title": "你需要的，也許不是「更多療程」。",
+    "lead": "而是先知道：",
+    "questions": [
+      "為什麼瘦不下來？",
+      "為什麼開始容易囤積脂肪？",
+      "為什麼體態在某個人生階段開始改變？",
+      "為什麼肌膚與輪廓開始出現變化？"
     ],
-    "credentials": [
-      "代謝醫學 × 醫學美容整合治療",
-      "個人化減重與體態雕塑規劃",
-      "預防醫學與長期健康管理"
-    ]
+    "body": "纖顏從醫療評估開始，依據個人的健康狀態、生活型態與實際需求，與適合專業領域的醫師討論管理方向。",
+    "cta": { "label": "開始我的醫境評估", "href": "#contact" }
   },
 
-  "locations": {
-    "eyebrow": "CLINICS",
-    "title": "全台據點",
-    "subtitle": "想到減重，就想到雲纖醫境",
+  "clinics": {
+    "eyebrow": "THREE CLINICS",
+    "title": "三種城市生活，三種醫療角色。",
+    "intro": "從台北信義、台北中正到新北新莊，纖顏依不同生活圈與需求，建立各自清楚的醫療定位。",
     "items": [
       {
-        "id": "xinyi",
-        "name": "台北　信義館",
-        "aka": "東門館",
-        "legal": "雲纖醫境信義診所",
-        "position": "代謝美學旗艦館",
-        "focus": "減重 × 輕醫美 × 預防醫學",
+        "id": "chu",
+        "name": "初纖顏醫境診所",
+        "shortName": "初纖顏",
+        "hall": "台北信義館",
+        "city": "台北",
+        "theme": "chu",
+        "logo": "/images/chu-logo.png",
+        "role": "都會美學",
+        "impression": "都會輕醫美 × 體態",
+        "positioning": "都會輕醫美 × 體態美學",
+        "services": ["體態管理", "電音波拉提", "微整注射", "肌膚管理", "代謝健康"],
         "address": "台北市大安區信義路二段 207 號 3 樓",
         "mapQuery": "台北市大安區信義路二段207號",
-        "services": ["醫療減重", "代謝管理", "電音波拉提", "皮秒雷射", "微整注射", "美學療程"],
-        "status": "flagship"
+        "cta": "探索初纖顏",
+        "status": "open"
       },
       {
-        "id": "zhongzheng",
-        "name": "台北　中正館",
-        "aka": "",
-        "legal": "雲纖醫境中正診所",
-        "position": "健康管理館",
-        "focus": "減重 × 代謝 × 慢性病管理",
-        "address": "地址籌備中",
+        "id": "mu",
+        "name": "沐纖顏醫境診所",
+        "shortName": "沐纖顏",
+        "hall": "台北中正館",
+        "city": "台北",
+        "theme": "mu",
+        "logo": "",
+        "role": "內科醫療型",
+        "impression": "減重 × 代謝 × 預防",
+        "positioning": "代謝健康 × 預防醫學",
+        "services": ["醫師減重", "代謝管理", "健康檢測", "健康抗老", "精緻美學"],
+        "address": "",
         "mapQuery": "",
-        "services": ["醫療減重", "代謝管理", "慢性病管理", "健康檢測", "營養諮詢"],
+        "cta": "探索沐纖顏",
         "status": "preparing"
       },
       {
-        "id": "zhubei",
-        "name": "竹北　旗艦館",
-        "aka": "",
-        "legal": "雲纖醫境竹北診所",
-        "position": "代謝體態旗艦館",
-        "focus": "減重 × 體態雕塑 × 預防醫學",
-        "address": "新竹縣竹北市六家五路二段 218 號 1 樓",
-        "mapQuery": "新竹縣竹北市六家五路二段218號",
-        "services": ["醫療減重", "體態雕塑", "代謝管理", "預防醫學", "健康檢測"],
-        "status": "open"
+        "id": "sen",
+        "name": "森纖顏醫境診所",
+        "shortName": "森纖顏",
+        "hall": "新北新莊館",
+        "city": "新北",
+        "theme": "sen",
+        "logo": "",
+        "role": "生活圈型",
+        "impression": "減重 × 體態 × 美學",
+        "positioning": "生活圈代謝 × 體態 × 美學",
+        "services": ["醫師減重", "體態管理", "電音波拉提", "微整注射", "健康管理"],
+        "address": "",
+        "mapQuery": "",
+        "cta": "探索森纖顏",
+        "status": "preparing"
       }
     ]
   },
 
-  "gifts": {
-    "eyebrow": "MEDICAL TRAVEL",
-    "title": "醫旅送禮提案",
-    "subtitle": "為國際醫旅賓客準備的品牌禮遇",
-    "note": "以下為品牌提案示意，實際內容以現場提供為準。",
-    "tote": {
-      "image": "/images/gift-tote.jpg",
-      "title": "專屬麻布立體袋",
-      "desc": "雲霧・自然・輕盈，重啟身體的平衡。融合東方山霧意境與現代醫美美學，以自然材質傳遞療癒、純淨與高級感。"
-    },
-    "items": [
-      { "image": "/images/gift-01.jpg", "no": "01", "title": "台北 101 高空地標版", "desc": "品牌帆布袋 ＋ 台北 101 觀景台票 ＋ 台灣高山茶 ＋ 品牌行李吊牌" },
-      { "image": "/images/gift-02.jpg", "no": "02", "title": "故宮文化典藏版",   "desc": "品牌帆布袋 ＋ 故宮博物院門票 ＋ 鳳梨酥組合 ＋ 品牌明信片／旅行筆記本" },
-      { "image": "/images/gift-03.jpg", "no": "03", "title": "貓空山茶療癒版",   "desc": "品牌帆布袋 ＋ 貓空纜車一日票 ＋ 烏龍茶方塊酥 ＋ 品牌筆記本" },
-      { "image": "/images/gift-04.jpg", "no": "04", "title": "台北城市巡遊版",   "desc": "品牌帆布袋 ＋ 台北雙層觀光巴士日間票 ＋ 台灣嚴選果乾 ＋ 品牌旅行收納包" }
-    ]
+  "team": {
+    "eyebrow": "OUR MEDICAL TEAM",
+    "title": "多位醫師，共同主理。",
+    "subtitle": "不同專業，共同建立更完整的健康與美管理。",
+    "paragraphs": [
+      "纖顏醫境由多位醫師共同組成醫療團隊，從代謝健康、體態管理到醫學美容，依據不同需求與專業領域，由適合專業方向的醫師提供相應的醫療評估與規劃。",
+      "我們希望建立的，不是以單一醫師為中心的醫療品牌，而是一個能夠長期累積專業、建立一致醫療品質的團隊型醫療體系。"
+    ],
+    "doctors": [
+      {
+        "id": "chiu",
+        "name": "邱文瑾 醫師",
+        "nameEn": "Dr. Chin",
+        "image": "/images/doctor-chiu-crop.jpg",
+        "specialty": "代謝醫學 × 醫學美容整合治療",
+        "expertise": ["個人化減重與體態規劃", "預防醫學與長期健康管理"],
+        "clinics": ["chu"]
+      }
+    ],
+    "note": "更多醫療團隊成員介紹陸續更新中。"
+  },
+
+  "statement": {
+    "text": "不是把療程放在一起，而是把一個人的健康與美重新放在一起思考。"
+  },
+
+  "knowledge": {
+    "eyebrow": "KNOWLEDGE",
+    "title": "從理解開始，做更適合自己的選擇。",
+    "topics": ["減重", "代謝", "體態", "醫美", "抗老", "預防醫學"],
+    "note": "醫境知識內容籌備中，將由纖顏醫療團隊陸續發布。",
+    "articles": []
+  },
+
+  "finalCta": {
+    "eyebrow": "START YOUR JOURNEY",
+    "title": "從理解自己開始，找到適合你的健康與美管理。",
+    "cta": { "label": "預約諮詢", "href": "#contact" },
+    "ctaAlt": { "label": "尋找適合我的院所", "href": "#locations" }
   },
 
   "contact": {
     "eyebrow": "RESERVATION",
     "title": "預約諮詢",
     "subtitle": "留下需求，專人將盡快與您聯繫",
-    "line": "@yunxian_clinic",
+    "line": "",
     "phone": "",
     "email": "",
     "hours": [
       { "days": "週一 ～ 週五", "time": "11:00 – 20:00" },
-      { "days": "週六",        "time": "11:00 – 18:00" },
+      { "days": "週六", "time": "11:00 – 18:00" },
       { "days": "週日 / 國定假日", "time": "休診" }
     ],
     "consent": "送出即表示您同意本診所依個資法蒐集與使用您所填寫的聯絡資訊，作為預約與諮詢聯繫之用。"
   },
 
   "footer": {
-    "line": "看 見 健 康 ・ 看 見 自 己",
-    "group": "雲纖醫境醫療集團",
+    "brandDesc": "都會代謝 × 體態 × 精緻美學",
+    "group": "纖顏醫境體系",
     "groupSite": { "label": "醫境醫療集團", "href": "https://medirealms.org/" },
     "disclaimer": "本網站內容僅供醫療資訊參考，不構成療效保證。任何療程效果因個人體質而異，實際適應症與風險請由醫師當面評估說明。"
   },
 
   "nav": [
-    { "label": "品牌理念", "href": "#about" },
-    { "label": "服務項目", "href": "#services" },
-    { "label": "醫療團隊", "href": "#doctor" },
-    { "label": "全台據點", "href": "#locations" },
-    { "label": "醫旅禮遇", "href": "#gifts" },
-    { "label": "預約諮詢", "href": "#contact" }
+    { "label": "關於纖顏", "href": "#about" },
+    { "label": "醫療服務", "href": "#services" },
+    { "label": "三大院所", "href": "#locations" },
+    { "label": "醫療團隊", "href": "#team" },
+    { "label": "醫境知識", "href": "#knowledge" },
+    { "label": "聯絡我們", "href": "#contact" }
   ]
 }

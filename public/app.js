@@ -1,4 +1,4 @@
-/* 雲纖醫境 YUN XIAN — 所有內容由 /api/site 驅動，改 data/site.json 即可 */
+/* 纖顏醫境 XIAN YAN · MEDIREALM — 所有內容由 /api/site 驅動，改 data/site.json 即可 */
 (function () {
   'use strict';
 
@@ -12,29 +12,19 @@
   function setText(id, txt) { var el = $(id); if (el && txt != null) el.textContent = txt; }
   function setHTML(id, html) { var el = $(id); if (el) el.innerHTML = html; }
 
-  /* ── 核心價值圖示（線條風，配合品牌調性） ── */
+  /* ── 細線醫療 Icon（Monoline，呼應招牌 Icon 語彙） ── */
   var ICONS = {
-    team: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
-          '<circle cx="24" cy="16" r="6"/><path d="M13 38c0-6.1 4.9-11 11-11s11 4.9 11 11"/>' +
-          '<circle cx="9.5" cy="21" r="4"/><path d="M3 35c0-4 2.9-7.3 6.6-7.9"/>' +
-          '<circle cx="38.5" cy="21" r="4"/><path d="M45 35c0-4-2.9-7.3-6.6-7.9"/></svg>',
-    dna:  '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">' +
-          '<path d="M16 5c0 9 16 11 16 19S16 34 16 43"/><path d="M32 5c0 9-16 11-16 19s16 10 16 19"/>' +
-          '<path d="M18.6 12h10.8M16.4 19h15.2M16.4 29h15.2M18.6 36h10.8"/></svg>',
-    lotus:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
-          '<path d="M24 8c4.4 4.6 6.6 9.9 6.6 15.8 0 5.9-2.2 11.2-6.6 15.8-4.4-4.6-6.6-9.9-6.6-15.8C17.4 17.9 19.6 12.6 24 8Z"/>' +
-          '<path d="M24 39.6C17.4 39.6 11.4 36 6 28.8c4.6-2.4 8.8-2.8 12.6-1.2"/>' +
-          '<path d="M24 39.6c6.6 0 12.6-3.6 18-10.8-4.6-2.4-8.8-2.8-12.6-1.2"/></svg>',
-    heart:'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
-          '<path d="M24 40S8 30.4 8 19.6C8 14.3 12.1 10 17.2 10c2.9 0 5.5 1.4 7.2 3.6C26.1 11.4 28.7 10 31.6 10 36.7 10 40.8 14.3 40.8 19.6 40.8 30.4 24 40 24 40Z"/>' +
-          '<path d="M14 24h6l2.4-4 3.2 8 2.4-4h6"/></svg>'
+    metabolic: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><path d="M14 27l5-6 4 4 6-8 5 7"/><path d="M14 33h20"/></svg>',
+    body: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><path d="M19 13c0 4-2.4 6.4-2.4 10S19 30 19 35"/><path d="M29 13c0 4 2.4 6.4 2.4 10S29 30 29 35"/></svg>',
+    aesthetics: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><path d="M24 14c2.8 3.4 4.6 6.6 4.6 10a4.6 4.6 0 1 1-9.2 0c0-3.4 1.8-6.6 4.6-10Z"/><path d="M17 33.5c4.6 2 9.4 2 14 0"/></svg>'
   };
 
   /* ── 各區塊渲染 ───────────────────────── */
 
   function renderNav(d) {
-    setText('navNameZh', d.brand.nameZh);
-    setText('navNameEn', d.brand.nameEn);
     var links = (d.nav || []).map(function (n) {
       return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
     }).join('');
@@ -44,137 +34,139 @@
 
   function renderHero(d) {
     var h = d.hero || {};
-    if (h.image) {
-      var img = $('heroImg');
-      img.src = h.image;
-      // 主視覺含大量文字，alt 需完整描述，否則螢幕閱讀器讀不到圖上的訊息
-      img.alt = [h.alt, d.brand.nameZh + ' ' + d.brand.nameEn, d.brand.subtitle,
-                 (h.titleLines || []).join('，'), (d.brand.traits || []).join('、')]
-                 .filter(Boolean).join('　');
-    }
-
-    var lines = h.titleLines || [d.brand.slogan];
-    setHTML('heroTitle', lines.map(esc).join('<span class="sep"></span>'));
+    setText('heroEyebrow', h.eyebrow);
+    setText('heroTitle', h.title);
+    setText('heroPositioning', h.positioning);
     setText('heroLead', h.lead);
-    setText('heroSub', h.sub);
-
     var acts = [];
     if (h.cta)    acts.push('<a class="btn btn-solid" href="' + esc(h.cta.href) + '">' + esc(h.cta.label) + '</a>');
     if (h.ctaAlt) acts.push('<a class="btn btn-ghost" href="' + esc(h.ctaAlt.href) + '">' + esc(h.ctaAlt.label) + '</a>');
     setHTML('heroActions', acts.join(''));
-
-    setHTML('heroTraits', (d.brand.traits || []).map(function (t) {
-      return '<li>' + esc(t) + '</li>';
-    }).join(''));
   }
 
   function renderAbout(d) {
     var a = d.about || {};
     setText('aboutEyebrow', a.eyebrow);
     setText('aboutTitle', a.title);
-    setText('aboutTitleSub', a.titleSub);
-    setHTML('aboutBody', (a.paragraphs || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join(''));
-    setText('aboutQuote', a.quote ? '「' + a.quote + '」' : '');
-    setText('aboutCaption', d.brand.companion);
-
-    // 水墨山霧上的四軸
-    setHTML('inkAxes', (a.axes || []).map(function (ax) {
-      return '<li>' + esc(ax.zh) + '<i>' + esc(ax.en) + '</i></li>';
+    setHTML('aboutBody', (a.paragraphs || []).map(function (p) {
+      return '<p class="reveal">' + esc(p) + '</p>';
     }).join(''));
   }
 
-  function renderValues(d) {
-    var v = d.values || {};
-    setText('valuesEyebrow', v.eyebrow);
-    setText('valuesTitle', v.title);
-    setHTML('valueGrid', (v.items || []).map(function (it) {
-      return '<article class="value-card reveal">' +
-        '<div class="value-icon" aria-hidden="true">' + (ICONS[it.icon] || ICONS.lotus) + '</div>' +
-        '<h3 class="value-zh">' + esc(it.zh) + '</h3>' +
-        '<p class="value-en">' + esc(it.en) + '</p>' +
-        '<p class="value-desc">' + esc(it.desc) + '</p>' +
-      '</article>';
-    }).join(''));
-  }
-
-  function renderServices(d) {
-    var s = d.services || {};
-    setText('servicesEyebrow', s.eyebrow);
-    setText('servicesTitle', s.title);
-    setText('servicesSubtitle', s.subtitle);
-    setHTML('serviceGrid', (s.items || []).map(function (it) {
+  function renderPillars(d) {
+    var p = d.pillars || {};
+    setText('pillarsEyebrow', p.eyebrow);
+    setText('pillarsTitle', p.title);
+    setHTML('pillarGrid', (p.items || []).map(function (it) {
       var tags = (it.tags || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
-      return '<article class="service-card reveal">' +
-        '<p class="service-no">' + esc(it.no) + '</p>' +
-        '<h3 class="service-zh">' + esc(it.zh) + '</h3>' +
-        '<p class="service-en">' + esc(it.en) + '</p>' +
-        '<p class="service-desc">' + esc(it.desc) + '</p>' +
-        (tags ? '<ul class="service-tags">' + tags + '</ul>' : '') +
+      return '<article class="pillar reveal">' +
+        '<p class="pillar-no" aria-hidden="true">' + esc(it.no) + '</p>' +
+        '<div class="pillar-icon" aria-hidden="true">' + (ICONS[it.icon] || '') + '</div>' +
+        '<p class="pillar-en">' + esc(it.en) + '</p>' +
+        '<h3 class="pillar-zh">' + esc(it.zh) + '</h3>' +
+        '<p class="pillar-desc">' + esc(it.desc) + '</p>' +
+        (tags ? '<ul class="pillar-tags">' + tags + '</ul>' : '') +
       '</article>';
     }).join(''));
   }
 
-  function renderDoctor(d) {
-    var dr = d.doctor || {};
-    setText('doctorEyebrow', dr.eyebrow);
-    setText('doctorTitle', dr.title);
-    if (dr.image) { $('doctorImg').src = dr.image; $('doctorImg').alt = dr.nameZh || ''; }
-    setText('doctorNameZh', dr.nameZh);
-    setText('doctorNameEn', dr.nameEn);
-    setText('doctorRole', dr.role);
-    setText('doctorQuote', dr.quote ? '「' + dr.quote + '」' : '');
-    setHTML('doctorBio', (dr.bio || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join(''));
-    setHTML('doctorCred', (dr.credentials || []).map(function (c) { return '<li>' + esc(c) + '</li>'; }).join(''));
+  function renderUnderstand(d) {
+    var u = d.understand || {};
+    setText('undEyebrow', u.eyebrow);
+    setText('undTitle', u.title);
+    setText('undLead', u.lead);
+    setHTML('undQuestions', (u.questions || []).map(function (q) {
+      return '<li class="reveal">' + esc(q) + '</li>';
+    }).join(''));
+    setText('undBody', u.body);
+    if (u.cta) setHTML('undCta', '<a class="btn btn-ghost" href="' + esc(u.cta.href) + '">' + esc(u.cta.label) + '</a>');
   }
 
-  var STATUS_LABEL = { flagship: '旗艦館', open: '營運中', preparing: '籌備中' };
+  var STATUS_LABEL = { open: '營運中', preparing: '籌備中' };
 
-  function renderLocations(d) {
-    var l = d.locations || {};
-    setText('locEyebrow', l.eyebrow);
-    setText('locTitle', l.title);
-    setText('locSubtitle', l.subtitle ? '「' + l.subtitle + '」' : '');
+  function renderClinics(d) {
+    var c = d.clinics || {};
+    setText('clinicsEyebrow', c.eyebrow);
+    setText('clinicsTitle', c.title);
+    setText('clinicsIntro', c.intro);
 
-    setHTML('locGrid', (l.items || []).map(function (it) {
+    setHTML('clinicPanels', (c.items || []).map(function (it) {
+      var visual = it.logo
+        ? '<img class="clinic-logo" src="' + esc(it.logo) + '" alt="' + esc(it.name) + ' Logo" loading="lazy">'
+        : '<div class="clinic-monogram" aria-hidden="true"><b>' + esc(it.shortName) + '</b><i>XIAN YAN</i></div>';
       var svc = (it.services || []).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('');
-      var map = it.mapQuery
-        ? '<a class="loc-map" href="https://www.google.com/maps/search/?api=1&query=' +
-          encodeURIComponent(it.mapQuery) + '" target="_blank" rel="noopener noreferrer">在 Google 地圖開啟 →</a>'
-        : '';
-      return '<article class="loc-card reveal is-' + esc(it.status || 'open') + '">' +
-        '<span class="loc-badge">' + esc(STATUS_LABEL[it.status] || '營運中') + '</span>' +
-        '<h3 class="loc-name">' + esc(it.name) + '</h3>' +
-        (it.aka ? '<p class="loc-aka">' + esc(it.aka) + '</p>' : '') +
-        '<p class="loc-legal">正式登記名稱：' + esc(it.legal) + '</p>' +
-        '<p class="loc-focus">' + esc(it.focus) + '</p>' +
-        (svc ? '<ul class="loc-services">' + svc + '</ul>' : '') +
-        '<div class="loc-foot"><p class="loc-addr">◈ ' + esc(it.address) + '</p>' + map + '</div>' +
+      var foot = [];
+      if (it.address) {
+        foot.push('<p class="clinic-addr">◈ ' + esc(it.address) + '</p>');
+        if (it.mapQuery) {
+          foot.push('<a class="btn-text" href="https://www.google.com/maps/search/?api=1&query=' +
+            encodeURIComponent(it.mapQuery) + '" target="_blank" rel="noopener noreferrer">Google 地圖 →</a>');
+        }
+      } else {
+        foot.push('<p class="clinic-addr">院所資訊籌備中</p>');
+      }
+      foot.push('<span class="clinic-status">' + esc(STATUS_LABEL[it.status] || '營運中') + '</span>');
+
+      return '<article class="clinic-panel theme-' + esc(it.theme) + ' reveal">' +
+        '<div class="clinic-visual">' + visual + '</div>' +
+        '<div class="clinic-content">' +
+          '<p class="clinic-role">' + esc(it.role) + '</p>' +
+          '<h3 class="clinic-name">' + esc(it.name) + '<small>' + esc(it.hall) + '</small></h3>' +
+          '<p class="clinic-positioning">' + esc(it.positioning) + '</p>' +
+          (svc ? '<ul class="clinic-services">' + svc + '</ul>' : '') +
+          '<div class="clinic-foot">' + foot.join('') + '</div>' +
+        '</div>' +
       '</article>';
     }).join(''));
   }
 
-  function renderGifts(d) {
-    var g = d.gifts || {};
-    setText('giftEyebrow', g.eyebrow);
-    setText('giftTitle', g.title);
-    setText('giftSubtitle', g.subtitle);
-    setText('giftNote', g.note);
+  function renderTeam(d) {
+    var t = d.team || {};
+    setText('teamEyebrow', t.eyebrow);
+    setText('teamTitle', t.title);
+    setText('teamSubtitle', t.subtitle);
+    setHTML('teamBody', (t.paragraphs || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join(''));
 
-    if (g.tote) {
-      setHTML('giftTote',
-        '<img src="' + esc(g.tote.image) + '" alt="' + esc(g.tote.title) + '" loading="lazy">' +
-        '<div><h3>' + esc(g.tote.title) + '</h3><p>' + esc(g.tote.desc) + '</p></div>');
-    }
+    var clinicName = {};
+    ((d.clinics || {}).items || []).forEach(function (c) { clinicName[c.id] = c.shortName + '｜' + c.hall; });
 
-    setHTML('giftGrid', (g.items || []).map(function (it) {
-      return '<article class="gift-card reveal">' +
-        '<img src="' + esc(it.image) + '" alt="' + esc(it.title) + '" loading="lazy">' +
-        '<div class="gift-body">' +
-          '<span class="gift-no">' + esc(it.no) + '</span>' +
-          '<h4>' + esc(it.title) + '</h4>' +
-          '<p>' + esc(it.desc) + '</p>' +
-        '</div></article>';
+    setHTML('doctorGrid', (t.doctors || []).map(function (dr) {
+      var exp = (dr.expertise || []).map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('');
+      var cl = (dr.clinics || []).map(function (id) { return clinicName[id] || ''; }).filter(Boolean).join('、');
+      return '<article class="doctor-card reveal">' +
+        (dr.image ? '<figure><img src="' + esc(dr.image) + '" alt="' + esc(dr.name) + '" loading="lazy"></figure>' : '') +
+        '<div class="doctor-card-body">' +
+          '<h3 class="doctor-card-name">' + esc(dr.name) + (dr.nameEn ? '<i>' + esc(dr.nameEn) + '</i>' : '') + '</h3>' +
+          '<p class="doctor-card-spec">' + esc(dr.specialty) + '</p>' +
+          (exp ? '<ul class="doctor-card-exp">' + exp + '</ul>' : '') +
+          (cl ? '<p class="doctor-card-clinic">主要看診：' + esc(cl) + '</p>' : '') +
+        '</div>' +
+      '</article>';
     }).join(''));
+
+    setText('teamNote', t.note);
+  }
+
+  function renderStatement(d) {
+    setText('statementText', (d.statement || {}).text ? '「' + d.statement.text + '」' : '');
+  }
+
+  function renderKnowledge(d) {
+    var k = d.knowledge || {};
+    setText('knEyebrow', k.eyebrow);
+    setText('knTitle', k.title);
+    setHTML('knTopics', (k.topics || []).map(function (t) { return '<li class="reveal">' + esc(t) + '</li>'; }).join(''));
+    setText('knNote', (k.articles || []).length ? '' : k.note);
+  }
+
+  function renderFinalCta(d) {
+    var f = d.finalCta || {};
+    setText('fcEyebrow', f.eyebrow);
+    setText('fcTitle', f.title);
+    var acts = [];
+    if (f.cta)    acts.push('<a class="btn btn-solid" href="' + esc(f.cta.href) + '">' + esc(f.cta.label) + '</a>');
+    if (f.ctaAlt) acts.push('<a class="btn btn-ghost" href="' + esc(f.ctaAlt.href) + '">' + esc(f.ctaAlt.label) + '</a>');
+    setHTML('fcActions', acts.join(''));
   }
 
   function renderContact(d) {
@@ -194,25 +186,27 @@
     if (c.email) lines.push('<a href="mailto:' + esc(c.email) + '"><span class="lbl">MAIL</span>' + esc(c.email) + '</a>');
     setHTML('contactLines', lines.join(''));
 
-    // 表單下拉：據點
+    // 表單下拉：院所
     var clinicSel = $('fClinic');
     clinicSel.innerHTML = '<option value="">請選擇</option>' +
-      (d.locations && d.locations.items || [])
-        .filter(function (it) { return it.status !== 'preparing'; })
-        .map(function (it) { return '<option>' + esc(it.name.replace(/\s+/g, '')) + '</option>'; }).join('');
+      ((d.clinics || {}).items || [])
+        .map(function (it) { return '<option>' + esc(it.shortName + '｜' + it.hall) + '</option>'; }).join('') +
+      '<option>由專人建議</option>';
 
-    // 表單下拉：諮詢項目
+    // 表單下拉：諮詢方向
     var topicSel = $('fTopic');
     topicSel.innerHTML = '<option value="">請選擇</option>' +
-      (d.services && d.services.items || [])
+      ((d.pillars || {}).items || [])
         .map(function (it) { return '<option>' + esc(it.zh) + '</option>'; }).join('') +
-      '<option>其他／不確定</option>';
+      '<option>健康抗老</option><option>其他／不確定</option>';
   }
 
   function renderFooter(d) {
     var f = d.footer || {};
-    setText('footerLine', f.line);
-    setText('footerKeywords', d.brand.keywords);
+    setText('footerDesc', f.brandDesc);
+    setHTML('footerClinics', ((d.clinics || {}).items || []).map(function (c) {
+      return '<li>' + esc(c.name + '・' + c.hall) + '</li>';
+    }).join(''));
     setText('footerDisclaimer', f.disclaimer);
     setText('footerGroup', f.group);
     if (f.groupSite) {
@@ -242,7 +236,6 @@
       }
     });
 
-    // 捲動高亮：目前捲到哪一區，選單就標記哪一項
     var sections = [].slice.call(document.querySelectorAll('main section[id]'));
     var anchors = [].slice.call(links.querySelectorAll('a'));
     if (!('IntersectionObserver' in window) || !sections.length) return;
@@ -262,7 +255,8 @@
   function initReveal() {
     var items = [].slice.call(document.querySelectorAll('.reveal'));
     if (!items.length) return;
-    if (!('IntersectionObserver' in window)) {
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
       items.forEach(function (el) { el.classList.add('in'); });
       return;
     }
@@ -293,7 +287,7 @@
       form.phone.setAttribute('aria-invalid', String(!phone));
 
       if (!name || !phone) {
-        status.style.color = '#E8A188';
+        status.style.color = '#C97B5D';
         status.textContent = '請填寫姓名與聯絡電話。';
         (!name ? form.name : form.phone).focus();
         return;
@@ -318,8 +312,8 @@
           status.textContent = '已收到您的預約，我們會盡快與您聯繫。';
         })
         .catch(function () {
-          status.style.color = '#E8A188';
-          status.textContent = '送出失敗，請改用 LINE 與我們聯繫，或稍後再試。';
+          status.style.color = '#C97B5D';
+          status.textContent = '送出失敗，請稍後再試。';
         })
         .finally(function () { btn.disabled = false; });
     });
@@ -331,16 +325,21 @@
   fetch('/api/site')
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (d) {
-      renderNav(d); renderHero(d); renderAbout(d); renderValues(d);
-      renderServices(d); renderDoctor(d); renderLocations(d);
-      renderGifts(d); renderContact(d); renderFooter(d);
-
-      document.title = d.brand.nameZh + ' ' + d.brand.nameEn + '｜' + d.brand.positioning;
+      renderNav(d); renderHero(d); renderAbout(d); renderPillars(d);
+      renderUnderstand(d); renderClinics(d); renderTeam(d);
+      renderStatement(d); renderKnowledge(d); renderFinalCta(d);
+      renderContact(d); renderFooter(d);
 
       initNav(); initReveal(); initForm();
+
+      // 內容為 JS 渲染，深層連結（如 /#locations）需在渲染後重新定位
+      if (location.hash) {
+        var target = document.getElementById(location.hash.slice(1));
+        if (target) target.scrollIntoView();
+      }
     })
     .catch(function (err) {
-      console.error('[雲纖醫境] 站台資料載入失敗：', err);
+      console.error('[纖顏醫境] 站台資料載入失敗：', err);
       var t = $('heroTitle');
       if (t) t.textContent = '資料載入失敗';
       var l = $('heroLead');
