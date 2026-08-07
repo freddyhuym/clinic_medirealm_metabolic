@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雲纖醫境 YUN XIAN｜代謝美學診所・減重 × 代謝 × 輕齡 × 美學</title>
+<meta name="description" content="雲纖醫境 YUN XIAN — 台灣代謝 × 輕齡 × 美學連鎖品牌。從代謝開始，讓健康與美麗同行。醫療減重、體雕減脂、電音波拉提、微整注射、雷射美膚、預防醫學。台北信義館（東門館）、中正館、竹北旗艦館。">
+<meta name="theme-color" content="#2E4A35">
+<link rel="icon" href="/images/logo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="雲纖醫境 YUN XIAN｜代謝美學診所">
+<meta property="og:description" content="從代謝開始，讓健康與美麗同行。看見健康・看見自己。">
+<meta property="og:image" content="/images/hero-team.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<!-- ── 導覽列 ───────────────────────────── -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="雲纖醫境 首頁">
+      <img class="nav-logo" src="/images/logo.png" alt="" width="52" height="52">
+      <span class="nav-brand-text">
+        <b id="navNameZh">雲纖醫境</b>
+        <i id="navNameEn">YUN XIAN</i>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="主選單"></nav>
+
+    <a class="nav-cta" href="#contact">預約諮詢</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── 主視覺 ───────────────────────────── -->
+<section class="hero" id="top">
+  <!-- 主視覺本身已含 LOGO、品牌名、標語、四大特質，
+       故一律不在圖上疊字；重複的文字用 .in-kv 於桌機隱藏（僅保留給 SEO／螢幕閱讀器） -->
+  <div class="hero-media">
+    <img id="heroImg" src="/images/hero-team.jpg" alt="" fetchpriority="high" width="1684" height="934">
+  </div>
+
+  <div class="hero-body">
+    <h1 class="hero-title in-kv" id="heroTitle"></h1>
+    <ul class="hero-traits in-kv" id="heroTraits"></ul>
+    <p class="hero-lead" id="heroLead"></p>
+    <p class="hero-sub" id="heroSub"></p>
+    <div class="hero-actions" id="heroActions"></div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- ── 品牌理念 ─────────────────────────── -->
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <p class="eyebrow" id="aboutEyebrow"></p>
+      <h2 class="h2" id="aboutTitle"></h2>
+      <p class="h2-sub" id="aboutTitleSub"></p>
+      <div class="prose" id="aboutBody"></div>
+      <blockquote class="pull" id="aboutQuote"></blockquote>
+    </div>
+    <figure class="about-figure">
+      <!-- 水墨山霧：純 SVG，不用圖檔，呼應品牌雲霧山水意象 -->
+      <div class="ink-scene">
+        <svg class="ink-svg" viewBox="0 0 600 430" role="img" aria-label="水墨山霧意象">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#F7F9F6"/>
+              <stop offset="58%"  stop-color="#E8EEE7"/>
+              <stop offset="100%" stop-color="#DCE5DC"/>
+            </linearGradient>
+            <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#B7C7B8"/><stop offset="100%" stop-color="#CBD7CB"/>
+            </linearGradient>
+            <linearGradient id="mid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7E9A85"/><stop offset="100%" stop-color="#9DB3A1"/>
+            </linearGradient>
+            <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#41603F"/><stop offset="100%" stop-color="#5E7B5C"/>
+            </linearGradient>
+            <filter id="soft" x="-25%" y="-60%" width="150%" height="220%">
+              <feGaussianBlur stdDeviation="13"/>
+            </filter>
+          </defs>
+
+          <rect width="600" height="430" fill="url(#sky)"/>
+          <circle cx="432" cy="112" r="46" fill="#C6A76B" opacity=".26"/>
+          <circle cx="432" cy="112" r="46" fill="none" stroke="#C6A76B" stroke-width="1" opacity=".55"/>
+
+          <path fill="url(#far)" opacity=".62"
+                d="M0,236 L62,172 L112,208 L168,141 L228,202 L282,161 L342,217 L402,150 L462,202 L522,166 L600,222 L600,430 L0,430 Z"/>
+          <ellipse cx="300" cy="236" rx="330" ry="20" fill="#FFFFFF" opacity=".8" filter="url(#soft)"/>
+
+          <path fill="url(#mid)" opacity=".78"
+                d="M0,276 L72,218 L132,258 L202,196 L268,252 L332,212 L398,262 L472,206 L542,252 L600,228 L600,430 L0,430 Z"/>
+          <ellipse cx="270" cy="288" rx="340" ry="17" fill="#FFFFFF" opacity=".74" filter="url(#soft)"/>
+
+          <path fill="url(#near)"
+                d="M0,330 L82,282 L152,318 L232,270 L302,322 L382,276 L452,316 L532,286 L600,320 L600,430 L0,430 Z"/>
+          <ellipse cx="330" cy="342" rx="300" ry="12" fill="#FFFFFF" opacity=".42" filter="url(#soft)"/>
+
+          <path d="M96,392 h408" stroke="#C6A76B" stroke-width="1" opacity=".5"/>
+        </svg>
+
+        <ul class="ink-axes" id="inkAxes"></ul>
+      </div>
+      <figcaption id="aboutCaption"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── 核心價值 ─────────────────────────── -->
+<section class="section values" id="values">
+  <div class="wrap">
+    <p class="eyebrow center" id="valuesEyebrow"></p>
+    <h2 class="h2 center" id="valuesTitle"></h2>
+    <div class="value-grid" id="valueGrid"></div>
+  </div>
+</section>
+
+<!-- ── 服務項目 ─────────────────────────── -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <p class="eyebrow center" id="servicesEyebrow"></p>
+    <h2 class="h2 center" id="servicesTitle"></h2>
+    <p class="h2-sub center" id="servicesSubtitle"></p>
+    <div class="service-grid" id="serviceGrid"></div>
+  </div>
+</section>
+
+<!-- ── 醫療團隊 ─────────────────────────── -->
+<section class="section doctor" id="doctor">
+  <div class="wrap doctor-grid">
+    <figure class="doctor-photo">
+      <img id="doctorImg" src="/images/doctor-chiu.jpg" alt="" loading="lazy">
+    </figure>
+    <div class="doctor-copy">
+      <p class="eyebrow" id="doctorEyebrow"></p>
+      <h2 class="h2" id="doctorTitle"></h2>
+      <p class="doctor-name"><span id="doctorNameZh"></span><i id="doctorNameEn"></i></p>
+      <p class="doctor-role" id="doctorRole"></p>
+      <blockquote class="pull" id="doctorQuote"></blockquote>
+      <div class="prose" id="doctorBio"></div>
+      <ul class="doctor-cred" id="doctorCred"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── 全台據點 ─────────────────────────── -->
+<section class="section locations" id="locations">
+  <div class="wrap">
+    <p class="eyebrow center" id="locEyebrow"></p>
+    <h2 class="h2 center" id="locTitle"></h2>
+    <p class="h2-sub center" id="locSubtitle"></p>
+    <div class="loc-grid" id="locGrid"></div>
+  </div>
+</section>
+
+<!-- ── 醫旅禮遇 ─────────────────────────── -->
+<section class="section gifts" id="gifts">
+  <div class="wrap">
+    <p class="eyebrow center" id="giftEyebrow"></p>
+    <h2 class="h2 center" id="giftTitle"></h2>
+    <p class="h2-sub center" id="giftSubtitle"></p>
+    <div class="gift-tote" id="giftTote"></div>
+    <div class="gift-grid" id="giftGrid"></div>
+    <p class="note center" id="giftNote"></p>
+  </div>
+</section>
+
+<!-- ── 預約諮詢 ─────────────────────────── -->
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <p class="eyebrow" id="contactEyebrow"></p>
+      <h2 class="h2" id="contactTitle"></h2>
+      <p class="h2-sub" id="contactSubtitle"></p>
+      <dl class="hours" id="hours"></dl>
+      <div class="contact-lines" id="contactLines"></div>
+    </div>
+
+    <form class="form" id="bookingForm" novalidate>
+      <div class="field">
+        <label for="fName">姓名 <span aria-hidden="true">*</span></label>
+        <input id="fName" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="fPhone">聯絡電話 <span aria-hidden="true">*</span></label>
+        <input id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+      </div>
+      <div class="field">
+        <label for="fClinic">希望門診據點</label>
+        <select id="fClinic" name="clinic"></select>
+      </div>
+      <div class="field">
+        <label for="fTopic">諮詢項目</label>
+        <select id="fTopic" name="topic"></select>
+      </div>
+      <div class="field field-full">
+        <label for="fNote">想先讓我們知道的事</label>
+        <textarea id="fNote" name="note" rows="4"></textarea>
+      </div>
+      <p class="consent" id="formConsent"></p>
+      <button class="btn btn-solid" type="submit">送出預約</button>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ── 頁尾 ─────────────────────────────── -->
+<footer class="footer">
+  <div class="wrap">
+    <img class="footer-logo" src="/images/logo.png" alt="" width="86" height="86" loading="lazy">
+    <p class="footer-line" id="footerLine"></p>
+    <p class="footer-keywords" id="footerKeywords"></p>
+    <nav class="footer-nav" id="footerNav" aria-label="頁尾選單"></nav>
+    <p class="footer-disclaimer" id="footerDisclaimer"></p>
+    <small class="footer-copy">© <span id="year"></span> <span id="footerGroup"></span>　|　<a id="footerGroupLink" href="#" target="_blank" rel="noopener noreferrer"></a></small>
+  </div>
+</footer>
+
+<a class="fab-line" id="fabLine" href="#contact" aria-label="預約諮詢">
+  <span>預約</span>
+</a>
+
+<script src="/app.js"></script>
+</body>
+</html>

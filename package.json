@@ -1,0 +1,15 @@
+{
+  "name": "clinic-medirealm-metabolic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "雲纖醫境 YUN XIAN — 代謝美學診所官網",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

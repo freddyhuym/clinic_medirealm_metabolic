@@ -1,0 +1,7 @@
+# 預約紀錄含患者姓名與電話（個資），不進版控
+data/bookings.jsonl
+
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
