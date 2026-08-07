@@ -120,6 +120,11 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 醫境知識：/knowledge 與 /knowledge/<slug> 皆由 knowledge.html 呈現
+  if (url.pathname === '/knowledge' || url.pathname.startsWith('/knowledge/')) {
+    return serveFile(res, path.join(PUBLIC_DIR, 'knowledge.html'));
+  }
+
   if (url.pathname === '/healthz') {
     return send(res, 200, 'ok', { 'Content-Type': 'text/plain', 'Cache-Control': 'no-cache' });
   }

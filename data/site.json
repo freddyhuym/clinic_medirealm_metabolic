@@ -268,18 +268,67 @@
     "note": "更多醫療團隊成員介紹陸續更新中。"
   },
   "knowledge": {
-    "eyebrow": "KNOWLEDGE",
+    "eyebrow": "MEDIREALM KNOWLEDGE",
+    "label": "醫境知識庫",
     "title": "從理解開始，做更適合自己的選擇。",
-    "topics": [
-      "減重",
-      "代謝",
-      "體態",
-      "醫美",
-      "抗老",
-      "預防醫學"
+    "intro": "關於體重、代謝、體態與醫學美容，很多問題並沒有只有一個答案。從常見疑問出發，透過醫療專業重新理解自己的身體，再找到適合自己的管理方向。",
+    "moreText": "探索更多醫境知識 →",
+    "moreHref": "/knowledge",
+    "articles": [
+      {
+        "id": "why-weight-not-dropping",
+        "category": "代謝・體重管理",
+        "title": "為什麼明明吃很少，體重卻不下降？",
+        "titleEn": "WHY IS MY WEIGHT NOT CHANGING?",
+        "hook": "「吃得少」，真的就一定會瘦嗎？",
+        "excerpt": "當體重長時間沒有變化，真正需要理解的，可能不只是「這一餐吃了多少」。整體飲食狀態、身體組成、代謝狀態與生活型態，都可能是評估時需要一起理解的線索。",
+        "image": "/images/kn-weight.jpg",
+        "imageAlt": "體重與代謝管理概念",
+        "cta": "了解為什麼 →",
+        "href": "/knowledge/why-weight-not-dropping",
+        "theme": "metabolic"
+      },
+      {
+        "id": "insulin-resistance-and-obesity",
+        "category": "代謝健康",
+        "title": "胰島素阻抗跟肥胖有什麼關係？",
+        "titleEn": "INSULIN RESISTANCE & METABOLISM",
+        "hook": "體重管理，有時不能只看「吃多少」。",
+        "excerpt": "當身體的代謝調節出現變化，體重、脂肪分布與血糖狀態之間，可能存在需要進一步理解的關聯。胰島素阻抗是代謝健康評估中，經常被討論的重要議題之一。",
+        "image": "/images/kn-insulin.jpg",
+        "imageAlt": "代謝健康與胰島素阻抗概念",
+        "cta": "認識胰島素阻抗 →",
+        "href": "/knowledge/insulin-resistance-and-obesity",
+        "theme": "metabolic"
+      },
+      {
+        "id": "rf-vs-ultrasound",
+        "category": "醫學美容",
+        "title": "電波跟音波，到底差在哪？",
+        "titleEn": "RF vs ULTRASOUND",
+        "hook": "都是「拉提」，原理真的一樣嗎？",
+        "excerpt": "電波與音波經常一起被討論，但兩者使用的能量形式、作用概念與治療規劃並不完全相同。真正重要的，不是先決定「我要做哪一台」，而是先理解自己的輪廓狀態與需求。",
+        "image": "/images/kn-rf.jpg",
+        "imageAlt": "醫學美容拉提評估概念",
+        "cta": "一次看懂電波與音波 →",
+        "href": "/knowledge/rf-vs-ultrasound",
+        "theme": "aesthetics"
+      },
+      {
+        "id": "weight-vs-body-fat",
+        "category": "體態管理",
+        "title": "體重下降，不等於脂肪下降？",
+        "titleEn": "WEIGHT vs BODY COMPOSITION",
+        "hook": "體重計上的數字，真的代表身體變好了嗎？",
+        "excerpt": "體重只是觀察身體變化的其中一個數字。當體重下降時，更值得一起理解的，還包括脂肪、肌肉與整體身體組成的變化。因此，體態管理不應只追求體重計上的數字。",
+        "image": "/images/kn-body.jpg",
+        "imageAlt": "體重與身體組成管理概念",
+        "cta": "了解體重與體脂的差別 →",
+        "href": "/knowledge/weight-vs-body-fat",
+        "theme": "body"
+      }
     ],
-    "note": "醫境知識內容籌備中，將由纖顏醫療團隊陸續發布。",
-    "articles": []
+    "placeholderNote": "本篇完整文章內容目前由醫療團隊審閱籌備中，正式版本將於近期發布。"
   },
   "finalCta": {
     "eyebrow": "START YOUR JOURNEY",

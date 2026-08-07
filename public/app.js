@@ -173,9 +173,53 @@
   function renderKnowledge(d) {
     var k = d.knowledge || {};
     setText('knEyebrow', k.eyebrow);
+    setText('knLabel', k.label);
     setText('knTitle', k.title);
-    setHTML('knTopics', (k.topics || []).map(function (t) { return '<li class="reveal">' + esc(t) + '</li>'; }).join(''));
-    setText('knNote', (k.articles || []).length ? '' : k.note);
+    setText('knIntro', k.intro);
+    var more = $('knMore');
+    if (more) { more.textContent = k.moreText || ''; more.href = k.moreHref || '/knowledge'; }
+
+    var arts = k.articles || [];
+    setHTML('knArticles', arts.map(function (a, i) {
+      return '<article class="kn-card" data-index="' + i + '">' +
+        '<figure class="kn-card-media">' +
+          '<img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '"' + (i === 0 ? '' : ' loading="lazy"') + '>' +
+        '</figure>' +
+        '<div class="kn-card-body">' +
+          '<p class="kn-card-cat">' + esc(a.category) + (a.titleEn ? '<i>' + esc(a.titleEn) + '</i>' : '') + '</p>' +
+          '<h3 class="kn-card-title serif">' + esc(a.title) + '</h3>' +
+          '<p class="kn-card-hook">' + esc(a.hook) + '</p>' +
+          '<p class="kn-card-excerpt">' + esc(a.excerpt) + '</p>' +
+          '<a class="kn-card-cta" href="' + esc(a.href) + '">' + esc(a.cta || '閱讀完整文章 →') + '</a>' +
+        '</div>' +
+      '</article>';
+    }).join(''));
+
+    initKnowledgeStory(arts.length);
+  }
+
+  function initKnowledgeStory(total) {
+    if (!total) return;
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.kn-card'));
+    var num = $('knProgressNum');
+    var fill = $('knProgressFill');
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function setActive(i) {
+      cards.forEach(function (c, j) { c.classList.toggle('active', i === j); });
+      if (num) num.textContent = pad(i + 1) + ' / ' + pad(total);
+      if (fill) fill.style.width = ((i + 1) / total * 100) + '%';
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) setActive(cards.indexOf(en.target));
+        });
+      }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+      cards.forEach(function (c) { io.observe(c); });
+    }
+    setActive(0);
   }
 
   function renderFinalCta(d) {
