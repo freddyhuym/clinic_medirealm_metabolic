@@ -138,6 +138,16 @@
     }).join(''));
     setText('undBody', u.body);
     if (u.cta) setHTML('undCta', '<a class="btn btn-ghost" href="' + esc(u.cta.href) + '">' + esc(u.cta.label) + '</a>');
+    if (u.image && u.image.src) {
+      var fig = $('undVisual');
+      if (fig) {
+        var img = document.createElement('img');
+        img.src = u.image.src;
+        img.alt = u.image.alt || '';
+        img.loading = 'lazy';
+        fig.appendChild(img);
+      }
+    }
   }
 
   var STATUS_LABEL = { open: '營運中', preparing: '籌備中' };
