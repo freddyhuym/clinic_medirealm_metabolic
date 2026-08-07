@@ -297,7 +297,7 @@ ul { list-style: none; }
 .clinic-panel.theme-sen .clinic-visual {
   background: linear-gradient(150deg, rgba(126,154,133,.18), rgba(251,248,243,.92) 58%, rgba(228,190,124,.12));
 }
-.clinic-logo { width: 190px; height: auto; }
+.clinic-logo { width: 150px; height: auto; }
 .clinic-monogram {
   width: 150px; height: 150px; border-radius: 50%;
   border: 1px solid var(--xy-gold);
