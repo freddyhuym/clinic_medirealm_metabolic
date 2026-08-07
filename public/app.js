@@ -42,6 +42,30 @@
     if (h.cta)    acts.push('<a class="btn btn-solid" href="' + esc(h.cta.href) + '">' + esc(h.cta.label) + '</a>');
     if (h.ctaAlt) acts.push('<a class="btn btn-ghost" href="' + esc(h.ctaAlt.href) + '">' + esc(h.ctaAlt.label) + '</a>');
     setHTML('heroActions', acts.join(''));
+    renderHeroClinics(d);
+  }
+
+  function renderHeroClinics(d) {
+    var items = (d.clinics && d.clinics.items) || [];
+    setHTML('heroClinics', items.map(function (it, i) {
+      var num = '0' + (i + 1);
+      var mark = it.logo
+        ? '<img class="hc-logo" src="' + esc(it.logo) + '" alt="" loading="eager">'
+        : '<span class="hc-wordmark serif" aria-hidden="true">' + esc(it.shortName) + '<i>XIAN YAN · MEDIREALM</i></span>';
+      var tags = (it.services || []).slice(0, 4).map(function (s) {
+        return '<li>' + esc(s) + '</li>';
+      }).join('');
+      return '<a class="hero-card hc-theme-' + esc(it.theme) + '" href="#clinic-' + esc(it.id) + '"' +
+        ' aria-label="探索' + esc(it.name) + esc(it.hall || '') + '" style="--hc-delay:' + (100 + i * 120) + 'ms">' +
+        '<span class="hc-num display">' + num + '</span>' +
+        '<span class="hc-visual" aria-hidden="true">' + mark + '</span>' +
+        '<span class="hc-name serif">' + esc(it.name) + '</span>' +
+        '<span class="hc-loc">' + esc(it.hall || '') + '</span>' +
+        '<span class="hc-pos">' + esc(it.positioning || '') + '</span>' +
+        '<ul class="hc-tags" aria-hidden="true">' + tags + '</ul>' +
+        '<span class="hc-cta">探索' + esc(it.shortName) + ' <b>→</b></span>' +
+      '</a>';
+    }).join(''));
   }
 
   function renderAbout(d) {
@@ -107,7 +131,7 @@
       }
       foot.push('<span class="clinic-status">' + esc(STATUS_LABEL[it.status] || '營運中') + '</span>');
 
-      return '<article class="clinic-panel theme-' + esc(it.theme) + ' reveal">' +
+      return '<article class="clinic-panel theme-' + esc(it.theme) + ' reveal" id="clinic-' + esc(it.id) + '">' +
         '<div class="clinic-visual">' + visual + '</div>' +
         '<div class="clinic-content">' +
           '<p class="clinic-role">' + esc(it.role) + '</p>' +
