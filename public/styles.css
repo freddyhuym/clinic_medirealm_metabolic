@@ -418,19 +418,6 @@ ul { list-style: none; }
 .doctor-card-clinic { font-size: 13px; color: var(--xy-gold); margin-top: 12px; letter-spacing: .04em; }
 .team-note { margin-top: 44px; font-size: 14.5px; color: var(--xy-text-secondary); }
 
-/* ── Statement ──────────────────────────── */
-.statement { background: var(--xy-cream); }
-.statement-inner {
-  max-width: 760px; text-align: center;
-  display: flex; flex-direction: column; align-items: center;
-}
-.statement-text {
-  font-size: clamp(24px, 3.2vw, 38px);
-  font-weight: 500; line-height: 1.9;
-  letter-spacing: .06em;
-  color: var(--xy-text);
-}
-
 /* ── Knowledge ──────────────────────────── */
 .knowledge { background: var(--xy-ivory); }
 .kn-topics {

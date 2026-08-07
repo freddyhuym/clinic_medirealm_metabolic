@@ -170,10 +170,6 @@
     update();
   }
 
-  function renderStatement(d) {
-    setText('statementText', (d.statement || {}).text ? '「' + d.statement.text + '」' : '');
-  }
-
   function renderKnowledge(d) {
     var k = d.knowledge || {};
     setText('knEyebrow', k.eyebrow);
@@ -350,7 +346,7 @@
     .then(function (d) {
       renderNav(d); renderHero(d); renderAbout(d); renderPillars(d);
       renderUnderstand(d); renderClinics(d); renderTeam(d);
-      renderStatement(d); renderKnowledge(d); renderFinalCta(d);
+      renderKnowledge(d); renderFinalCta(d);
       renderContact(d); renderFooter(d);
 
       initNav(); initReveal(); initForm();
