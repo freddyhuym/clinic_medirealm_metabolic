@@ -68,13 +68,37 @@
     }).join(''));
   }
 
+  var VALUE_ICONS = {
+    cross: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 6v20M6 16h20" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>',
+    rings: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12.5" cy="16" r="7.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="19.5" cy="16" r="7.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>',
+    team: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="9" r="3.4" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="8.5" cy="21" r="3.4" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="23.5" cy="21" r="3.4" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M13.8 11.8 10.4 18M18.2 11.8l3.4 6.2M12 21h8" stroke="currentColor" stroke-width="1" fill="none"/></svg>',
+    city: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26V13l6-4v17M12 26V15l7-3v14M19 26V13l7 3v10M4 26h24" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>'
+  };
+
   function renderAbout(d) {
     var a = d.about || {};
-    setText('aboutEyebrow', a.eyebrow);
+    setText('aboutEyebrow', a.eyebrow + (a.eyebrowZh ? '　' + a.eyebrowZh : ''));
     setText('aboutTitle', a.title);
-    setHTML('aboutBody', (a.paragraphs || []).map(function (p) {
+    setText('aboutSubtitle', a.subtitle);
+    setHTML('aboutBody', (a.manifesto || a.paragraphs || []).map(function (p) {
       return '<p class="reveal">' + esc(p) + '</p>';
     }).join(''));
+
+    setHTML('phiValues', (a.values || []).map(function (v, i) {
+      return '<article class="phi-value reveal" style="transition-delay:' + (i * 100) + 'ms">' +
+        '<span class="phi-value-num display">' + esc(v.number) + '</span>' +
+        '<span class="phi-value-icon">' + (VALUE_ICONS[v.icon] || '') + '</span>' +
+        '<p class="phi-value-en display">' + esc(v.en) + '</p>' +
+        '<h3 class="phi-value-title serif">' + esc(v.title) + '</h3>' +
+        '<span class="phi-value-divider" aria-hidden="true"></span>' +
+        '<p class="phi-value-tagline serif">' + esc(v.tagline) + '</p>' +
+        '<p class="phi-value-desc">' + esc(v.description) + '</p>' +
+      '</article>';
+    }).join(''));
+
+    var c = a.closing || {};
+    setText('phiClosing', c.text);
+    setText('phiClosingSig', c.signature);
   }
 
   function renderPillars(d) {

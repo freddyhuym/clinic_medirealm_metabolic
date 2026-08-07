@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@350;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=5">
+<link rel="stylesheet" href="/styles.css?v=6">
 
 <script type="application/ld+json">
 {
@@ -115,12 +115,53 @@
 </section>
 
 <!-- ── 02 關於纖顏 ─────────────────────── -->
-<section class="section about" id="about">
-  <div class="wrap about-inner">
-    <p class="eyebrow" id="aboutEyebrow"></p>
-    <h2 class="h2 serif" id="aboutTitle"></h2>
-    <div class="gold-divider" aria-hidden="true"></div>
-    <div class="about-prose" id="aboutBody"></div>
+<section class="section philosophy" id="about">
+  <div class="wrap">
+    <div class="phi-top">
+      <div class="phi-text">
+        <p class="eyebrow" id="aboutEyebrow"></p>
+        <h2 class="h2 serif phi-title" id="aboutTitle"></h2>
+        <p class="phi-subtitle serif" id="aboutSubtitle"></p>
+        <div class="gold-divider" aria-hidden="true"></div>
+        <div class="phi-manifesto" id="aboutBody"></div>
+      </div>
+      <figure class="phi-visual reveal" aria-label="代謝、體態與美學相互關聯的品牌圖形">
+        <svg viewBox="0 0 560 520" role="img">
+          <defs>
+            <radialGradient id="phiGlow" cx="50%" cy="48%" r="55%">
+              <stop offset="0%" stop-color="#72BAB4" stop-opacity=".09"/>
+              <stop offset="100%" stop-color="#FBF8F3" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="560" height="520" fill="url(#phiGlow)"/>
+          <!-- 三環：代謝／體態／美學 -->
+          <circle cx="238" cy="208" r="128" fill="none" stroke="#CE9A4B" stroke-opacity=".5" stroke-width="1.2" stroke-dasharray="620 200"/>
+          <circle cx="330" cy="252" r="128" fill="none" stroke="#72BAB4" stroke-opacity=".55" stroke-width="1.2" stroke-dasharray="560 240" transform="rotate(80 330 252)"/>
+          <circle cx="262" cy="312" r="128" fill="none" stroke="#9EB79B" stroke-opacity=".45" stroke-width="1.2" stroke-dasharray="580 220" transform="rotate(200 262 312)"/>
+          <circle cx="278" cy="258" r="40" fill="#FFFCF8" fill-opacity=".7" stroke="#CE9A4B" stroke-opacity=".3" stroke-width="1"/>
+          <text x="278" y="254" text-anchor="middle" font-size="10" letter-spacing="2" fill="#CE9A4B">HEALTH</text>
+          <text x="278" y="269" text-anchor="middle" font-size="10" letter-spacing="2" fill="#417F7C">× BEAUTY</text>
+          <!-- Labels -->
+          <text x="118" y="86" font-size="11" letter-spacing="3" fill="#CE9A4B">METABOLIC</text>
+          <text x="118" y="104" font-size="13" fill="#77716B">代謝</text>
+          <text x="452" y="248" font-size="11" letter-spacing="3" fill="#417F7C">BODY</text>
+          <text x="452" y="266" font-size="13" fill="#77716B">體態</text>
+          <text x="150" y="446" font-size="11" letter-spacing="3" fill="#7d9179">AESTHETICS</text>
+          <text x="150" y="464" font-size="13" fill="#77716B">美學</text>
+          <line x1="168" y1="94" x2="204" y2="130" stroke="#CE9A4B" stroke-opacity=".35" stroke-width="1"/>
+          <line x1="446" y1="256" x2="404" y2="262" stroke="#72BAB4" stroke-opacity=".4" stroke-width="1"/>
+          <line x1="210" y1="440" x2="240" y2="404" stroke="#9EB79B" stroke-opacity=".4" stroke-width="1"/>
+        </svg>
+      </figure>
+    </div>
+
+    <div class="phi-values" id="phiValues"></div>
+
+    <div class="phi-closing reveal">
+      <span class="phi-closing-line" aria-hidden="true"></span>
+      <p class="serif" id="phiClosing"></p>
+      <span class="phi-closing-sig" id="phiClosingSig"></span>
+    </div>
   </div>
 </section>
 
