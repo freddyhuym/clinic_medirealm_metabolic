@@ -19,7 +19,15 @@
     body: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
       '<circle cx="24" cy="24" r="19"/><path d="M19 13c0 4-2.4 6.4-2.4 10S19 30 19 35"/><path d="M29 13c0 4 2.4 6.4 2.4 10S29 30 29 35"/></svg>',
     aesthetics: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M24 14c2.8 3.4 4.6 6.6 4.6 10a4.6 4.6 0 1 1-9.2 0c0-3.4 1.8-6.6 4.6-10Z"/><path d="M17 33.5c4.6 2 9.4 2 14 0"/></svg>'
+      '<circle cx="24" cy="24" r="19"/><path d="M24 14c2.8 3.4 4.6 6.6 4.6 10a4.6 4.6 0 1 1-9.2 0c0-3.4 1.8-6.6 4.6-10Z"/><path d="M17 33.5c4.6 2 9.4 2 14 0"/></svg>',
+    lifting: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><path d="M17 32c0-7 3-13 7-17 4 4 7 10 7 17"/><path d="M15 26l6-5M33 26l-6-5"/></svg>',
+    inject: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><path d="M24 13c2.4 3 4 5.8 4 8.4a4 4 0 1 1-8 0c0-2.6 1.6-5.4 4-8.4Z"/><circle cx="24" cy="31.5" r="1.1"/><circle cx="18.5" cy="34.5" r="1.1"/><circle cx="29.5" cy="34.5" r="1.1"/></svg>',
+    laser: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="6.5"/><path d="M24 12.5v4M24 31.5v4M12.5 24h4M31.5 24h4M16 16l2.6 2.6M32 32l-2.6-2.6M32 16l-2.6 2.6M16 32l2.6-2.6"/></svg>',
+    shield: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="24" cy="24" r="19"/><path d="M24 13.5l8 3v7c0 5.4-3.2 9.4-8 11.5-4.8-2.1-8-6.1-8-11.5v-7l8-3Z"/><path d="M20.5 24l2.6 2.6 4.6-5.2"/></svg>'
   };
 
   /* ── 各區塊渲染 ───────────────────────── */
@@ -105,6 +113,8 @@
     var p = d.pillars || {};
     setText('pillarsEyebrow', p.eyebrow);
     setText('pillarsTitle', p.title);
+    setText('pillarsSubtitle', p.subtitle);
+    setText('pillarsFootnote', p.footnote);
     setHTML('pillarGrid', (p.items || []).map(function (it) {
       var tags = (it.tags || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
       return '<article class="pillar reveal">' +
