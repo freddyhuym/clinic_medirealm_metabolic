@@ -221,7 +221,11 @@
         "address": "台北市大安區信義路二段 207 號 3 樓",
         "mapQuery": "台北市大安區信義路二段207號",
         "cta": "探索初纖顏",
-        "status": "open"
+        "status": "open",
+        "photo": {
+          "src": "/images/clinic-chu.jpg",
+          "alt": "初纖顏醫境診所台北信義館空間照片"
+        }
       },
       {
         "id": "mu",
@@ -244,7 +248,11 @@
         "address": "",
         "mapQuery": "",
         "cta": "探索沐纖顏",
-        "status": "preparing"
+        "status": "preparing",
+        "photo": {
+          "src": "/images/clinic-mu.jpg",
+          "alt": "沐纖顏醫境診所台北中正館空間照片"
+        }
       },
       {
         "id": "sen",
@@ -267,7 +275,11 @@
         "address": "",
         "mapQuery": "",
         "cta": "探索森纖顏",
-        "status": "preparing"
+        "status": "preparing",
+        "photo": {
+          "src": "/images/clinic-sen.jpg",
+          "alt": "森纖顏醫境診所新北新莊館空間照片"
+        }
       }
     ]
   },

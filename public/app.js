@@ -159,9 +159,15 @@
     setText('clinicsIntro', c.intro);
 
     setHTML('clinicPanels', (c.items || []).map(function (it) {
-      var visual = it.logo
-        ? '<img class="clinic-logo" src="' + esc(it.logo) + '" alt="' + esc(it.name) + ' Logo" loading="lazy">'
-        : '<div class="clinic-monogram" aria-hidden="true"><b>' + esc(it.shortName) + '</b><i>XIAN YAN</i></div>';
+      var visual;
+      var hasPhoto = !!(it.photo && it.photo.src);
+      if (hasPhoto) {
+        visual = '<img class="clinic-photo" src="' + esc(it.photo.src) + '" alt="' + esc(it.photo.alt || it.name) + '" loading="lazy">';
+      } else if (it.logo) {
+        visual = '<img class="clinic-logo" src="' + esc(it.logo) + '" alt="' + esc(it.name) + ' Logo" loading="lazy">';
+      } else {
+        visual = '<div class="clinic-monogram" aria-hidden="true"><b>' + esc(it.shortName) + '</b><i>XIAN YAN</i></div>';
+      }
       var svc = (it.services || []).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('');
       var foot = [];
       if (it.address) {
@@ -176,7 +182,7 @@
       foot.push('<span class="clinic-status">' + esc(STATUS_LABEL[it.status] || '營運中') + '</span>');
 
       return '<article class="clinic-panel theme-' + esc(it.theme) + ' reveal" id="clinic-' + esc(it.id) + '">' +
-        '<div class="clinic-visual">' + visual + '</div>' +
+        '<div class="clinic-visual' + (hasPhoto ? ' has-photo' : '') + '">' + visual + '</div>' +
         '<div class="clinic-content">' +
           '<p class="clinic-role">' + esc(it.role) + '</p>' +
           '<h3 class="clinic-name">' + esc(it.name) + '<small>' + esc(it.hall) + '</small></h3>' +
