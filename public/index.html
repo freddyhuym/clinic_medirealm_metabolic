@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@350;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=2">
+<link rel="stylesheet" href="/styles.css?v=3">
 
 <script type="application/ld+json">
 {
@@ -153,7 +153,11 @@
     <h2 class="h2 serif center" id="teamTitle"></h2>
     <p class="team-subtitle center" id="teamSubtitle"></p>
     <div class="team-prose" id="teamBody"></div>
-    <div class="doctor-grid" id="doctorGrid"></div>
+    <div class="doctor-carousel">
+      <button type="button" class="carousel-btn prev" id="teamPrev" aria-label="上一位醫師">←</button>
+      <div class="doctor-track" id="doctorGrid" tabindex="0" aria-label="醫療團隊卡片，可左右滑動"></div>
+      <button type="button" class="carousel-btn next" id="teamNext" aria-label="下一位醫師">→</button>
+    </div>
     <p class="team-note center" id="teamNote"></p>
   </div>
 </section>

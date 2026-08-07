@@ -10,16 +10,20 @@
     "philosophy": "從代謝、體態到外在美學，以醫療專業評估為核心。",
     "teamModel": "多位醫師共同主理"
   },
-
   "hero": {
     "eyebrow": "XIAN YAN · MEDIREALM",
     "title": "纖顏醫境",
     "positioning": "都會代謝 × 體態 × 精緻美學",
     "lead": "從代謝、體態到外在美學，以醫療專業評估為核心，為不同生活階段建立更完整的健康與美管理。",
-    "cta": { "label": "探索三大院所", "href": "#locations" },
-    "ctaAlt": { "label": "預約諮詢", "href": "#contact" }
+    "cta": {
+      "label": "探索三大院所",
+      "href": "#locations"
+    },
+    "ctaAlt": {
+      "label": "預約諮詢",
+      "href": "#contact"
+    }
   },
-
   "about": {
     "eyebrow": "ABOUT XIAN YAN",
     "title": "纖顏，是一個走進城市生活的醫療品牌。",
@@ -29,23 +33,52 @@
       "從健康狀態開始理解，再走向適合自己的體態與美學管理。"
     ]
   },
-
   "pillars": {
     "eyebrow": "OUR APPROACH",
     "title": "從健康，到體態，再到美。",
     "items": [
-      { "no": "01", "en": "METABOLIC", "zh": "代謝健康", "icon": "metabolic",
+      {
+        "no": "01",
+        "en": "METABOLIC",
+        "zh": "代謝健康",
+        "icon": "metabolic",
         "desc": "從代謝狀態理解身體，建立健康管理的根本。",
-        "tags": ["體重管理", "代謝評估", "健康管理", "更年期代謝"] },
-      { "no": "02", "en": "BODY", "zh": "體態管理", "icon": "body",
+        "tags": [
+          "體重管理",
+          "代謝評估",
+          "健康管理",
+          "更年期代謝"
+        ]
+      },
+      {
+        "no": "02",
+        "en": "BODY",
+        "zh": "體態管理",
+        "icon": "body",
         "desc": "以醫療評估為基礎，規劃適合的體態管理方向。",
-        "tags": ["脂肪管理", "肌肉與代謝", "身體緊實", "非侵入式體態管理"] },
-      { "no": "03", "en": "AESTHETICS", "zh": "精緻美學", "icon": "aesthetics",
+        "tags": [
+          "脂肪管理",
+          "肌肉與代謝",
+          "身體緊實",
+          "非侵入式體態管理"
+        ]
+      },
+      {
+        "no": "03",
+        "en": "AESTHETICS",
+        "zh": "精緻美學",
+        "icon": "aesthetics",
         "desc": "在健康的基礎上，追求細膩自然的外在美學。",
-        "tags": ["拉提", "微整", "肌膚管理", "膠原", "輪廓管理"] }
+        "tags": [
+          "拉提",
+          "微整",
+          "肌膚管理",
+          "膠原",
+          "輪廓管理"
+        ]
+      }
     ]
   },
-
   "understand": {
     "eyebrow": "UNDERSTAND FIRST",
     "title": "你需要的，也許不是「更多療程」。",
@@ -57,9 +90,11 @@
       "為什麼肌膚與輪廓開始出現變化？"
     ],
     "body": "纖顏從醫療評估開始，依據個人的健康狀態、生活型態與實際需求，與適合專業領域的醫師討論管理方向。",
-    "cta": { "label": "開始我的醫境評估", "href": "#contact" }
+    "cta": {
+      "label": "開始我的醫境評估",
+      "href": "#contact"
+    }
   },
-
   "clinics": {
     "eyebrow": "THREE CLINICS",
     "title": "三種城市生活，三種醫療角色。",
@@ -76,7 +111,13 @@
         "role": "都會美學",
         "impression": "都會輕醫美 × 體態",
         "positioning": "都會輕醫美 × 體態美學",
-        "services": ["體態管理", "電音波拉提", "微整注射", "肌膚管理", "代謝健康"],
+        "services": [
+          "體態管理",
+          "電音波拉提",
+          "微整注射",
+          "肌膚管理",
+          "代謝健康"
+        ],
         "address": "台北市大安區信義路二段 207 號 3 樓",
         "mapQuery": "台北市大安區信義路二段207號",
         "cta": "探索初纖顏",
@@ -93,7 +134,13 @@
         "role": "內科醫療型",
         "impression": "減重 × 代謝 × 預防",
         "positioning": "代謝健康 × 預防醫學",
-        "services": ["醫師減重", "代謝管理", "健康檢測", "健康抗老", "精緻美學"],
+        "services": [
+          "醫師減重",
+          "代謝管理",
+          "健康檢測",
+          "健康抗老",
+          "精緻美學"
+        ],
         "address": "",
         "mapQuery": "",
         "cta": "探索沐纖顏",
@@ -110,7 +157,13 @@
         "role": "生活圈型",
         "impression": "減重 × 體態 × 美學",
         "positioning": "生活圈代謝 × 體態 × 美學",
-        "services": ["醫師減重", "體態管理", "電音波拉提", "微整注射", "健康管理"],
+        "services": [
+          "醫師減重",
+          "體態管理",
+          "電音波拉提",
+          "微整注射",
+          "健康管理"
+        ],
         "address": "",
         "mapQuery": "",
         "cta": "探索森纖顏",
@@ -118,7 +171,6 @@
       }
     ]
   },
-
   "team": {
     "eyebrow": "OUR MEDICAL TEAM",
     "title": "多位醫師，共同主理。",
@@ -129,37 +181,121 @@
     ],
     "doctors": [
       {
-        "id": "chiu",
-        "name": "邱文瑾 醫師",
-        "nameEn": "Dr. Chin",
-        "image": "/images/doctor-chiu-crop.jpg",
-        "specialty": "代謝醫學 × 醫學美容整合治療",
-        "expertise": ["個人化減重與體態規劃", "預防醫學與長期健康管理"],
-        "clinics": ["chu"]
+        "id": "lin",
+        "name": "林哲宇 醫師",
+        "nameEn": "Dr. Lin",
+        "image": "/images/doctor-m1.jpg",
+        "specialty": "代謝醫學 × 體重管理",
+        "expertise": [
+          "個人化減重與代謝評估",
+          "慢性代謝問題長期追蹤"
+        ],
+        "clinics": [
+          "mu"
+        ]
+      },
+      {
+        "id": "chen",
+        "name": "陳映辰 醫師",
+        "nameEn": "Dr. Chen",
+        "image": "/images/doctor-f1.jpg",
+        "specialty": "醫學美容 × 肌膚管理",
+        "expertise": [
+          "自然感微整與肌膚治療",
+          "術後修護與膚質管理"
+        ],
+        "clinics": [
+          "chu"
+        ]
+      },
+      {
+        "id": "hsu",
+        "name": "許凱翔 醫師",
+        "nameEn": "Dr. Hsu",
+        "image": "/images/doctor-m2.jpg",
+        "specialty": "體態雕塑 × 運動醫學",
+        "expertise": [
+          "非侵入式體態管理",
+          "運動處方與肌肉代謝"
+        ],
+        "clinics": [
+          "sen"
+        ]
+      },
+      {
+        "id": "su",
+        "name": "蘇芸溪 醫師",
+        "nameEn": "Dr. Su",
+        "image": "/images/doctor-f2.jpg",
+        "specialty": "預防醫學 × 健康管理",
+        "expertise": [
+          "功能醫學與營養評估",
+          "抗老化與長期健康規劃"
+        ],
+        "clinics": [
+          "mu"
+        ]
+      },
+      {
+        "id": "chou",
+        "name": "周承翰 醫師",
+        "nameEn": "Dr. Chou",
+        "image": "/images/doctor-m3.jpg",
+        "specialty": "微整注射 × 輪廓管理",
+        "expertise": [
+          "臉部輪廓評估與規劃",
+          "電音波拉提治療"
+        ],
+        "clinics": [
+          "chu"
+        ]
+      },
+      {
+        "id": "yang",
+        "name": "楊子萱 醫師",
+        "nameEn": "Dr. Yang",
+        "image": "/images/doctor-f3.jpg",
+        "specialty": "代謝健康 × 女性醫學",
+        "expertise": [
+          "女性荷爾蒙與代謝調理",
+          "更年期體態與健康管理"
+        ],
+        "clinics": [
+          "sen"
+        ]
       }
     ],
     "note": "更多醫療團隊成員介紹陸續更新中。"
   },
-
   "statement": {
     "text": "不是把療程放在一起，而是把一個人的健康與美重新放在一起思考。"
   },
-
   "knowledge": {
     "eyebrow": "KNOWLEDGE",
     "title": "從理解開始，做更適合自己的選擇。",
-    "topics": ["減重", "代謝", "體態", "醫美", "抗老", "預防醫學"],
+    "topics": [
+      "減重",
+      "代謝",
+      "體態",
+      "醫美",
+      "抗老",
+      "預防醫學"
+    ],
     "note": "醫境知識內容籌備中，將由纖顏醫療團隊陸續發布。",
     "articles": []
   },
-
   "finalCta": {
     "eyebrow": "START YOUR JOURNEY",
     "title": "從理解自己開始，找到適合你的健康與美管理。",
-    "cta": { "label": "預約諮詢", "href": "#contact" },
-    "ctaAlt": { "label": "尋找適合我的院所", "href": "#locations" }
+    "cta": {
+      "label": "預約諮詢",
+      "href": "#contact"
+    },
+    "ctaAlt": {
+      "label": "尋找適合我的院所",
+      "href": "#locations"
+    }
   },
-
   "contact": {
     "eyebrow": "RESERVATION",
     "title": "預約諮詢",
@@ -168,26 +304,54 @@
     "phone": "",
     "email": "",
     "hours": [
-      { "days": "週一 ～ 週五", "time": "11:00 – 20:00" },
-      { "days": "週六", "time": "11:00 – 18:00" },
-      { "days": "週日 / 國定假日", "time": "休診" }
+      {
+        "days": "週一 ～ 週五",
+        "time": "11:00 – 20:00"
+      },
+      {
+        "days": "週六",
+        "time": "11:00 – 18:00"
+      },
+      {
+        "days": "週日 / 國定假日",
+        "time": "休診"
+      }
     ],
     "consent": "送出即表示您同意本診所依個資法蒐集與使用您所填寫的聯絡資訊，作為預約與諮詢聯繫之用。"
   },
-
   "footer": {
     "brandDesc": "都會代謝 × 體態 × 精緻美學",
     "group": "纖顏醫境體系",
-    "groupSite": { "label": "醫境醫療集團", "href": "https://medirealms.org/" },
+    "groupSite": {
+      "label": "醫境醫療集團",
+      "href": "https://medirealms.org/"
+    },
     "disclaimer": "本網站內容僅供醫療資訊參考，不構成療效保證。任何療程效果因個人體質而異，實際適應症與風險請由醫師當面評估說明。"
   },
-
   "nav": [
-    { "label": "關於纖顏", "href": "#about" },
-    { "label": "醫療服務", "href": "#services" },
-    { "label": "三大院所", "href": "#locations" },
-    { "label": "醫療團隊", "href": "#team" },
-    { "label": "醫境知識", "href": "#knowledge" },
-    { "label": "聯絡我們", "href": "#contact" }
+    {
+      "label": "關於纖顏",
+      "href": "#about"
+    },
+    {
+      "label": "醫療服務",
+      "href": "#services"
+    },
+    {
+      "label": "三大院所",
+      "href": "#locations"
+    },
+    {
+      "label": "醫療團隊",
+      "href": "#team"
+    },
+    {
+      "label": "醫境知識",
+      "href": "#knowledge"
+    },
+    {
+      "label": "聯絡我們",
+      "href": "#contact"
+    }
   ]
 }
