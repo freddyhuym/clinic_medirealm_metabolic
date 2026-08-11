@@ -24,15 +24,18 @@
       var grid = $('ltGrid');
       if (grid) {
         grid.innerHTML = (lt.devices || []).map(function (dev) {
-          return '<article class="lt-card">' +
+          var inner =
             '<div class="lt-card-visual">' +
               '<img src="' + esc(dev.image) + '" alt="' + esc(dev.alt || (dev.name + ' ' + dev.zhName)) + '" loading="lazy">' +
             '</div>' +
             '<div class="lt-card-body">' +
               '<p class="lt-card-cat">' + esc(dev.categoryEn) + '<i>' + esc(dev.category) + '</i></p>' +
               '<h3 class="lt-card-name">' + esc(dev.name) + '<small>' + esc(dev.zhName) + '</small></h3>' +
-            '</div>' +
-          '</article>';
+            '</div>';
+          if (dev.href) {
+            return '<a class="lt-card lt-card-link" href="' + esc(dev.href) + '" aria-label="' + esc(dev.name + ' ' + dev.zhName) + '：查看詳細介紹">' + inner + '</a>';
+          }
+          return '<article class="lt-card">' + inner + '</article>';
         }).join('');
       }
 
