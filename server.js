@@ -140,6 +140,21 @@ const server = http.createServer((req, res) => {
     return send(res, 302, '', { Location: '/services/lifting', 'Cache-Control': 'no-cache' });
   }
 
+  // 醫師詳細頁：/doctors/<slug>（未知 slug 一律導回首頁醫療團隊）
+  if (url.pathname.startsWith('/doctors/')) {
+    const slug = url.pathname.slice('/doctors/'.length);
+    let valid = false;
+    try {
+      const site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      const doctors = (site.team && site.team.doctors) || [];
+      valid = doctors.some((dr) => dr.slug === slug && dr.detail);
+    } catch (e) {
+      console.error('  [錯誤] 讀取站台資料失敗：', e.message);
+    }
+    if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'doctor.html'));
+    return send(res, 302, '', { Location: '/#team', 'Cache-Control': 'no-cache' });
+  }
+
   // 醫境知識：/knowledge 與 /knowledge/<slug> 皆由 knowledge.html 呈現
   if (url.pathname === '/knowledge' || url.pathname.startsWith('/knowledge/')) {
     return serveFile(res, path.join(PUBLIC_DIR, 'knowledge.html'));

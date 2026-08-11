@@ -483,6 +483,8 @@ ul { list-style: none; }
   gap: clamp(24px, 2.6vw, 40px); margin-top: 64px;
 }
 a.pillar-link { display: block; color: inherit; cursor: pointer; }
+a.doctor-card-link { display: block; color: inherit; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease; }
+a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(60, 55, 45, .08); }
 .pillar {
   background: var(--xy-warm-white);
   border: 1px solid var(--xy-border);

@@ -210,15 +210,18 @@
     setHTML('doctorGrid', (t.doctors || []).map(function (dr) {
       var exp = (dr.expertise || []).map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('');
       var cl = (dr.clinics || []).map(function (id) { return clinicName[id] || ''; }).filter(Boolean).join('、');
-      return '<article class="doctor-card reveal">' +
+      var inner =
         (dr.image ? '<figure><img src="' + esc(dr.image) + '" alt="' + esc(dr.name) + '" loading="lazy"></figure>' : '') +
         '<div class="doctor-card-body">' +
           '<h3 class="doctor-card-name">' + esc(dr.name) + (dr.nameEn ? '<i>' + esc(dr.nameEn) + '</i>' : '') + '</h3>' +
           '<p class="doctor-card-spec">' + esc(dr.specialty) + '</p>' +
           (exp ? '<ul class="doctor-card-exp">' + exp + '</ul>' : '') +
           (cl ? '<p class="doctor-card-clinic">主要看診：' + esc(cl) + '</p>' : '') +
-        '</div>' +
-      '</article>';
+        '</div>';
+      if (dr.href) {
+        return '<a class="doctor-card doctor-card-link reveal" href="' + esc(dr.href) + '" aria-label="' + esc(dr.name) + '：查看詳細介紹">' + inner + '</a>';
+      }
+      return '<article class="doctor-card reveal">' + inner + '</article>';
     }).join(''));
 
     setText('teamNote', t.note);

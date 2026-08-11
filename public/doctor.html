@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>醫療團隊｜纖顏醫境 XIAN YAN · MEDIREALM</title>
+<meta name="description" content="纖顏醫境醫療團隊醫師介紹。">
+<link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=11">
+<style>
+  .dr-hero { background: var(--xy-ivory); padding: 150px 24px 80px; }
+  .dr-hero-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 45fr 55fr;
+    gap: clamp(32px, 4.5vw, 72px); align-items: center;
+  }
+  .dr-breadcrumb { font-size: 13.5px; color: var(--xy-text-secondary); letter-spacing: .04em; margin-bottom: 34px; }
+  .dr-breadcrumb a { color: var(--xy-teal-dark); border-bottom: 1px solid rgba(206,154,75,.4); padding-bottom: 2px; }
+  .dr-breadcrumb a:hover { color: var(--xy-gold); }
+  .dr-hero .eyebrow { margin-bottom: 10px; }
+  .dr-name { font-family: var(--serif); font-size: clamp(34px, 4.6vw, 48px); font-weight: 500; line-height: 1.4; }
+  .dr-tagline { font-family: var(--serif); font-size: clamp(19px, 2.2vw, 24px); font-weight: 500; color: var(--xy-teal-dark); margin-top: 14px; }
+  .dr-expertise { margin-top: 22px; font-size: 15.5px; line-height: 2.1; color: var(--xy-text-secondary); }
+  .dr-clinic-line { margin-top: 22px; font-size: 14.5px; letter-spacing: .06em; color: var(--xy-text); }
+  .dr-clinic-line b { font-weight: 500; color: var(--xy-gold); margin-right: 10px; letter-spacing: .12em; }
+  .dr-hero-visual {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--xy-border);
+    background: linear-gradient(165deg, rgba(114,186,180,.08), rgba(251,248,243,.92) 55%, rgba(228,190,124,.12));
+    aspect-ratio: 4 / 4.6;
+    max-height: 560px;
+  }
+  .dr-hero-visual img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+
+  .dr-main { background: var(--xy-cream); padding: 40px 24px 0; }
+  .dr-main-inner { max-width: 860px; margin: 0 auto; }
+  .dr-section { padding: 64px 0; border-bottom: 1px solid var(--xy-border); }
+  .dr-section:last-child { border-bottom: none; }
+  .dr-section .eyebrow { margin-bottom: 8px; }
+  .dr-section h2 { font-family: var(--serif); font-size: clamp(23px, 2.8vw, 30px); font-weight: 500; }
+  .dr-section-body { margin-top: 22px; font-size: 16px; line-height: 2.05; color: var(--xy-text-secondary); }
+  .dr-section-body p { margin-bottom: 14px; max-width: 680px; }
+
+  .dr-edu { margin-top: 8px; }
+  .dr-edu-row { display: flex; align-items: baseline; gap: 26px; padding: 22px 4px; border-bottom: 1px solid var(--xy-border); }
+  .dr-edu-row:last-child { border-bottom: none; }
+  .dr-edu-no { font-family: var(--display); font-size: 15px; letter-spacing: .2em; color: var(--xy-gold); flex: 0 0 auto; }
+  .dr-edu-text { font-size: 16px; color: var(--xy-text); letter-spacing: .03em; }
+
+  .dr-cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 10px; }
+  .dr-cert-card {
+    background: var(--xy-warm-white); border: 1px solid rgba(114,186,180,.25);
+    border-radius: var(--radius); padding: 24px 16px; text-align: center;
+  }
+  .dr-cert-no { font-family: var(--display); font-size: 12px; letter-spacing: .22em; color: var(--xy-gold); }
+  .dr-cert-name { margin-top: 10px; font-size: 15px; font-weight: 500; color: var(--xy-text); line-height: 1.7; }
+  .dr-cert-sub { margin-top: 4px; font-size: 12.5px; letter-spacing: .14em; color: var(--xy-text-secondary); }
+
+  .dr-spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
+  .dr-spec-card {
+    background: var(--xy-warm-white); border: 1px solid var(--xy-border);
+    border-radius: var(--radius); padding: 26px 20px;
+    display: flex; align-items: baseline; gap: 16px;
+  }
+  .dr-spec-no { font-family: var(--display); font-size: 13px; letter-spacing: .2em; color: var(--xy-gold); }
+  .dr-spec-name { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--xy-text); }
+
+  .dr-philosophy { text-align: center; }
+  .dr-philosophy h2 { font-size: clamp(25px, 3.2vw, 34px); }
+  .dr-philosophy .dr-section-body p { margin-left: auto; margin-right: auto; max-width: 620px; }
+
+  .dr-clinic-card {
+    background: var(--xy-warm-white); border: 1px solid var(--xy-border); border-radius: var(--radius);
+    padding: 30px 34px; margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: baseline;
+  }
+  .dr-clinic-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--xy-text); }
+  .dr-clinic-card p { font-size: 14.5px; color: var(--xy-text-secondary); }
+
+  .dr-cta { background: var(--xy-ivory); padding: 90px 24px; text-align: center; margin-top: 40px; }
+  .dr-cta-inner { max-width: 620px; margin: 0 auto; }
+  .dr-cta h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); font-weight: 500; }
+  .dr-cta p { margin-top: 16px; font-size: 15.5px; line-height: 2; color: var(--xy-text-secondary); }
+  .dr-cta-actions { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .dr-hero { padding: 130px 20px 60px; }
+    .dr-hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .dr-hero-visual { max-width: 520px; }
+    .dr-cert-grid { grid-template-columns: 1fr 1fr; }
+    .dr-spec-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .dr-spec-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#drMain">跳到主要內容</a>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="纖顏醫境 回首頁">
+      <span class="brand-zh serif">纖顏醫境</span>
+      <span class="brand-en">XIAN YAN · MEDIREALM</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks" aria-label="主選單">
+      <a href="/#services">醫療服務</a>
+      <a href="/#locations">三大院所</a>
+      <a class="btn btn-primary btn-sm" href="/#contact">預約諮詢</a>
+    </nav>
+  </div>
+</header>
+
+<main id="drMain">
+  <section class="dr-hero">
+    <div class="dr-hero-inner">
+      <div>
+        <p class="dr-breadcrumb"><a href="/">首頁</a> ／ <a href="/#team">醫療團隊</a> ／ <span id="drCrumbName"></span></p>
+        <p class="eyebrow" id="drEyebrow"></p>
+        <h1 class="dr-name" id="drName"></h1>
+        <p class="dr-tagline" id="drTagline"></p>
+        <div class="dr-expertise" id="drExpertise"></div>
+        <p class="dr-clinic-line" id="drClinicLine" style="display:none"></p>
+      </div>
+      <div class="dr-hero-visual">
+        <img id="drPhoto" src="" alt="">
+      </div>
+    </div>
+  </section>
+  <section class="dr-main">
+    <div class="dr-main-inner" id="drSections"></div>
+  </section>
+  <section class="dr-cta" id="drCtaWrap" style="display:none">
+    <div class="dr-cta-inner" id="drCta"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-bottom" style="border-top:none">
+    <p id="drFooterCopy">© 纖顏醫境體系</p>
+  </div>
+</footer>
+
+<script src="/doctor.js"></script>
+<script>
+(function(){var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+if(t&&l){t.addEventListener('click',function(){var o=l.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');t.setAttribute('aria-label',o?'關閉選單':'開啟選單');});}})();
+</script>
+</body>
+</html>
