@@ -56,14 +56,15 @@
   .dr-edu-no { font-family: var(--display); font-size: 15px; letter-spacing: .2em; color: var(--xy-gold); flex: 0 0 auto; }
   .dr-edu-text { font-size: 16px; color: var(--xy-text); letter-spacing: .03em; }
 
-  .dr-cert-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 10px; }
-  .dr-cert-card {
-    background: var(--xy-warm-white); border: 1px solid rgba(114,186,180,.25);
-    border-radius: var(--radius); padding: 24px 16px; text-align: center;
+  .dr-cert-list { list-style: none; margin-top: 6px; }
+  .dr-cert-list li {
+    position: relative; padding: 10px 0 10px 26px;
+    font-size: 16px; color: var(--xy-text); letter-spacing: .03em;
   }
-  .dr-cert-no { font-family: var(--display); font-size: 12px; letter-spacing: .22em; color: var(--xy-gold); }
-  .dr-cert-name { margin-top: 10px; font-size: 15px; font-weight: 500; color: var(--xy-text); line-height: 1.7; }
-  .dr-cert-sub { margin-top: 4px; font-size: 12.5px; letter-spacing: .14em; color: var(--xy-text-secondary); }
+  .dr-cert-list li::before {
+    content: ""; position: absolute; left: 4px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--xy-gold);
+  }
 
   .dr-spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
   .dr-spec-card {

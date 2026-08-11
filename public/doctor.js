@@ -69,11 +69,9 @@
         html += '<section class="dr-section">' +
           '<p class="eyebrow">' + esc(det.certifications.eyebrow) + '</p>' +
           '<h2>' + esc(det.certifications.title) + '</h2>' +
-          '<div class="dr-section-body"><div class="dr-cert-grid">' + (det.certifications.items || []).map(function (t, i) {
-            var name = t.replace(/\s*原廠認證$/, '');
-            return '<div class="dr-cert-card"><p class="dr-cert-no">' + pad(i + 1) + '</p>' +
-              '<p class="dr-cert-name">' + esc(name) + '</p><p class="dr-cert-sub">原廠認證</p></div>';
-          }).join('') + '</div></div>' +
+          '<div class="dr-section-body"><ul class="dr-cert-list">' + (det.certifications.items || []).map(function (t) {
+            return '<li>' + esc(t) + '</li>';
+          }).join('') + '</ul></div>' +
         '</section>';
       }
       if (det.specialties) {
