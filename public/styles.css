@@ -482,6 +482,7 @@ ul { list-style: none; }
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: clamp(24px, 2.6vw, 40px); margin-top: 64px;
 }
+a.pillar-link { display: block; color: inherit; cursor: pointer; }
 .pillar {
   background: var(--xy-warm-white);
   border: 1px solid var(--xy-border);

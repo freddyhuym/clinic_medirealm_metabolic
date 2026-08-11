@@ -132,7 +132,8 @@
           "音波拉提",
           "輪廓緊實",
           "老化管理"
-        ]
+        ],
+        "href": "/services/lifting"
       },
       {
         "no": "04",
@@ -499,5 +500,32 @@
       "label": "聯絡我們",
       "href": "#contact"
     }
-  ]
+  ],
+  "lifting": {
+    "eyebrow": "LIFTING TECHNOLOGY",
+    "title": "電音波拉提",
+    "subtitle": "以專業醫療評估為核心，依照不同肌膚狀態與需求，規劃適合的電波與音波療程。",
+    "devicesEyebrow": "LIFTING DEVICES",
+    "devicesTitle": "設備介紹",
+    "devices": [
+      {
+        "id": "oligio-x",
+        "name": "Oligio X",
+        "zhName": "超完美電波",
+        "category": "電波拉提",
+        "categoryEn": "RADIOFREQUENCY",
+        "image": "/images/devices/oligio-x.png",
+        "alt": "Oligio X 超完美電波儀器"
+      },
+      {
+        "id": "tightan",
+        "name": "Tightan",
+        "zhName": "咻音波",
+        "category": "音波拉提",
+        "categoryEn": "ULTRASOUND",
+        "image": "/images/devices/tightan.png",
+        "alt": "Tightan 咻音波儀器"
+      }
+    ]
+  }
 }

@@ -117,14 +117,17 @@
     setText('pillarsFootnote', p.footnote);
     setHTML('pillarGrid', (p.items || []).map(function (it) {
       var tags = (it.tags || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
-      return '<article class="pillar reveal">' +
+      var inner =
         '<p class="pillar-no" aria-hidden="true">' + esc(it.no) + '</p>' +
         '<div class="pillar-icon" aria-hidden="true">' + (ICONS[it.icon] || '') + '</div>' +
         '<p class="pillar-en">' + esc(it.en) + '</p>' +
         '<h3 class="pillar-zh">' + esc(it.zh) + '</h3>' +
         '<p class="pillar-desc">' + esc(it.desc) + '</p>' +
-        (tags ? '<ul class="pillar-tags">' + tags + '</ul>' : '') +
-      '</article>';
+        (tags ? '<ul class="pillar-tags">' + tags + '</ul>' : '');
+      if (it.href) {
+        return '<a class="pillar pillar-link reveal" href="' + esc(it.href) + '" aria-label="' + esc(it.zh) + '：查看更多">' + inner + '</a>';
+      }
+      return '<article class="pillar reveal">' + inner + '</article>';
     }).join(''));
   }
 
