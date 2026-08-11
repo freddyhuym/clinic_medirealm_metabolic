@@ -293,17 +293,17 @@
     ],
     "doctors": [
       {
-        "id": "lin",
-        "name": "林哲宇 醫師",
-        "nameEn": "Dr. Lin",
-        "image": "/images/doctor-m1.jpg",
-        "specialty": "代謝醫學 × 體重管理",
+        "id": "huang",
+        "name": "黃婷筠 醫師",
+        "nameEn": "Dr. Huang",
+        "image": "/images/doctor-huang.png",
+        "specialty": "緊緻拉提 × 微整注射",
         "expertise": [
-          "個人化減重與代謝評估",
-          "慢性代謝問題長期追蹤"
+          "自然感微整與微整注射",
+          "醫學美容與膚質管理"
         ],
         "clinics": [
-          "mu"
+          "chu"
         ]
       },
       {
