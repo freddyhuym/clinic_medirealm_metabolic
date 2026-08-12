@@ -124,10 +124,10 @@
     if (more && p.more) { more.textContent = p.more.label + ' →'; more.href = p.more.href || '/#services'; }
 
     setHTML('popTrack', items.map(function (it) {
-      return '<a class="popular-card" href="' + esc(it.href) + '" aria-label="' + esc(it.name) + '：' + esc(it.desc) + '">' +
+      return '<div class="popular-card">' +
         '<figure class="popular-card-media"><img src="' + esc(it.image) + '" alt="' + esc(it.name) + '" loading="lazy"></figure>' +
         '<h3 class="popular-card-name serif">' + esc(it.name) + '</h3>' +
-      '</a>';
+      '</div>';
     }).join(''));
 
     initPopularCarousel(items.length);
