@@ -1055,3 +1055,45 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   .hero-actions .btn { width: 100%; text-align: center; }
   .clinic-foot { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
+
+/* ── 熱門療程輪播（首頁最上方） ───────────── */
+.popular { background: var(--xy-warm-white); padding: 128px 24px 56px; border-bottom: 1px solid var(--xy-border); }
+.popular-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: center; }
+.popular-eyebrow { font-family: var(--display); font-style: italic; font-size: 14px; letter-spacing: .18em; color: var(--xy-teal-dark); }
+.popular-title { font-size: clamp(24px, 2.6vw, 30px); font-weight: 500; margin-top: 10px; }
+.popular-text { margin-top: 16px; font-size: 15px; line-height: 2; color: var(--xy-text-secondary); }
+.popular-more { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; font-size: 14.5px; letter-spacing: .08em; color: var(--xy-teal-dark); }
+.popular-more::before { content: ""; width: 32px; height: 1px; background: var(--xy-teal-dark); transition: width .3s var(--ease); }
+.popular-more:hover::before { width: 44px; }
+.popular-viewport { overflow: hidden; }
+.popular-track { display: flex; gap: 16px; transition: transform .5s var(--ease); }
+.popular-card { flex: 0 0 calc((100% - 32px) / 3); display: block; color: inherit; }
+.popular-card-media {
+  aspect-ratio: 3 / 4; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--xy-teal-soft); box-shadow: 0 8px 22px rgba(65, 127, 124, .06);
+  background: var(--xy-ivory);
+}
+.popular-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.popular-card:hover .popular-card-media img { transform: scale(1.05); }
+.popular-card-name { text-align: center; margin-top: 14px; font-size: 17px; font-weight: 500; color: var(--xy-text); }
+.popular-ctrl { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-top: 22px; }
+.popular-count { font-family: var(--display); font-size: 15px; letter-spacing: .14em; color: var(--xy-text-secondary); }
+.popular-count b { font-weight: 600; color: var(--xy-text); }
+.popular-arrow {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--xy-teal-soft);
+  background: transparent; color: var(--xy-teal-dark); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .3s var(--ease), border-color .3s var(--ease);
+}
+.popular-arrow svg { width: 18px; height: 18px; }
+.popular-arrow:hover { background: var(--xy-teal-soft); border-color: var(--xy-teal-deep); }
+@media (max-width: 1023px) {
+  .popular-card { flex: 0 0 calc((100% - 16px) / 2); }
+}
+@media (max-width: 900px) {
+  .popular { padding: 116px 24px 48px; }
+  .popular-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 639px) {
+  .popular-card { flex: 0 0 75%; }
+}

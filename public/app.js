@@ -109,6 +109,75 @@
     setText('phiClosingSig', c.signature);
   }
 
+  /* ── 熱門療程輪播 ─────────────────────── */
+  function renderPopular(d) {
+    var p = d.popular || {};
+    var items = p.items || [];
+    var sec = $('popular');
+    if (!sec || !items.length) return;
+    sec.hidden = false;
+
+    setText('popEyebrow', p.eyebrow);
+    setText('popTitle', p.title);
+    setText('popText', p.text);
+    var more = $('popMore');
+    if (more && p.more) { more.textContent = p.more.label + ' →'; more.href = p.more.href || '/#services'; }
+
+    setHTML('popTrack', items.map(function (it) {
+      return '<a class="popular-card" href="' + esc(it.href) + '" aria-label="' + esc(it.name) + '：' + esc(it.desc) + '">' +
+        '<figure class="popular-card-media"><img src="' + esc(it.image) + '" alt="' + esc(it.name) + '" loading="lazy"></figure>' +
+        '<h3 class="popular-card-name serif">' + esc(it.name) + '</h3>' +
+      '</a>';
+    }).join(''));
+
+    initPopularCarousel(items.length);
+  }
+
+  function initPopularCarousel(total) {
+    var viewport = $('popViewport');
+    var track = $('popTrack');
+    var prev = $('popPrev');
+    var next = $('popNext');
+    var count = $('popCount');
+    if (!viewport || !track || !prev || !next) return;
+
+    var index = 0;
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function perView() {
+      var w = window.innerWidth;
+      if (w < 640) return 1;
+      if (w < 1024) return 2;
+      return 3;
+    }
+    function gap() { return 16; }
+    function cardWidth() {
+      var card = track.querySelector('.popular-card');
+      return card ? card.offsetWidth + gap() : 300;
+    }
+    function maxIndex() { return Math.max(0, total - perView()); }
+    function go(i) {
+      var m = maxIndex();
+      index = i > m ? 0 : (i < 0 ? m : i); // 循環
+      track.style.transform = 'translateX(' + (-index * cardWidth()) + 'px)';
+      if (count) count.innerHTML = '<b>' + pad(index + 1) + '</b>／' + pad(m + 1);
+    }
+    prev.addEventListener('click', function () { go(index - 1); });
+    next.addEventListener('click', function () { go(index + 1); });
+    window.addEventListener('resize', function () { go(Math.min(index, maxIndex())); });
+
+    /* 觸控滑動 */
+    var startX = null;
+    viewport.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', function (e) {
+      if (startX == null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    }, { passive: true });
+
+    go(0);
+  }
+
   function renderPillars(d) {
     var p = d.pillars || {};
     setText('pillarsEyebrow', p.eyebrow);
@@ -458,7 +527,7 @@
   fetch('/api/site')
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (d) {
-      renderNav(d); renderHero(d); renderAbout(d); renderPillars(d);
+      renderNav(d); renderHero(d); renderPopular(d); renderAbout(d); renderPillars(d);
       renderUnderstand(d); renderClinics(d); renderTeam(d);
       renderKnowledge(d);
       renderContact(d); renderFooter(d);

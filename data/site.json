@@ -24,6 +24,53 @@
       "href": "#contact"
     }
   },
+  "popular": {
+    "eyebrow": "XIAN YAN · MEDIREALM",
+    "title": "熱門療程",
+    "text": "依照您的肌膚、輪廓與體態需求，由專業醫師評估並提供最適合的療程建議，陪伴您安心變美，找回自信光采。",
+    "more": {
+      "label": "更多療程",
+      "href": "/#services"
+    },
+    "items": [
+      {
+        "name": "鳳凰電波",
+        "desc": "Thermage FLX 鳳凰電波，緊緻拉提、促進膠原新生，改善肌膚鬆弛。",
+        "image": "/images/popular/01-phoenix.webp",
+        "href": "/services/lifting"
+      },
+      {
+        "name": "美音二代",
+        "desc": "第二代音波拉提，精準作用於肌膚深層，重塑緊緻輪廓線條。",
+        "image": "/images/popular/02-ultherapy.webp",
+        "href": "/services/lifting/tightan"
+      },
+      {
+        "name": "彈力針",
+        "desc": "Doublyx EVO 彈力針，重建肌膚彈力結構，恢復澎潤緊緻。",
+        "image": "/images/popular/03-doublyx.webp",
+        "href": "/#contact"
+      },
+      {
+        "name": "微針外泌",
+        "desc": "微針導入外泌體精華，促進肌膚修復再生，改善膚質與毛孔。",
+        "image": "/images/popular/04-exosome.webp",
+        "href": "/#contact"
+      },
+      {
+        "name": "輪廓精雕",
+        "desc": "結合多種專業針劑，修飾臉部比例，打造自然立體的輪廓。",
+        "image": "/images/popular/05-contour.webp",
+        "href": "/#contact"
+      },
+      {
+        "name": "減重",
+        "desc": "醫師專業評估的醫學減重方案，安全達成體重管理目標。",
+        "image": "/images/popular/06-weight.webp",
+        "href": "/#contact"
+      }
+    ]
+  },
   "about": {
     "eyebrow": "OUR PHILOSOPHY",
     "eyebrowZh": "纖顏理念",

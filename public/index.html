@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@350;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=11">
+<link rel="stylesheet" href="/styles.css?v=12">
 
 <script type="application/ld+json">
 {
@@ -72,6 +72,32 @@
 </header>
 
 <main id="main">
+
+<!-- ── 00 熱門療程 ──────────────────────── -->
+<section class="popular" id="popular" hidden>
+  <div class="wrap popular-inner">
+    <div class="popular-head">
+      <p class="popular-eyebrow" id="popEyebrow"></p>
+      <h2 class="popular-title serif" id="popTitle"></h2>
+      <p class="popular-text" id="popText"></p>
+      <a class="popular-more" id="popMore" href="/#services"></a>
+    </div>
+    <div class="popular-carousel">
+      <div class="popular-viewport" id="popViewport">
+        <div class="popular-track" id="popTrack"></div>
+      </div>
+      <div class="popular-ctrl">
+        <span class="popular-count" id="popCount" aria-live="polite"></span>
+        <button class="popular-arrow" id="popPrev" type="button" aria-label="上一個療程">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l-6 6 6 6"/></svg>
+        </button>
+        <button class="popular-arrow" id="popNext" type="button" aria-label="下一個療程">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ── 01 Hero ─────────────────────────── -->
 <section class="hero" id="top">
