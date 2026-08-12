@@ -141,29 +141,42 @@
     var count = $('popCount');
     if (!viewport || !track || !prev || !next) return;
 
+    /* 無限循環：尾端補上前幾張的複製卡 */
+    var CLONES = 3;
+    var cards = Array.prototype.slice.call(track.children);
+    cards.slice(0, CLONES).forEach(function (c) {
+      var clone = c.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
     var index = 0;
+    var animating = false;
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    function perView() {
-      var w = window.innerWidth;
-      if (w < 640) return 1;
-      if (w < 1024) return 2;
-      return 3;
-    }
-    function gap() { return 16; }
     function cardWidth() {
       var card = track.querySelector('.popular-card');
-      return card ? card.offsetWidth + gap() : 300;
+      return card ? card.offsetWidth + 16 : 300;
     }
-    function maxIndex() { return Math.max(0, total - perView()); }
-    function go(i) {
-      var m = maxIndex();
-      index = i > m ? 0 : (i < 0 ? m : i); // 循環
+    function setX(noAnim) {
+      if (noAnim) track.style.transition = 'none';
       track.style.transform = 'translateX(' + (-index * cardWidth()) + 'px)';
-      if (count) count.innerHTML = '<b>' + pad(index + 1) + '</b>／' + pad(m + 1);
+      if (noAnim) { void track.offsetWidth; track.style.transition = ''; }
+      if (count) count.innerHTML = '<b>' + pad((index % total) + 1) + '</b>／' + pad(total);
     }
-    prev.addEventListener('click', function () { go(index - 1); });
-    next.addEventListener('click', function () { go(index + 1); });
-    window.addEventListener('resize', function () { go(Math.min(index, maxIndex())); });
+    function go(dir) {
+      if (animating) return;
+      animating = true;
+      if (dir < 0 && index === 0) { index = total; setX(true); } // 從第一張往前 → 先無感跳到複製區
+      index += dir;
+      setX(false);
+      window.setTimeout(function () {
+        if (index >= total) { index = index % total; setX(true); } // 滑進複製區後無感跳回真卡
+        animating = false;
+      }, 520);
+    }
+    prev.addEventListener('click', function () { go(-1); });
+    next.addEventListener('click', function () { go(1); });
+    window.addEventListener('resize', function () { setX(true); });
 
     /* 觸控滑動 */
     var startX = null;
@@ -171,11 +184,11 @@
     viewport.addEventListener('touchend', function (e) {
       if (startX == null) return;
       var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
       startX = null;
     }, { passive: true });
 
-    go(0);
+    setX(true);
   }
 
   function renderPillars(d) {
