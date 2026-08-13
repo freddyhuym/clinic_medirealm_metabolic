@@ -505,6 +505,99 @@
     "moreHref": "/knowledge",
     "articles": [
       {
+        "id": "supplements-really-needed",
+        "category": "代謝・精準營養",
+        "title": "你每天吞的保健品，身體真的需要嗎？",
+        "titleEn": "DO YOU REALLY NEED THOSE SUPPLEMENTS?",
+        "hook": "保健品不是吃得越多越健康，真正重要的是：妳現在的身體，到底缺什麼？",
+        "excerpt": "很多人以為保健品吃得越多就代表越健康，但從內分泌與代謝的角度來看，真正重要的從來不是「吃了幾瓶」，而是身體到底缺不缺、需不需要、該補多少。",
+        "image": "/images/knowledge/kn-supplements.jpg",
+        "imageAlt": "精準營養補充概念",
+        "cta": "了解怎麼補 →",
+        "href": "/knowledge/supplements-really-needed",
+        "theme": "metabolic",
+        "body": [
+          {
+            "type": "p",
+            "text": "很多人以為，保健品吃得越多，就代表越健康。但從內分泌與代謝的角度來看，真正重要的從來不是「吃了幾瓶」，而是身體到底缺不缺、需不需要、該補多少。"
+          },
+          {
+            "type": "image",
+            "src": "/images/knowledge/supplements-01.jpg",
+            "alt": "保健品的意義是什麼，妳知道嗎？",
+            "caption": "保健品不是吃得越多越健康，重要的是：妳現在的身體到底缺什麼？"
+          },
+          {
+            "type": "h2",
+            "text": "身體為什麼會出現「營養缺口」？"
+          },
+          {
+            "type": "p",
+            "text": "營養缺口，往往不是吃得太少，而是需求增加、攝取跟不上。減重或熱量控制、飲食不均衡、壓力大、睡眠不足、藥物影響吸收、腸胃問題等，都可能讓攝取需求與實際供應之間出現落差。這時候，營養補充的角色才真正出現——不是取代食物，而是補足飲食與實際需求之間的落差。"
+          },
+          {
+            "type": "image",
+            "src": "/images/knowledge/supplements-02.jpg",
+            "alt": "身體為什麼會出現營養缺口？"
+          },
+          {
+            "type": "h2",
+            "text": "減重的人，更不是「少吃就好」"
+          },
+          {
+            "type": "p",
+            "text": "尤其在減重期間，當熱量與總食量下降，蛋白質、維生素與礦物質的攝取也可能跟著減少；若使用減重藥物後食慾明顯降低，更要留意整體飲食是否均衡，而不是看到體重下降，就認為身體什麼都不缺。減重的目標，不只是體重數字，更是健康與代謝的全面提升。"
+          },
+          {
+            "type": "image",
+            "src": "/images/knowledge/supplements-03.jpg",
+            "alt": "減重的人，更不是少吃就好"
+          },
+          {
+            "type": "h2",
+            "text": "保健品真正的意義，是「精準」的營養補充"
+          },
+          {
+            "type": "p",
+            "text": "真正專業的營養補充，應該從飲食內容、生活型態、症狀、用藥、減重階段與必要的抽血檢驗綜合評估。有缺口，精準補充；沒有缺口，就不需要盲目堆疊。"
+          },
+          {
+            "type": "image",
+            "src": "/images/knowledge/supplements-04.jpg",
+            "alt": "保健品真正的意義，是精準的營養補充"
+          },
+          {
+            "type": "highlight",
+            "text": "保健品不是健康的主角，而是用對時，才有價值的代謝拼圖。"
+          },
+          {
+            "type": "cta",
+            "text": "想知道自己的減重過程，究竟該怎麼吃、怎麼補？歡迎加入官方 LINE，由專業團隊協助進一步了解與安排。",
+            "label": "加入官方 LINE 諮詢",
+            "href": "https://line.me/R/ti/p/@seebeautyclinic"
+          },
+          {
+            "type": "byline",
+            "text": "曜妍診所・醫境醫療｜內分泌專科・邱文瑾醫師"
+          },
+          {
+            "type": "tags",
+            "items": [
+              "保健品",
+              "減重門診",
+              "曜妍診所",
+              "醫境醫療",
+              "邱文瑾醫師",
+              "代謝管理",
+              "內分泌",
+              "營養缺口",
+              "健康減重",
+              "精準營養"
+            ]
+          }
+        ]
+      },
+      {
         "id": "why-weight-not-dropping",
         "category": "代謝・體重管理",
         "title": "為什麼明明吃很少，體重卻不下降？",

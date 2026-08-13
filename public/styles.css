@@ -1053,3 +1053,36 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 @media (max-width: 639px) {
   .popular-card { flex: 0 0 75%; }
 }
+
+/* ===== 知識文章內文 ===== */
+.kn-body { max-width: 720px; margin: 0 auto; }
+.kn-body p { font-size: 16.5px; line-height: 2.05; color: var(--xy-text-secondary); margin: 22px 0; }
+.kn-body h2 { font-size: 24px; font-weight: 500; color: var(--xy-teal-dark); margin: 52px 0 6px; line-height: 1.6; }
+.kn-body-img { margin: 34px auto; max-width: 560px; }
+.kn-body-img img { width: 100%; border-radius: 14px; box-shadow: 0 14px 40px rgba(65, 127, 124, .1); }
+.kn-body-img figcaption { text-align: center; font-size: 13.5px; color: var(--xy-text-secondary); margin-top: 12px; letter-spacing: .04em; }
+.kn-body-highlight {
+  margin: 46px 0; padding: 30px 34px;
+  background: var(--xy-warm-white);
+  border-left: 3px solid var(--xy-gold);
+  border-radius: 0 14px 14px 0;
+  font-size: 19px; line-height: 1.9; color: var(--xy-teal-dark);
+}
+.kn-body-cta {
+  margin: 44px 0; padding: 34px 36px; text-align: center;
+  background: linear-gradient(135deg, rgba(65, 127, 124, .06), rgba(206, 154, 75, .07));
+  border: 1px solid rgba(206, 154, 75, .22); border-radius: 16px;
+}
+.kn-body-cta p { margin: 0 0 20px; font-size: 16px; }
+.kn-body-byline { font-size: 14.5px; color: var(--xy-teal-soft); letter-spacing: .06em; margin-top: 40px; }
+.kn-body-tags { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 14px; }
+.kn-body-tags span {
+  font-size: 13px; color: var(--xy-teal-dark);
+  background: rgba(65, 127, 124, .07);
+  border-radius: 999px; padding: 5px 13px; letter-spacing: .03em;
+}
+@media (max-width: 640px) {
+  .kn-body h2 { font-size: 21px; margin-top: 40px; }
+  .kn-body-highlight { padding: 22px 22px; font-size: 17px; }
+  .kn-body-cta { padding: 26px 22px; }
+}

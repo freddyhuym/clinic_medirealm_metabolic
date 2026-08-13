@@ -49,6 +49,27 @@
       }).join('') + '</div>';
   }
 
+  function renderBody(blocks) {
+    return '<div class="kn-body">' + blocks.map(function (b) {
+      if (b.type === 'p') return '<p>' + esc(b.text) + '</p>';
+      if (b.type === 'h2') return '<h2 class="serif">' + esc(b.text) + '</h2>';
+      if (b.type === 'image') {
+        return '<figure class="kn-body-img"><img src="' + esc(b.src) + '" alt="' + esc(b.alt || '') + '" loading="lazy">' +
+          (b.caption ? '<figcaption>' + esc(b.caption) + '</figcaption>' : '') + '</figure>';
+      }
+      if (b.type === 'highlight') return '<blockquote class="kn-body-highlight serif">' + esc(b.text) + '</blockquote>';
+      if (b.type === 'cta') {
+        return '<div class="kn-body-cta"><p>' + esc(b.text) + '</p>' +
+          (b.href ? '<a class="btn btn-primary" href="' + esc(b.href) + '" target="_blank" rel="noopener">' + esc(b.label || '了解更多') + '</a>' : '') + '</div>';
+      }
+      if (b.type === 'byline') return '<p class="kn-body-byline">' + esc(b.text) + '</p>';
+      if (b.type === 'tags') {
+        return '<p class="kn-body-tags">' + (b.items || []).map(function (t) { return '<span>#' + esc(t) + '</span>'; }).join('') + '</p>';
+      }
+      return '';
+    }).join('') + '</div>';
+  }
+
   function renderArticle(k, arts, a) {
     document.title = a.title + '｜醫境知識庫｜纖顏醫境';
     var meta = document.querySelector('meta[name="description"]');
@@ -67,7 +88,8 @@
       '<p class="kn-page-hook">' + esc(a.hook) + '</p>' +
       '<figure class="kn-page-hero"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '"></figure>' +
       '<p class="kn-page-intro">' + esc(a.excerpt) + '</p>' +
-      '<div class="kn-placeholder"><b>完整文章籌備中</b>' + esc(k.placeholderNote || '完整內容將於近期發布。') + '</div>' +
+      (a.body && a.body.length ? renderBody(a.body) :
+        '<div class="kn-placeholder"><b>完整文章籌備中</b>' + esc(k.placeholderNote || '完整內容將於近期發布。') + '</div>') +
       '<div class="kn-page-cta"><a class="btn btn-primary" href="/#contact">預約專業評估</a></div>' +
       '<section class="kn-related"><h2>延伸閱讀</h2><div class="kn-related-list">' +
         others.map(function (o) {
