@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@350;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=12">
+<link rel="stylesheet" href="/styles.css?v=13">
 
 <script type="application/ld+json">
 {
@@ -248,21 +248,17 @@
 <!-- ── 08 醫境知識庫（Sticky Scroll Story）── -->
 <section class="section knowledge" id="knowledge">
   <span class="kn-bgword" aria-hidden="true">KNOWLEDGE</span>
-  <div class="wrap kn-layout">
+  <div class="wrap">
     <header class="kn-intro">
-      <div class="kn-intro-sticky">
-        <p class="eyebrow" id="knEyebrow"></p>
-        <p class="kn-label serif" id="knLabel"></p>
-        <h2 class="h2 serif" id="knTitle"></h2>
-        <p class="kn-copy" id="knIntro"></p>
-        <div class="kn-progress" aria-hidden="true">
-          <span class="kn-progress-num" id="knProgressNum">01 / 04</span>
-          <span class="kn-progress-bar"><i id="knProgressFill"></i></span>
-        </div>
-        <a class="kn-more" id="knMore" href="/knowledge"></a>
-      </div>
+      <p class="eyebrow" id="knEyebrow"></p>
+      <p class="kn-label serif" id="knLabel"></p>
+      <h2 class="h2 serif" id="knTitle"></h2>
+      <p class="kn-copy" id="knIntro"></p>
     </header>
-    <div class="kn-stream" id="knArticles"></div>
+    <div class="kn-grid" id="knArticles"></div>
+    <div class="kn-foot">
+      <a class="btn btn-ghost" id="knMore" href="/knowledge">探索更多醫境知識 →</a>
+    </div>
   </div>
 </section>
 

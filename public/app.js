@@ -339,9 +339,9 @@
     setText('knTitle', k.title);
     setText('knIntro', k.intro);
     var more = $('knMore');
-    if (more) { more.textContent = k.moreText || ''; more.href = k.moreHref || '/knowledge'; }
+    if (more) { more.textContent = '探索更多醫境知識 →'; more.href = k.moreHref || '/knowledge'; }
 
-    var arts = k.articles || [];
+    var arts = (k.articles || []).slice(0, 6); // 首頁最多顯示六篇
     setHTML('knArticles', arts.map(function (a, i) {
       return '<article class="kn-card" data-index="' + i + '">' +
         '<figure class="kn-card-media">' +
@@ -356,32 +356,6 @@
         '</div>' +
       '</article>';
     }).join(''));
-
-    initKnowledgeStory(arts.length);
-  }
-
-  function initKnowledgeStory(total) {
-    if (!total) return;
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.kn-card'));
-    var num = $('knProgressNum');
-    var fill = $('knProgressFill');
-
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    function setActive(i) {
-      cards.forEach(function (c, j) { c.classList.toggle('active', i === j); });
-      if (num) num.textContent = pad(i + 1) + ' / ' + pad(total);
-      if (fill) fill.style.width = ((i + 1) / total * 100) + '%';
-    }
-
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) setActive(cards.indexOf(en.target));
-        });
-      }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
-      cards.forEach(function (c) { io.observe(c); });
-    }
-    setActive(0);
   }
 
   function renderContact(d) {
