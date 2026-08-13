@@ -613,10 +613,6 @@
       "href": "#knowledge"
     },
     {
-      "label": "文章",
-      "href": "/articles"
-    },
-    {
       "label": "聯絡我們",
       "href": "#contact"
     }
@@ -989,13 +985,5 @@
         "href": "/services/lifting"
       }
     }
-  },
-  "articles": {
-    "eyebrow": "ARTICLES",
-    "title": "文章列表",
-    "intro": "由纖顏醫境團隊撰寫的專欄文章，帶您深入了解醫學美容的正確知識。",
-    "emptyTitle": "文章即將上線",
-    "emptyText": "我們正在準備專欄內容，敬請期待。",
-    "items": []
   }
 }

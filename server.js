@@ -155,11 +155,6 @@ const server = http.createServer((req, res) => {
     return send(res, 302, '', { Location: '/#team', 'Cache-Control': 'no-cache' });
   }
 
-  // 文章列表：/articles
-  if (url.pathname === '/articles' || url.pathname === '/articles/') {
-    return serveFile(res, path.join(PUBLIC_DIR, 'articles.html'));
-  }
-
   // 醫境知識：/knowledge 與 /knowledge/<slug> 皆由 knowledge.html 呈現
   if (url.pathname === '/knowledge' || url.pathname.startsWith('/knowledge/')) {
     return serveFile(res, path.join(PUBLIC_DIR, 'knowledge.html'));
