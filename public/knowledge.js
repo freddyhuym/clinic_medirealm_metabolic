@@ -87,8 +87,8 @@
       '<h1>' + esc(a.title) + '</h1>' +
       '<p class="kn-page-hook">' + esc(a.hook) + '</p>' +
       '<figure class="kn-page-hero"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '"></figure>' +
-      '<p class="kn-page-intro">' + esc(a.excerpt) + '</p>' +
       (a.body && a.body.length ? renderBody(a.body) :
+        '<p class="kn-page-intro">' + esc(a.excerpt) + '</p>' +
         '<div class="kn-placeholder"><b>完整文章籌備中</b>' + esc(k.placeholderNote || '完整內容將於近期發布。') + '</div>') +
       '<div class="kn-page-cta"><a class="btn btn-primary" href="/#contact">預約專業評估</a></div>' +
       '<section class="kn-related"><h2>延伸閱讀</h2><div class="kn-related-list">' +
