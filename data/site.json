@@ -16,7 +16,7 @@
     "positioning": "都會代謝 × 體態 × 精緻美學",
     "lead": "從代謝、體態到外在美學，以醫療專業評估為核心，為不同生活階段建立更完整的健康與美管理。",
     "cta": {
-      "label": "探索三大院所",
+      "label": "探索院所",
       "href": "#locations"
     },
     "ctaAlt": {
@@ -127,7 +127,7 @@
         "en": "URBAN CARE",
         "title": "貼近生活",
         "tagline": "醫療，也應該理解每一種生活節奏。",
-        "description": "從台北信義、中正到新北新莊，纖顏依不同城市生活圈與需求，建立具有不同角色的院所，讓管理更貼近日常生活。",
+        "description": "纖顏在台北信義建立專業院所，依不同需求提供清楚的醫療角色，讓管理更貼近日常生活。",
         "icon": "city"
       }
     ],
@@ -244,9 +244,9 @@
     }
   },
   "clinics": {
-    "eyebrow": "THREE CLINICS",
-    "title": "三種城市生活，三種醫療角色。",
-    "intro": "從台北信義、台北中正到新北新莊，纖顏依不同生活圈與需求，建立各自清楚的醫療定位。",
+    "eyebrow": "OUR CLINIC",
+    "title": "城市裡的醫療空間。",
+    "intro": "纖顏於台北信義建立清楚的醫療定位，讓管理更貼近日常生活。",
     "items": [
       {
         "id": "chu",
@@ -273,60 +273,6 @@
         "photo": {
           "src": "/images/clinic-chu.jpg",
           "alt": "初纖顏醫境診所台北信義館空間照片"
-        }
-      },
-      {
-        "id": "mu",
-        "name": "沐纖顏醫境診所",
-        "shortName": "沐纖顏",
-        "hall": "台北中正館",
-        "city": "台北",
-        "theme": "mu",
-        "logo": "",
-        "role": "內科醫療型",
-        "impression": "減重 × 代謝 × 預防",
-        "positioning": "代謝健康 × 預防醫學",
-        "services": [
-          "醫師減重",
-          "代謝管理",
-          "健康檢測",
-          "健康抗老",
-          "精緻美學"
-        ],
-        "address": "",
-        "mapQuery": "",
-        "cta": "探索沐纖顏",
-        "status": "preparing",
-        "photo": {
-          "src": "/images/clinic-mu.jpg",
-          "alt": "沐纖顏醫境診所台北中正館空間照片"
-        }
-      },
-      {
-        "id": "sen",
-        "name": "森纖顏醫境診所",
-        "shortName": "森纖顏",
-        "hall": "新北新莊館",
-        "city": "新北",
-        "theme": "sen",
-        "logo": "",
-        "role": "生活圈型",
-        "impression": "減重 × 體態 × 美學",
-        "positioning": "生活圈代謝 × 體態 × 美學",
-        "services": [
-          "醫師減重",
-          "體態管理",
-          "電音波拉提",
-          "微整注射",
-          "健康管理"
-        ],
-        "address": "",
-        "mapQuery": "",
-        "cta": "探索森纖顏",
-        "status": "preparing",
-        "photo": {
-          "src": "/images/clinic-sen.jpg",
-          "alt": "森纖顏醫境診所新北新莊館空間照片"
         }
       }
     ]
@@ -694,7 +640,7 @@
       "href": "#services"
     },
     {
-      "label": "三大院所",
+      "label": "院所資訊",
       "href": "#locations"
     },
     {
