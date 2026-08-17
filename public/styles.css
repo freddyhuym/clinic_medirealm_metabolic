@@ -640,6 +640,16 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   display: block; font-size: 16px; font-weight: 400;
   color: var(--xy-text-secondary); letter-spacing: .14em; margin-top: 2px;
 }
+/* 全域 a 已被重設為 color:inherit + 無底線，這裡補回可點擊的視覺提示 */
+.clinic-name a {
+  text-decoration: underline;
+  text-decoration-color: var(--xy-gold-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: color .4s var(--ease), text-decoration-color .4s var(--ease);
+}
+.clinic-name a:hover,
+.clinic-name a:focus-visible { color: var(--xy-gold); text-decoration-color: var(--xy-gold); }
 .clinic-positioning {
   font-size: 17px; color: var(--xy-teal-dark);
   letter-spacing: .06em; margin: 14px 0 20px;

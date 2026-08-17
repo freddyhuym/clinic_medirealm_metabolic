@@ -270,7 +270,9 @@
         '<div class="clinic-visual' + (hasPhoto ? ' has-photo' : '') + '">' + visual + '</div>' +
         '<div class="clinic-content">' +
           '<p class="clinic-role">' + esc(it.role) + '</p>' +
-          '<h3 class="clinic-name">' + esc(it.name) + '<small>' + esc(it.hall) + '</small></h3>' +
+          '<h3 class="clinic-name">' + (it.website
+            ? '<a href="' + esc(it.website) + '" target="_blank" rel="noopener noreferrer">' + esc(it.name) + '</a>'
+            : esc(it.name)) + '<small>' + esc(it.hall) + '</small></h3>' +
           '<p class="clinic-positioning">' + esc(it.positioning) + '</p>' +
           (svc ? '<ul class="clinic-services">' + svc + '</ul>' : '') +
           '<div class="clinic-foot">' + foot.join('') + '</div>' +
