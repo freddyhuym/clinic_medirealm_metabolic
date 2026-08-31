@@ -521,7 +521,7 @@
       renderNav(d); renderHero(d); renderPopular(d); renderAbout(d); renderPillars(d);
       renderUnderstand(d); renderClinics(d); renderTeam(d);
       renderKnowledge(d);
-      renderContact(d); renderFooter(d);
+      renderFooter(d);
 
       initNav(); initReveal(); initForm();
 
