@@ -43,6 +43,11 @@
 .ap-treatment-name { font-size: 17px; font-weight: 500; line-height: 1.55; }
 .ap-treatment-price, .ap-treatment-desc { display: block; margin-top: auto; padding-top: 14px; font-size: 13px; color: var(--xy-text-secondary); }
 .ap-treatment-price b { color: var(--xy-gold); font-size: 16px; font-weight: 500; letter-spacing: .03em; }
+.ap-treatment-options-preview { display: flex; flex-wrap: wrap; gap: 5px 12px; margin-top: auto; padding-top: 13px; font-size: 12px; line-height: 1.5; color: var(--xy-text-secondary); }
+.ap-treatment-options-preview small { flex-basis: 100%; font-size: 12px; color: var(--xy-teal-dark); }
+.ap-treatment-options-preview span { display: inline-flex; gap: 4px; white-space: nowrap; }
+.ap-treatment-options-preview em { font-style: normal; }
+.ap-treatment-options-preview b { color: var(--xy-gold); font-weight: 500; }
 .ap-suboptions { grid-column: 1 / -1; margin-top: 10px; padding: 18px; border-radius: var(--radius); background: rgba(220,236,234,.34); border: 1px solid rgba(114,186,180,.28); }
 .ap-suboptions[hidden] { display: none; }
 .ap-suboptions > p:first-child { font-size: 13px; color: var(--xy-teal-dark); margin-bottom: 12px; }

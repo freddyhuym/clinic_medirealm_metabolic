@@ -10,7 +10,13 @@
   function byId(id) { return document.getElementById(id); }
   function renderTreatments() {
     byId('treatmentGrid').innerHTML = treatments.map(function (t) {
-      var meta = t.price != null ? '<span class="ap-treatment-price">體驗價　<b>' + money(t.price) + '</b></span>' : '<span class="ap-treatment-desc">' + esc(t.description || '') + '</span>';
+      var meta = t.price != null
+        ? '<span class="ap-treatment-price">體驗價　<b>' + money(t.price) + '</b></span>'
+        : t.options
+          ? '<span class="ap-treatment-options-preview"><small>各部位體驗價</small>' + t.options.map(function (o) {
+              return '<span><em>' + esc(o.name) + '</em><b>' + money(o.price) + '</b></span>';
+            }).join('') + '</span>'
+          : '<span class="ap-treatment-desc">' + esc(t.description || '') + '</span>';
       var options = t.options ? '<div class="ap-suboptions" data-options="' + esc(t.id) + '" hidden><p>' + (t.optionsMode === 'multiple' ? '請選擇部位（可複選）' : '請選擇方案') + '</p>' +
         t.options.map(function (o) { return '<label><input type="' + (t.optionsMode === 'single' ? 'radio' : 'checkbox') + '" name="option-' + esc(t.id) + '" value="' + esc(o.id) + '"><span>' + esc(o.name) + '<b>' + money(o.price) + '</b></span></label>'; }).join('') +
         '<p class="ap-error" id="' + esc(t.id) + 'Error" role="alert"></p></div>' : '';
