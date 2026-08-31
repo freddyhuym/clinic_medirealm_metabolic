@@ -30,7 +30,7 @@
     });
 
   function renderIndex(k, arts) {
-    document.title = '醫境知識庫｜纖顏醫境 XIAN YAN · MEDIREALM';
+    document.title = '醫境知識庫｜初纖顏醫境診所 XIAN YAN · MEDIREALM';
     main.innerHTML =
       '<p class="kn-breadcrumb"><a href="/">首頁</a>　／　醫境知識庫</p>' +
       '<p class="kn-page-cat">' + esc(k.eyebrow || 'MEDIREALM KNOWLEDGE') + '</p>' +
@@ -71,7 +71,7 @@
   }
 
   function renderArticle(k, arts, a) {
-    document.title = a.title + '｜醫境知識庫｜纖顏醫境';
+    document.title = a.title + '｜醫境知識庫｜初纖顏醫境診所';
     var meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', a.hook + ' ' + a.excerpt.slice(0, 80));
     var canonical = document.createElement('link');

@@ -19,7 +19,7 @@
       setText('ltSubtitle', lt.subtitle);
       setText('ltDevicesEyebrow', lt.devicesEyebrow);
       setText('ltDevicesTitle', lt.devicesTitle);
-      document.title = (lt.title || '電音波拉提') + '｜纖顏醫境 XIAN YAN · MEDIREALM';
+      document.title = (lt.title || '電音波拉提') + '｜初纖顏醫境診所 XIAN YAN · MEDIREALM';
 
       var grid = $('ltGrid');
       if (grid) {

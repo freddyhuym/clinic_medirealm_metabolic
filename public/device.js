@@ -45,7 +45,7 @@
       var det = dev.detail || {};
 
       /* ── SEO ── */
-      document.title = det.seoTitle || (dev.name + ' ' + dev.zhName + '｜纖顏醫境 XIAN YAN · MEDIREALM');
+      document.title = det.seoTitle || (dev.name + ' ' + dev.zhName + '｜初纖顏醫境診所 XIAN YAN · MEDIREALM');
       var meta = document.querySelector('meta[name="description"]');
       if (meta && det.seoDesc) meta.setAttribute('content', det.seoDesc);
 

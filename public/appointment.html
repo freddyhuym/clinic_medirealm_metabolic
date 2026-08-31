@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>線上預約｜初纖顏醫境診所</title>
+<meta name="description" content="線上預約初纖顏醫境醫美療程，填寫希望預約日期、療程及聯絡方式，將由專人與您聯繫確認。">
+<meta name="theme-color" content="#FBF8F3">
+<link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=17">
+<link rel="stylesheet" href="/appointment.css?v=2">
+</head>
+<body class="appointment-page">
+<a class="skip-link" href="#appointmentMain">跳到主要內容</a>
+<header class="nav scrolled" id="siteNav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="纖顏醫境 回首頁">
+      <span class="brand-zh serif">初纖顏醫境診所</span>
+      <span class="brand-en">XIAN YAN · MEDIREALM</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks" aria-label="主選單">
+      <a href="/#about">關於纖顏</a>
+      <a href="/#services">醫療服務</a>
+      <a href="/#locations">院所資訊</a>
+      <a href="/#team">醫療團隊</a>
+      <a href="/#knowledge">醫境知識</a>
+    </nav>
+    <a class="nav-cta" href="/appointment" aria-current="page">線上預約</a>
+  </div>
+</header>
+
+<main id="appointmentMain">
+  <section class="ap-hero">
+    <div class="wrap ap-hero-inner">
+      <p class="ap-breadcrumb"><a href="/">首頁</a> ／ 線上預約</p>
+      <p class="eyebrow">ONLINE APPOINTMENT</p>
+      <h1 class="serif">線上預約</h1>
+      <p class="ap-hero-sub serif">預約專屬於您的美麗時光</p>
+      <p class="ap-hero-copy">填寫以下預約資訊後，將由初纖顏醫境專人與您聯繫確認。<br>實際療程內容仍需依現場醫師專業評估為準。</p>
+    </div>
+  </section>
+
+  <section class="ap-main section">
+    <div class="wrap ap-shell">
+      <aside class="ap-clinic" aria-label="預約院所">
+        <p class="eyebrow">OUR CLINIC</p>
+        <img src="/images/chu-logo-mark.png" alt="" width="72" height="72">
+        <h2 class="serif">初纖顏醫境診所</h2>
+        <p>台北信義館</p>
+        <address>台北市中正區信義路二段207號3樓</address>
+        <ol class="ap-progress" aria-label="填寫步驟">
+          <li><b>01</b>預約療程</li><li><b>02</b>預約資訊</li><li><b>03</b>聯絡資料</li><li><b>04</b>其他資訊</li><li><b>05</b>確認送出</li>
+        </ol>
+      </aside>
+
+      <div class="ap-form-wrap">
+        <form id="appointmentForm" class="ap-form" novalidate>
+          <div class="ap-honeypot" aria-hidden="true"><label for="website">請勿填寫此欄位</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <section class="ap-form-section" data-section="treatments">
+            <header class="ap-section-head"><span>01</span><div><h2 class="serif">選擇您想預約的療程</h2><p>可複選，如尚未確定療程，也可以於備註中留下想改善的問題。</p></div></header>
+            <div id="treatmentGrid" class="ap-treatment-grid"></div>
+            <p class="ap-error" id="treatmentsError" role="alert"></p>
+          </section>
+
+          <section class="ap-form-section">
+            <header class="ap-section-head"><span>02</span><div><h2 class="serif">預約資訊</h2><p>告訴我們您方便的日期與時段。</p></div></header>
+            <div class="ap-fields">
+              <div class="field">
+                <label for="appointmentDate">希望預約日期 <span aria-hidden="true">*</span></label>
+                <input id="appointmentDate" name="appointmentDate" type="date" required aria-describedby="dateError">
+                <p class="ap-error" id="dateError" role="alert"></p>
+              </div>
+              <fieldset class="field field-full ap-fieldset" aria-describedby="timeHelp timeError">
+                <legend>希望預約時段 <span aria-hidden="true">*</span></legend>
+                <div class="ap-options ap-time-options">
+                  <label><input type="radio" name="preferredTime" value="morning"><span>上午</span></label>
+                  <label><input type="radio" name="preferredTime" value="afternoon"><span>下午</span></label>
+                  <label><input type="radio" name="preferredTime" value="evening"><span>晚間</span></label>
+                  <label><input type="radio" name="preferredTime" value="any"><span>時間皆可</span></label>
+                </div>
+                <p class="ap-help" id="timeHelp">此為希望預約時段，實際時間將由專人與您確認。</p>
+                <p class="ap-error" id="timeError" role="alert"></p>
+              </fieldset>
+            </div>
+          </section>
+
+          <section class="ap-form-section">
+            <header class="ap-section-head"><span>03</span><div><h2 class="serif">聯絡資料</h2><p>請留下可供專人聯繫確認的資訊。</p></div></header>
+            <div class="ap-fields">
+              <div class="field"><label for="apName">姓名 <span aria-hidden="true">*</span></label><input id="apName" name="name" type="text" autocomplete="name" placeholder="請輸入您的姓名" required aria-describedby="nameError"><p class="ap-error" id="nameError" role="alert"></p></div>
+              <div class="field"><label for="apPhone">手機號碼 <span aria-hidden="true">*</span></label><input id="apPhone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" placeholder="09xxxxxxxx" required aria-describedby="phoneError"><p class="ap-error" id="phoneError" role="alert"></p></div>
+              <div class="field"><label for="apEmail">Email</label><input id="apEmail" name="email" type="email" autocomplete="email" placeholder="example@email.com" aria-describedby="emailError"><p class="ap-error" id="emailError" role="alert"></p></div>
+              <div class="field"><label for="apLine">LINE ID</label><input id="apLine" name="lineId" type="text" placeholder="如方便聯繫可留下 LINE ID"></div>
+            </div>
+          </section>
+
+          <section class="ap-form-section">
+            <header class="ap-section-head"><span>04</span><div><h2 class="serif">其他資訊</h2><p>讓我們更了解您的需求與認識初纖顏的方式。</p></div></header>
+            <fieldset class="field field-full ap-fieldset">
+              <legend>您是從哪裡知道初纖顏醫境的？</legend>
+              <div class="ap-options ap-source-options" id="sourceOptions">
+                <label><input type="checkbox" name="source" value="Instagram"><span>Instagram</span></label>
+                <label><input type="checkbox" name="source" value="Facebook"><span>Facebook</span></label>
+                <label><input type="checkbox" name="source" value="Google 搜尋／Google 地圖"><span>Google 搜尋／Google 地圖</span></label>
+                <label><input type="checkbox" name="source" value="LINE"><span>LINE</span></label>
+                <label><input type="checkbox" name="source" value="親友推薦"><span>親友推薦</span></label>
+                <label><input type="checkbox" name="source" value="路過／看到招牌"><span>路過／看到招牌</span></label>
+                <label><input type="checkbox" name="source" value="其他" id="sourceOtherToggle"><span>其他</span></label>
+              </div>
+            </fieldset>
+            <div class="field ap-source-other" id="sourceOtherWrap" hidden><label for="sourceOther">其他資訊來源</label><input id="sourceOther" name="sourceOther" type="text"></div>
+            <div class="field field-full ap-note"><label for="apNote">想改善的問題／其他備註</label><textarea id="apNote" name="note" rows="5" placeholder="例如：想改善毛孔、痘疤、下顎線條，或有其他想先詢問的療程，都可以告訴我們。"></textarea></div>
+          </section>
+
+          <section class="ap-form-section ap-confirm">
+            <header class="ap-section-head"><span>05</span><div><h2 class="serif">確認送出</h2><p>請確認資料無誤後送出預約申請。</p></div></header>
+            <label class="ap-consent"><input id="privacyConsent" name="privacyConsent" type="checkbox" required><span>我已確認以上資料，並同意初纖顏醫境為預約聯繫目的使用本人所填寫的聯絡資訊。</span></label>
+            <p class="ap-error" id="consentError" role="alert"></p>
+            <p class="ap-disclaimer">療程效果因個人狀況而異，實際療程內容、適應症與施作方式，仍須經由專業醫師現場評估。</p>
+            <button class="btn btn-solid ap-submit" type="submit"><span class="ap-spinner" aria-hidden="true"></span><span class="ap-submit-label">送出預約</span></button>
+            <p class="ap-submit-error" id="submitError" role="alert" aria-live="polite"></p>
+          </section>
+        </form>
+
+        <section class="ap-success" id="appointmentSuccess" hidden tabindex="-1">
+          <span class="ap-success-icon" aria-hidden="true">✓</span>
+          <p class="eyebrow">APPOINTMENT RECEIVED</p>
+          <h2 class="serif">預約資料已送出</h2>
+          <p>謝謝您的預約！<br>初纖顏醫境專人將依您留下的聯絡方式與您確認實際預約時間。<br>預約完成仍以專人最終確認為準。</p>
+          <div><a class="btn btn-ghost" href="/">返回首頁</a><button class="btn btn-solid" id="appointmentAgain" type="button">再次填寫預約</button></div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-wordmark">初纖顏醫境診所<i>XIAN YAN · MEDIREALM</i></p>
+    <p class="footer-desc">都會代謝 × 體態 × 精緻美學</p>
+    <ul class="footer-clinics"><li>初纖顏醫境診所・台北信義館</li></ul>
+    <nav class="footer-nav" aria-label="頁尾選單"><a href="/">首頁</a><a href="/#services">醫療服務</a><a href="/#team">醫療團隊</a><a href="/#knowledge">醫境知識</a><a href="/appointment">線上預約</a></nav>
+    <p class="footer-disclaimer">本網站內容僅供醫療資訊參考，不構成療效保證。任何療程效果因個人體質而異，實際適應症與風險請由醫師當面評估說明。</p>
+    <small class="footer-copy">© <span id="apYear"></span> 初纖顏醫境診所</small>
+  </div>
+</footer>
+<script src="/appointment-treatments.js"></script>
+<script src="/appointment.js"></script>
+</body>
+</html>

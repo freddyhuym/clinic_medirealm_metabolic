@@ -37,7 +37,9 @@
       return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
     }).join('');
     setHTML('navLinks', links);
-    setHTML('footerNav', links);
+    setHTML('footerNav', (d.nav || []).map(function (n) {
+      return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
+    }).join(''));
   }
 
   function renderHero(d) {

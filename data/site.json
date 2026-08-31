@@ -1,8 +1,8 @@
 {
   "brand": {
-    "nameZh": "纖顏醫境",
+    "nameZh": "初纖顏醫境診所",
     "nameEn": "XIAN YAN · MEDIREALM",
-    "system": "纖顏醫境體系",
+    "system": "初纖顏醫境診所",
     "subtitle": "都會代謝 × 體態 × 精緻美學",
     "group": "醫境醫療集團",
     "positioning": "都會型代謝美學連鎖",
@@ -12,7 +12,7 @@
   },
   "hero": {
     "eyebrow": "XIAN YAN · MEDIREALM",
-    "title": "纖顏醫境",
+    "title": "初纖顏醫境診所",
     "positioning": "都會代謝 × 體態 × 精緻美學",
     "lead": "從代謝、體態到外在美學，以醫療專業評估為核心，為不同生活階段建立更完整的健康與美管理。",
     "cta": {
@@ -266,8 +266,8 @@
           "肌膚管理",
           "代謝健康"
         ],
-        "address": "台北市大安區信義路二段 207 號 3 樓",
-        "mapQuery": "台北市大安區信義路二段207號",
+        "address": "台北市中正區信義路二段207號3樓",
+        "mapQuery": "台北市中正區信義路二段207號3樓",
         "cta": "探索初纖顏",
         "website": "https://medirealm-origin.com/",
         "status": "open",
@@ -303,12 +303,12 @@
         "href": "/doctors/huang-ting-yun",
         "slug": "huang-ting-yun",
         "detail": {
-          "seoTitle": "黃婷筠醫師｜微整注射・電音波拉提・醫學美容｜纖顏醫境",
+          "seoTitle": "黃婷筠醫師｜微整注射・電音波拉提・醫學美容｜初纖顏醫境診所",
           "seoDesc": "黃婷筠醫師專長微整注射、洢蓮絲、埋線拉提、電波拉皮、音波拉提與醫學美容，具多項原廠療程認證。於纖顏醫境台北信義館提供專業醫療美容評估與療程規劃。",
           "heroEyebrow": "MEDICAL TEAM",
           "photo": {
             "src": "/images/doctor-huang-detail.png",
-            "alt": "黃婷筠醫師｜纖顏醫境台北信義館醫療團隊"
+            "alt": "黃婷筠醫師｜初纖顏醫境診所台北信義館醫療團隊"
           },
           "intro": {
             "title": "自然，是微整最重要的尺度",
@@ -624,7 +624,7 @@
   },
   "footer": {
     "brandDesc": "都會代謝 × 體態 × 精緻美學",
-    "group": "纖顏醫境體系",
+    "group": "初纖顏醫境診所",
     "groupSite": {
       "label": "醫境醫療集團",
       "href": "https://medirealms.org/"
@@ -654,7 +654,7 @@
     },
     {
       "label": "聯絡我們",
-      "href": "#contact"
+      "href": "/appointment"
     }
   ],
   "lifting": {
@@ -675,7 +675,7 @@
         "href": "/services/lifting/oligio-x",
         "typeZh": "電波拉提療程",
         "detail": {
-          "seoTitle": "Oligio X 超完美電波｜電波拉提、臉部緊緻與輪廓管理｜纖顏醫境",
+          "seoTitle": "Oligio X 超完美電波｜電波拉提、臉部緊緻與輪廓管理｜初纖顏醫境診所",
           "seoDesc": "Oligio X 超完美電波以單極電波技術為核心，結合雙模式規劃、即時阻抗回饋與冷卻設計，協助臉部與輪廓線緊緻管理。了解 Oligio X 適合對象、療程特色與規劃方向，預約纖顏醫境專業評估。",
           "heroEyebrow": "RADIOFREQUENCY LIFTING",
           "heroIntro": "Oligio X 超完美電波是以單極電波（Monopolar RF）為核心的非侵入式緊緻療程，透過由淺至深的能量規劃，搭配即時阻抗回饋與冷卻設計，協助進行臉部與輪廓線的緊緻管理。對於在意肌膚鬆弛、下顎線不夠俐落、輪廓支撐感下降的人來說，Oligio X 是門診緊緻療程規劃中常見的選項之一。",
@@ -860,7 +860,7 @@
         "href": "/services/lifting/tightan",
         "typeZh": "音波拉提療程",
         "detail": {
-          "seoTitle": "Tightan 咻音波｜音波拉提、輪廓線與緊緻管理｜纖顏醫境",
+          "seoTitle": "Tightan 咻音波｜音波拉提、輪廓線與緊緻管理｜初纖顏醫境診所",
           "seoDesc": "Tightan 咻音波以 HIFU 音波技術為核心，可作為臉部、輪廓線與特定部位緊緻管理的規劃方向。了解 Tightan 適合對象、療程特色、流程與常見問題，預約纖顏醫境專業評估。",
           "heroEyebrow": "ULTRASOUND LIFTING",
           "heroIntro": "Tightan 咻音波是以高強度聚焦超音波（HIFU）為核心的非侵入式拉提療程，常作為臉部、輪廓線與特定部位緊緻管理的規劃方向之一。對於在意輪廓鬆弛、雙下巴線條、局部下垂感，或希望在門診療程中安排更聚焦的拉提規劃者，Tightan 是值得評估的選項之一。",

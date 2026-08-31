@@ -27,7 +27,7 @@
       var clinicLabel = (dr.clinics || []).map(function (id) { return clinicName[id] || ''; }).filter(Boolean).join('、');
 
       /* ── SEO ── */
-      document.title = det.seoTitle || (dr.name + '｜纖顏醫境 XIAN YAN · MEDIREALM');
+      document.title = det.seoTitle || (dr.name + '｜初纖顏醫境診所 XIAN YAN · MEDIREALM');
       var meta = document.querySelector('meta[name="description"]');
       if (meta && det.seoDesc) meta.setAttribute('content', det.seoDesc);
 
@@ -123,7 +123,7 @@
       s.textContent = JSON.stringify({
         '@context': 'https://schema.org', '@type': 'Person',
         name: dr.name.replace(/\s*醫師$/, ''), jobTitle: '醫師',
-        affiliation: { '@type': 'MedicalOrganization', name: '纖顏醫境' }
+        affiliation: { '@type': 'MedicalOrganization', name: '初纖顏醫境診所' }
       });
       document.head.appendChild(s);
 
