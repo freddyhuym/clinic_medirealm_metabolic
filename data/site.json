@@ -473,6 +473,12 @@
             "text": "真正的精準點滴，應該先看你的身體狀況、檢驗數據、肝腎功能、用藥，再決定成分、劑量、滴注速度與是否適合施打。而且點滴屬於醫療行為，在哪裡打、由誰評估、施打過程有沒有醫療監測，差別比你想像得更大。"
           },
           {
+            "type": "video",
+            "id": "safeIvVideo",
+            "src": "https://www.youtube.com/embed/UWU1LFDhbh8?si=hnrs4M1U59S5wcWb",
+            "title": "安全 IV 精準點滴評估影片"
+          },
+          {
             "type": "image",
             "src": "/images/knowledge/kn-safe-iv-assessment.png",
             "alt": "安全 IV 評估重點資訊圖",

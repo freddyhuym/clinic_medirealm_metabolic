@@ -57,6 +57,9 @@
         return '<figure class="kn-body-img"><img src="' + esc(b.src) + '" alt="' + esc(b.alt || '') + '" loading="lazy">' +
           (b.caption ? '<figcaption>' + esc(b.caption) + '</figcaption>' : '') + '</figure>';
       }
+      if (b.type === 'video') {
+        return '<div class="kn-body-video"' + (b.id ? ' id="' + esc(b.id) + '"' : '') + '><iframe src="' + esc(b.src) + '" title="' + esc(b.title || 'YouTube video player') + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>';
+      }
       if (b.type === 'highlight') return '<blockquote class="kn-body-highlight serif">' + esc(b.text) + '</blockquote>';
       if (b.type === 'cta') {
         return '<div class="kn-body-cta"><p>' + esc(b.text) + '</p>' +
