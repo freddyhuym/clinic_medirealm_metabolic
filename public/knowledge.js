@@ -90,7 +90,7 @@
       (a.body && a.body.length ? renderBody(a.body) :
         '<p class="kn-page-intro">' + esc(a.excerpt) + '</p>' +
         '<div class="kn-placeholder"><b>完整文章籌備中</b>' + esc(k.placeholderNote || '完整內容將於近期發布。') + '</div>') +
-      '<div class="kn-page-cta"><a class="btn btn-primary" href="/#contact">預約專業評估</a></div>' +
+      '<div class="kn-page-cta"><a class="btn btn-primary" href="/appointment">預約專業評估</a></div>' +
       '<section class="kn-related"><h2>延伸閱讀</h2><div class="kn-related-list">' +
         others.map(function (o) {
           return '<a href="' + esc(o.href) + '"><span class="cat">' + esc(o.category) + '</span><span class="ttl">' + esc(o.title) + '</span></a>';

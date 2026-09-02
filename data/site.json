@@ -452,6 +452,69 @@
     "moreHref": "/knowledge",
     "articles": [
       {
+        "id": "safe-iv-assessment",
+        "category": "精準醫療・安全點滴",
+        "title": "你敢打點滴，但你知道那一袋裡面到底是什麼嗎？",
+        "titleEn": "SAFE IV ASSESSMENT",
+        "hook": "你打的到底是什麼點滴？配方、劑量、施打地點，安全性真的有差。",
+        "excerpt": "不是看到「美白、疲勞、代謝、抗氧化」幾個字，就代表每個人都能打同一袋。真正的精準點滴，應先依身體狀況、檢驗數據、肝腎功能與用藥進行專業評估。",
+        "image": "/images/knowledge/kn-safe-iv-assessment.png",
+        "imageAlt": "安全 IV 評估五大重點：健康狀況、檢驗數據、用藥、點滴配方與施打流程",
+        "cta": "了解安全 IV 評估 →",
+        "href": "/knowledge/safe-iv-assessment",
+        "theme": "metabolic",
+        "body": [
+          {
+            "type": "p",
+            "text": "你打的到底是什麼點滴？配方、劑量、施打地點，安全性真的有差。"
+          },
+          {
+            "type": "p",
+            "text": "不是看到「美白、疲勞、代謝、抗氧化」幾個字，就代表每個人都能打同一袋。"
+          },
+          {
+            "type": "h2",
+            "text": "真正的精準點滴，應該先評估再決定"
+          },
+          {
+            "type": "p",
+            "text": "真正的精準點滴，應該先看你的身體狀況、檢驗數據、肝腎功能、用藥，再決定成分、劑量、滴注速度與是否適合施打。"
+          },
+          {
+            "type": "p",
+            "text": "而且點滴屬於醫療行為，在哪裡打、由誰評估、施打過程有沒有醫療監測，差別比你想像得更大。"
+          },
+          {
+            "type": "image",
+            "src": "/images/knowledge/kn-safe-iv-assessment.png",
+            "alt": "安全 IV 評估重點資訊圖",
+            "caption": "安全 IV 不是越多越好，而是依個人狀況精準調整。"
+          },
+          {
+            "type": "highlight",
+            "text": "精準點滴，由醫師評估後再決定你的配方。"
+          },
+          {
+            "type": "p",
+            "text": "想知道一袋「安全 IV」到底該看哪些細節？留言《安全IV》，我把評估重點傳給您！"
+          },
+          {
+            "type": "byline",
+            "text": "醫境醫療｜新竹曜妍診所｜台北初纖顏"
+          },
+          {
+            "type": "tags",
+            "items": [
+              "精準點滴",
+              "安全點滴",
+              "醫境醫療",
+              "曜妍診所",
+              "初纖顏"
+            ]
+          }
+        ]
+      },
+      {
         "id": "supplements-really-needed",
         "category": "代謝・精準營養",
         "title": "你每天吞的保健品，身體真的需要嗎？",
