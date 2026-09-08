@@ -53,6 +53,12 @@
     return '<div class="kn-body">' + blocks.map(function (b) {
       if (b.type === 'p') return '<p>' + esc(b.text) + '</p>';
       if (b.type === 'h2') return '<h2 class="serif">' + esc(b.text) + '</h2>';
+      if (b.type === 'h3') return '<h3 class="kn-body-subtitle serif">' + esc(b.text) + '</h3>';
+      if (b.type === 'list') {
+        return '<ul class="kn-body-list">' + (b.items || []).map(function (item) {
+          return '<li>' + esc(item) + '</li>';
+        }).join('') + '</ul>';
+      }
       if (b.type === 'image') {
         return '<figure class="kn-body-img"><img src="' + esc(b.src) + '" alt="' + esc(b.alt || '') + '" loading="lazy">' +
           (b.caption ? '<figcaption>' + esc(b.caption) + '</figcaption>' : '') + '</figure>';
@@ -66,6 +72,12 @@
           (b.href ? '<a class="btn btn-primary" href="' + esc(b.href) + '" target="_blank" rel="noopener">' + esc(b.label || '了解更多') + '</a>' : '') + '</div>';
       }
       if (b.type === 'byline') return '<p class="kn-body-byline">' + esc(b.text) + '</p>';
+      if (b.type === 'faq') {
+        return '<section class="kn-body-faq"><h2 class="serif">' + esc(b.title || '常見問題 FAQ') + '</h2>' +
+          (b.items || []).map(function (item) {
+            return '<details><summary>' + esc(item.question) + '</summary><p>' + esc(item.answer) + '</p></details>';
+          }).join('') + '</section>';
+      }
       if (b.type === 'tags') {
         return '<p class="kn-body-tags">' + (b.items || []).map(function (t) { return '<span>#' + esc(t) + '</span>'; }).join('') + '</p>';
       }
