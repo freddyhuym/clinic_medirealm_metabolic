@@ -452,6 +452,33 @@
     "moreHref": "/knowledge",
     "articles": [
       {
+        "id": "magnesium-sleep-supplementation",
+        "category": "精準營養・睡眠健康",
+        "title": "補鎂就能睡得好？邱文瑾醫師解析補充關鍵",
+        "titleEn": "MAGNESIUM & SLEEP",
+        "hook": "補鎂不等於治療失眠，先了解身體真正的需要，才是營養補充的第一步。",
+        "excerpt": "針對補鎂與睡眠的關係，內分泌暨新陳代謝專科邱文瑾醫師指出，鎂參與神經與肌肉正常運作，但不能直接視為治療失眠的方法，仍須綜合評估生活作息與身體狀況。",
+        "image": "/images/knowledge/kn-magnesium-sleep-hero.png",
+        "imageAlt": "補鎂與睡眠健康主題 Hero 圖",
+        "cta": "了解補鎂與睡眠 →",
+        "href": "/knowledge/magnesium-sleep-supplementation",
+        "theme": "metabolic",
+        "body": [
+          {
+            "type": "p",
+            "text": "針對補鎂與睡眠的關係，內分泌暨新陳代謝專科邱文瑾醫師指出，鎂參與神經與肌肉正常運作，但不能直接視為治療失眠的方法，仍須綜合評估生活作息與身體狀況。"
+          },
+          {
+            "type": "p",
+            "text": "邱文瑾醫師表示，深綠色蔬菜、堅果、全穀與豆類皆是鎂的食物來源，建議優先透過均衡飲食攝取。選購補充品應考量個人需求，不宜只憑名稱判斷。腎功能不佳者因排除多餘鎂的能力下降，補充前更需諮詢醫師。她強調，了解身體真正的需要，才是營養補充的第一步。"
+          },
+          {
+            "type": "byline",
+            "text": "#醫境醫療 #初纖顏醫境診所 #曜妍診所 #邱文瑾醫師 #代謝你好嗎"
+          }
+        ]
+      },
+      {
         "id": "magnesium-mineral-health",
         "category": "精準營養・代謝健康",
         "title": "【醫師解析】抽筋失眠就是缺「鎂」？搞懂身體關鍵礦物質，教你科學評估不盲從！",
