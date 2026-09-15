@@ -452,6 +452,38 @@
     "moreHref": "/knowledge",
     "articles": [
       {
+        "id": "magnesium-mineral-health",
+        "category": "精準營養・代謝健康",
+        "title": "【醫師解析】抽筋失眠就是缺「鎂」？搞懂身體關鍵礦物質，教你科學評估不盲從！",
+        "titleEn": "MAGNESIUM & MINERAL HEALTH",
+        "hook": "經常抽筋、睡不好或壓力大，吃「鎂」真的有效嗎？",
+        "excerpt": "鎂參與體內超過 300 種酵素運作，從能量代謝（ATP）、蛋白質合成，到神經傳導與心律穩定都不可或缺。",
+        "image": "/images/knowledge/kn-magnesium-minerals-hero.png",
+        "imageAlt": "醫師解析抽筋、失眠與鎂等關鍵礦物質",
+        "cta": "了解鎂與關鍵礦物質 →",
+        "href": "/knowledge/magnesium-mineral-health",
+        "theme": "metabolic",
+        "body": [
+          {
+            "type": "p",
+            "text": "經常抽筋、睡不好或壓力大，吃「鎂」真的有效嗎？ 鎂參與體內超過 300 種酵素運作，從能量代謝（ATP）、蛋白質合成，到神經傳導與心律穩定都不可或缺。"
+          },
+          {
+            "type": "p",
+            "text": "但「出現症狀」不等於「絕對缺鎂」！包含長期腹瀉、糖尿病控制不佳，或使用利尿劑、胃酸抑制劑等，都是影響鎂平衡的關鍵因素。而且體內 99% 的鎂存在骨骼與細胞中，單看抽血數值無法代表全身儲存量。別急著盲目補充，先了解身體機制、審視生活型態與用藥狀況，才能為自己做出最適合的健康選擇！"
+          },
+          {
+            "type": "video",
+            "src": "https://www.youtube.com/embed/a2gjYSbvZAw",
+            "title": "【醫師解析】抽筋失眠就是缺鎂？搞懂身體關鍵礦物質"
+          },
+          {
+            "type": "byline",
+            "text": "#醫境醫療  #初纖顏醫境診所 #曜妍診所 #邱文瑾醫師 #代謝你好嗎"
+          }
+        ]
+      },
+      {
         "id": "exercise-belly-fat-body-contouring",
         "category": "體態管理・醫學減重",
         "title": "為什麼有運動，小腹和腰間贅肉還是很難減？",
