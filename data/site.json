@@ -1679,7 +1679,7 @@
     "title": "雷射美膚",
     "subtitle": "透過不同雷射波長、脈衝時間與能量模式，依肌膚色素、膚質與個人需求進行專業評估與療程規劃。從色素管理、膚色不均，到毛孔與痘疤等肌膚問題，由醫師依實際膚況選擇合適療程。",
     "devicesEyebrow": "LASER DEVICES",
-    "devicesTitle": "儀器選擇",
+    "devicesTitle": "頂級雷射",
     "categoryHref": "/#services",
     "categoryName": "雷射美膚",
     "devices": [
@@ -1698,21 +1698,6 @@
           "seoDesc": "PICOCARE皮秒雷射採用450ps極短脈衝、HEXA智能聚焦與多波長治療設計。了解PICOCARE作用原理、特色、適合對象、療程流程、術前術後照護與常見問題。",
           "heroEyebrow": "PICOCARE PICSECOND LASER",
           "heroIntro": "450ps 極短脈衝 × HEXA 智能聚焦 × 多波長治療設計。依不同色素深度、膚況與療程需求，由醫師評估合適的治療模式。",
-          "quick": {
-            "title": "療程快速認識",
-            "text": "PICOCARE 皮秒雷射以 Picosecond Nd:YAG 雷射為核心，透過不同脈衝時間、波長與治療模式，依個人膚況進行雷射肌膚管理規劃。",
-            "points": [
-              "雷射類型｜Picosecond Nd:YAG 皮秒 Nd:YAG 雷射",
-              "脈衝時間｜450 ps 極短脈衝輸出",
-              "主要波長｜1064 nm / 532 nm，可搭配 595 nm / 660 nm Dye Handpiece",
-              "核心技術｜HEXA MLA 智能聚焦透鏡"
-            ],
-            "note": "實際治療模式、波長、能量與療程次數，須由醫師依個人膚況、治療部位與需求評估。",
-            "figure": {
-              "src": "/images/devices/picocare/picocare-device.webp",
-              "alt": "PICOCARE 皮秒雷射原始儀器圖"
-            }
-          },
           "whatIs": {
             "title": "什麼是 PICOCARE 皮秒雷射？",
             "paras": [
