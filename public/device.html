@@ -51,6 +51,17 @@
   .dv-faq-a { margin-top: 6px; }
   .dv-intro { margin-top: 24px; font-size: 16px; line-height: 2; color: var(--xy-text-secondary); max-width: 520px; }
   .dv-section-body > p { margin-bottom: 14px; }
+  .dv-section-body .dv-list { margin-bottom: 18px; }
+  .dv-aftercare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .dv-aftercare-column { background: var(--xy-warm-white); border: 1px solid var(--xy-border); border-radius: var(--radius); padding: 24px; }
+  .dv-aftercare-column h3 { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--xy-text); margin-bottom: 14px; }
+  .dv-faq-label { font-family: var(--display); color: var(--xy-gold); letter-spacing: .22em; font-size: 12px; margin-bottom: 14px; }
+  .dv-faq details { background: var(--xy-warm-white); border: 1px solid var(--xy-border); border-radius: var(--radius); margin: 10px 0; padding: 0 18px; }
+  .dv-faq summary { cursor: pointer; list-style: none; font-weight: 500; color: var(--xy-text); padding: 17px 28px 17px 0; position: relative; }
+  .dv-faq summary::-webkit-details-marker { display: none; }
+  .dv-faq summary::after { content: "+"; position: absolute; right: 0; color: var(--xy-gold); font-size: 20px; font-weight: 300; }
+  .dv-faq details[open] summary::after { content: "−"; }
+  .dv-faq details p { margin: 0; padding: 0 0 18px; }
   .dv-note { font-size: 14.5px; color: var(--xy-teal-dark); border-left: 2px solid var(--xy-gold); padding-left: 14px; margin-top: 18px; }
   .dv-quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
   .dv-quick-card {
@@ -80,7 +91,7 @@
     .dv-quick-grid, .dv-steps { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 560px) {
-    .dv-quick-grid, .dv-steps, .dv-feature-grid { grid-template-columns: 1fr; }
+    .dv-quick-grid, .dv-steps, .dv-feature-grid, .dv-aftercare-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 900px) {
@@ -115,14 +126,14 @@
     <div class="dv-hero-inner">
       <div class="dv-hero-text">
         <p class="dv-breadcrumb">
-          <a href="/">首頁</a> ／ <a href="/#services">醫療服務</a> ／ <a href="/services/lifting">電音波拉提</a> ／ <span id="dvCrumbName"></span>
+          <a href="/">首頁</a> ／ <a href="/#services">醫療服務</a> ／ <a id="dvCategoryLink" href="/services/lifting"><span id="dvCategoryName">電音波拉提</span></a> ／ <span id="dvCrumbName"></span>
         </p>
         <p class="eyebrow" id="dvEyebrow"></p>
         <h1 class="dv-name" id="dvName"></h1>
         <p class="dv-zh" id="dvZhName"></p>
         <p class="dv-type" id="dvType"></p>
         <p class="dv-intro" id="dvIntro" style="display:none"></p>
-        <a class="dv-back" href="/services/lifting">← 返回電音波拉提</a>
+        <a class="dv-back" id="dvBack" href="/services/lifting">← 返回電音波拉提</a>
       </div>
       <div class="dv-hero-visual">
         <img id="dvImage" src="" alt="">

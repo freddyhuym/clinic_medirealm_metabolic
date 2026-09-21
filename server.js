@@ -187,6 +187,8 @@ function buildSitemap(site) {
   add('/services/lifting');
   ((site.lifting && site.lifting.devices) || []).forEach((dv) => { if (dv.id) add('/services/lifting/' + dv.id); });
   add('/appointment');
+  add('/services/laser');
+  ((site.laser && site.laser.devices) || []).forEach((dv) => { if (dv.id) add('/services/laser/' + dv.id); });
   return '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     urls.map((u) => '  <url><loc>' + xmlText(u.loc) + '</loc>' + (u.lastmod ? '<lastmod>' + xmlText(u.lastmod) + '</lastmod>' : '') + '</url>').join('\n') +
@@ -429,6 +431,9 @@ const server = http.createServer((req, res) => {
   if (url.pathname === '/services/lifting') {
     return serveFile(res, path.join(PUBLIC_DIR, 'lifting.html'));
   }
+  if (url.pathname === '/services/laser') {
+    return serveFile(res, path.join(PUBLIC_DIR, 'lifting.html'));
+  }
 
   // 電音波拉提設備詳細頁：/services/lifting/<slug>（未知 slug 一律導回列表頁）
   if (url.pathname.startsWith('/services/lifting/')) {
@@ -443,6 +448,19 @@ const server = http.createServer((req, res) => {
     }
     if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'device.html'));
     return send(res, 302, '', { Location: '/services/lifting', 'Cache-Control': 'no-cache' });
+  }
+  if (url.pathname.startsWith('/services/laser/')) {
+    const slug = url.pathname.slice('/services/laser/'.length);
+    let valid = false;
+    try {
+      const site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      const devices = (site.laser && site.laser.devices) || [];
+      valid = devices.some((d) => d.id === slug);
+    } catch (e) {
+      console.error('  [錯誤] 讀取站台資料失敗：', e.message);
+    }
+    if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'device.html'));
+    return send(res, 302, '', { Location: '/services/laser', 'Cache-Control': 'no-cache' });
   }
 
   // 醫師詳細頁：/doctors/<slug>（未知 slug 一律導回首頁醫療團隊）

@@ -13,12 +13,16 @@
   fetch('/api/site')
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      var lt = d.lifting || {};
+      var isLaser = location.pathname === '/services/laser';
+      var lt = isLaser ? (d.laser || {}) : (d.lifting || {});
       setText('ltEyebrow', lt.eyebrow);
       setText('ltTitle', lt.title);
       setText('ltSubtitle', lt.subtitle);
       setText('ltDevicesEyebrow', lt.devicesEyebrow);
       setText('ltDevicesTitle', lt.devicesTitle);
+      setText('ltCategoryName', lt.categoryName || lt.title);
+      var categoryLink = $('ltCategoryLink');
+      if (categoryLink) categoryLink.href = lt.categoryHref || '/#services';
       document.title = (lt.title || '電音波拉提') + '｜初纖顏醫境診所 XIAN YAN · MEDIREALM';
 
       var grid = $('ltGrid');
