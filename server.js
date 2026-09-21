@@ -60,6 +60,60 @@ function serveFile(res, filePath) {
   });
 }
 
+// 設備詳細頁的社群分享預覽需要伺服器端 meta；
+// LINE、Facebook、WhatsApp 等爬蟲不會執行 device.js。
+function serveDeviceFile(res, site, device, pathname, request) {
+  const filePath = path.join(PUBLIC_DIR, 'device.html');
+  fs.readFile(filePath, (err, buf) => {
+    if (err) {
+      return send(res, 404, '404 Not Found', {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache',
+      });
+    }
+
+    const detail = device.detail || {};
+    const siteName = (site.seo && site.seo.siteName) || '初纖顏醫境診所';
+    const fallbackTitle = `${device.name || ''} ${device.zhName || ''}｜${siteName}`;
+    const title = detail.seoTitle || fallbackTitle;
+    const desc = detail.seoDesc || `${device.name || ''} ${device.zhName || ''}設備介紹｜${siteName}`;
+    const configuredOrigin = String((site.seo && site.seo.siteUrl) || '').replace(/\/$/, '');
+    const forwardedProto = String((request.headers['x-forwarded-proto'] || 'https')).split(',')[0].trim();
+    const requestOrigin = request.headers.host
+      ? `${forwardedProto}://${request.headers.host}`
+      : configuredOrigin;
+    const origin = requestOrigin || configuredOrigin || 'https://medirealm-origin.com';
+    const image = /^https?:\/\//i.test(device.image || '') ? device.image : origin + (device.image || '');
+    const url = origin + pathname;
+    const tags = [
+      '<title>' + htmlAttr(title) + '</title>',
+      '<meta name="description" content="' + htmlAttr(desc) + '">',
+      '<meta property="og:type" content="website">',
+      '<meta property="og:site_name" content="' + htmlAttr(siteName) + '">',
+      '<meta property="og:locale" content="zh_TW">',
+      '<meta property="og:title" content="' + htmlAttr(title) + '">',
+      '<meta property="og:description" content="' + htmlAttr(desc) + '">',
+      '<meta property="og:url" content="' + htmlAttr(url) + '">',
+      '<meta property="og:image" content="' + htmlAttr(image) + '">',
+      '<meta property="og:image:alt" content="' + htmlAttr(device.alt || title) + '">',
+      '<meta name="twitter:card" content="summary_large_image">',
+      '<meta name="twitter:title" content="' + htmlAttr(title) + '">',
+      '<meta name="twitter:description" content="' + htmlAttr(desc) + '">',
+      '<meta name="twitter:image" content="' + htmlAttr(image) + '">',
+    ].join('\n');
+
+    const html = buf.toString('utf8')
+      .replace(/<title>[\s\S]*?<\/title>/i, tags.split('\n')[0])
+      .replace(/<meta name="description"[^>]*>/i, tags.split('\n')[1])
+      .replace('</head>', tags.split('\n').slice(2).join('\n') + '\n</head>');
+
+    send(res, 200, html, {
+      'Content-Type': MIME['.html'],
+      'Cache-Control': 'no-cache',
+    });
+  });
+}
+
 // ── 醫境知識文章：把 SEO 標籤直接寫進 HTML ──
 // 文章內容由前端載入，但 LINE / Facebook 等爬蟲不會執行 JavaScript，
 // 所以 title、description、canonical、Open Graph、JSON-LD 要在伺服器端先寫進 <head>。
@@ -439,27 +493,33 @@ const server = http.createServer((req, res) => {
   if (url.pathname.startsWith('/services/lifting/')) {
     const slug = url.pathname.slice('/services/lifting/'.length);
     let valid = false;
+    let site = null;
+    let device = null;
     try {
-      const site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
       const devices = (site.lifting && site.lifting.devices) || [];
-      valid = devices.some((d) => d.id === slug);
+      device = devices.find((d) => d.id === slug) || null;
+      valid = Boolean(device);
     } catch (e) {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }
-    if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'device.html'));
+    if (valid) return serveDeviceFile(res, site, device, url.pathname, req);
     return send(res, 302, '', { Location: '/services/lifting', 'Cache-Control': 'no-cache' });
   }
   if (url.pathname.startsWith('/services/laser/')) {
     const slug = url.pathname.slice('/services/laser/'.length);
     let valid = false;
+    let site = null;
+    let device = null;
     try {
-      const site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
       const devices = (site.laser && site.laser.devices) || [];
-      valid = devices.some((d) => d.id === slug);
+      device = devices.find((d) => d.id === slug) || null;
+      valid = Boolean(device);
     } catch (e) {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }
-    if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'device.html'));
+    if (valid) return serveDeviceFile(res, site, device, url.pathname, req);
     return send(res, 302, '', { Location: '/services/laser', 'Cache-Control': 'no-cache' });
   }
 
