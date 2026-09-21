@@ -74,6 +74,16 @@
           }).join('') + '</ul></div>' +
         '</section>';
       }
+      if (det.certificateImages && (det.certificateImages.items || []).length) {
+        html += '<section class="dr-section">' +
+          '<p class="eyebrow">' + esc(det.certificateImages.eyebrow) + '</p>' +
+          '<h2>' + esc(det.certificateImages.title) + '</h2>' +
+          '<div class="dr-section-body"><div class="dr-cert-grid">' + (det.certificateImages.items || []).map(function (c) {
+            return '<figure class="dr-cert-item"><img src="' + esc(c.src) + '" alt="' + esc(c.alt || '') + '" loading="lazy">' +
+              (c.caption ? '<figcaption>' + esc(c.caption) + '</figcaption>' : '') + '</figure>';
+          }).join('') + '</div></div>' +
+        '</section>';
+      }
       if (det.specialties) {
         html += '<section class="dr-section">' +
           '<p class="eyebrow">' + esc(det.specialties.eyebrow) + '</p>' +

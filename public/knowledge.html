@@ -19,6 +19,9 @@
   .kn-page-cat i { font-family: var(--display); font-style: normal; margin-left: 12px; font-size: 11px; letter-spacing: .2em; color: var(--xy-teal-soft); }
   .kn-page h1 { font-family: var(--serif); font-size: clamp(30px, 4.4vw, 44px); font-weight: 500; line-height: 1.55; margin: 16px 0 14px; }
   .kn-page-hook { font-size: 19px; color: var(--xy-teal-dark); margin-bottom: 30px; }
+  .kn-body-link { margin-top: 6px; }
+  .kn-body-link a { color: var(--xy-teal-dark); border-bottom: 1px solid rgba(206,154,75,.4); padding-bottom: 2px; }
+  .kn-body-link a:hover { color: var(--xy-gold); }
   .kn-page-hero { border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 9; margin-bottom: 36px; border: 1px solid rgba(206,154,75,.16); }
   .kn-page-hero img { width: 100%; height: 100%; object-fit: cover; }
   .kn-page-intro { font-size: 16.5px; line-height: 2; color: var(--xy-text-secondary); margin-bottom: 40px; }
@@ -70,7 +73,7 @@
   </div>
 </footer>
 
-<script src="/knowledge.js?v=4"></script>
+<script src="/knowledge.js?v=6"></script>
 <script>
 (function(){var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
 if(t&&l){t.addEventListener('click',function(){var o=l.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');t.setAttribute('aria-label',o?'關閉選單':'開啟選單');});}})();

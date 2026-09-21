@@ -66,6 +66,11 @@
     width: 6px; height: 6px; border-radius: 50%; background: var(--xy-gold);
   }
 
+  .dr-cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 10px; }
+  .dr-cert-item { margin: 0; background: var(--xy-warm-white); border: 1px solid var(--xy-border); border-radius: var(--radius); padding: 12px; }
+  .dr-cert-item img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 4px; background: #fff; }
+  .dr-cert-item figcaption { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--xy-text-secondary); text-align: center; letter-spacing: .03em; }
+
   .dr-spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 10px; }
   .dr-spec-card {
     background: var(--xy-warm-white); border: 1px solid var(--xy-border);
@@ -101,6 +106,7 @@
   }
   @media (max-width: 560px) {
     .dr-spec-grid { grid-template-columns: 1fr; }
+    .dr-cert-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -154,7 +160,7 @@
   </div>
 </footer>
 
-<script src="/doctor.js"></script>
+<script src="/doctor.js?v=20260918"></script>
 <script>
 (function(){var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
 if(t&&l){t.addEventListener('click',function(){var o=l.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');t.setAttribute('aria-label',o?'關閉選單':'開啟選單');});}})();

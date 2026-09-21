@@ -22,7 +22,7 @@
       if (copy && d.footer && d.footer.copyright) copy.textContent = d.footer.copyright;
 
       if (slug && !art) { location.replace('/knowledge'); return; }
-      if (art) renderArticle(k, arts, art);
+      if (art) renderArticle(k, arts, art, d.seo);
       else renderIndex(k, arts);
     })
     .catch(function () {
@@ -51,7 +51,7 @@
 
   function renderBody(blocks) {
     return '<div class="kn-body">' + blocks.map(function (b) {
-      if (b.type === 'p') return '<p>' + esc(b.text) + '</p>';
+      if (b.type === 'p') return '<p>' + esc(b.text).replace(/\n/g, '<br>') + '</p>';
       if (b.type === 'h2') return '<h2 class="serif">' + esc(b.text) + '</h2>';
       if (b.type === 'h3') return '<h3 class="kn-body-subtitle serif">' + esc(b.text) + '</h3>';
       if (b.type === 'list') {
@@ -71,6 +71,10 @@
         return '<div class="kn-body-cta"><p>' + esc(b.text) + '</p>' +
           (b.href ? '<a class="btn btn-primary" href="' + esc(b.href) + '" target="_blank" rel="noopener">' + esc(b.label || '了解更多') + '</a>' : '') + '</div>';
       }
+      if (b.type === 'link') {
+        return '<p class="kn-body-link">' + (b.text ? esc(b.text) + ' ' : '') +
+          '<a href="' + esc(b.href) + '">' + esc(b.label || b.href) + '</a></p>';
+      }
       if (b.type === 'byline') return '<p class="kn-body-byline">' + esc(b.text) + '</p>';
       if (b.type === 'faq') {
         return '<section class="kn-body-faq"><h2 class="serif">' + esc(b.title || '常見問題 FAQ') + '</h2>' +
@@ -85,14 +89,18 @@
     }).join('') + '</div>';
   }
 
-  function renderArticle(k, arts, a) {
-    document.title = a.title + '｜醫境知識庫｜初纖顏醫境診所';
+  function renderArticle(k, arts, a, siteSeo) {
+    var seo = a.seo || {};
+    document.title = seo.title || (a.title + '｜醫境知識庫｜初纖顏醫境診所');
     var meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', a.hook + ' ' + a.excerpt.slice(0, 80));
-    var canonical = document.createElement('link');
-    canonical.rel = 'canonical';
-    canonical.href = 'https://medirealm-metabolic.com' + a.href;
-    document.head.appendChild(canonical);
+    if (meta) meta.setAttribute('content', seo.description || (a.hook + ' ' + a.excerpt.slice(0, 80)));
+    // canonical 由伺服器直接輸出到 HTML；這裡只在缺少時補上（網域取自 site.json 的 seo.siteUrl）
+    if (!document.querySelector('link[rel="canonical"]')) {
+      var canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      canonical.href = ((siteSeo && siteSeo.siteUrl) || 'https://medirealm-origin.com').replace(/\/$/, '') + a.href;
+      document.head.appendChild(canonical);
+    }
 
     var others = arts.filter(function (x) { return x.id !== a.id; });
 

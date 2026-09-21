@@ -288,6 +288,103 @@
     ],
     "doctors": [
       {
+        "id": "chiu",
+        "name": "邱文瑾 醫師",
+        "nameEn": "Dr. Chiu",
+        "image": "/images/doctor-chiu-v3.png",
+        "specialty": "代謝醫學 × 醫學美容",
+        "expertise": [
+          "內分泌新陳代謝專科・體重與代謝管理",
+          "抗老醫學與由內而外的代謝美學"
+        ],
+        "clinics": [
+          "chu"
+        ],
+        "href": "/doctors/chiu-wen-chin",
+        "slug": "chiu-wen-chin",
+        "detail": {
+          "seoTitle": "邱文瑾醫師｜內分泌新陳代謝專科・代謝美學・醫學美容｜初纖顏醫境診所",
+          "seoDesc": "邱文瑾醫師為內科與內分泌新陳代謝雙專科醫師，專長體重管理、代謝症候群、更年期照護、荷爾蒙調控與音波電波拉提，整合代謝醫學、功能醫學與醫學美容。現任初纖顏醫境診所（台北）總院長。",
+          "heroEyebrow": "MEDICAL TEAM",
+          "photo": {
+            "src": "/images/doctor-chiu-detail.png",
+            "alt": "邱文瑾醫師｜初纖顏醫境診所台北信義館醫療團隊"
+          },
+          "intro": {
+            "title": "由內而外，建立全方位的健康美學",
+            "paras": [
+              "邱文瑾醫師為內科與內分泌新陳代謝雙專科醫師，長期專注於體重管理、代謝症候群、更年期照護、荷爾蒙調控與健康促進醫學。近年進一步整合代謝醫學、功能醫學與醫學美容，致力於建立「由內而外」的全方位健康美學照護模式。",
+              "現任曜妍診所總院長與初纖顏醫境診所總院長，帶領全女性醫師團隊發展代謝醫學、減重醫學、抗老醫學與醫學美容服務，同時積極推動 AI 健康管理、女性醫師教育平台及代謝美學整合照護系統。"
+            ]
+          },
+          "education": {
+            "eyebrow": "EDUCATION & EXPERIENCE",
+            "title": "醫師學經歷",
+            "items": [
+              "國防醫學院醫學系 醫學士",
+              "內科專科醫師",
+              "內分泌新陳代謝專科醫師",
+              "新竹縣東元醫院內分泌新陳代謝科主治醫師",
+              "功能醫學健康集團醫師",
+              "健康好生活節目醫師",
+              "醫學美容抗老化醫學主治醫師"
+            ]
+          },
+          "certifications": {
+            "eyebrow": "CURRENT POSITIONS",
+            "title": "現任職務",
+            "items": [
+              "醫境醫療集團創辦人暨醫療執行長",
+              "曜妍診所（新竹）總院長",
+              "初纖顏醫境診所（台北）總院長",
+              "白袍女醫創辦人",
+              "璀璨國際生技有限公司創辦人暨負責人",
+              "曜智數位行銷顧問股份有限公司共同創辦人",
+              "HERAGE 白袍醫境創辦人"
+            ]
+          },
+          "specialties": {
+            "eyebrow": "SPECIALTIES",
+            "title": "專長項目",
+            "items": [
+              "肥胖治療與體重管理",
+              "糖尿病及糖尿病前期管理",
+              "代謝症候群治療",
+              "高血脂與脂肪肝管理",
+              "女性荷爾蒙與更年期照護",
+              "營養醫學評估",
+              "腸道健康管理",
+              "抗老化醫學",
+              "慢性疲勞與亞健康調理",
+              "音波與電波拉提"
+            ]
+          },
+          "philosophy": {
+            "title": "從代謝與健康出發，讓美自然發生",
+            "paras": [
+              "外在的狀態，往往反映著身體內在的代謝與荷爾蒙平衡。邱文瑾醫師以內分泌新陳代謝專科為基礎，從體重、代謝與荷爾蒙狀態理解每一個人，再結合功能醫學與醫學美容，規劃真正貼近身體需求的管理方向。",
+              "療程不只是追求短期的改變，而是建立長期可持續的健康與美。由內而外的整合照護，是邱文瑾醫師一直堅持的方向。"
+            ]
+          },
+          "clinicSection": {
+            "eyebrow": "CLINIC",
+            "title": "主要看診"
+          },
+          "cta": {
+            "title": "從理解身體開始，規劃適合自己的健康美學",
+            "text": "每個人的代謝狀態、體態條件與需求不同，實際療程仍需經由醫師評估後規劃。",
+            "primary": {
+              "label": "預約諮詢",
+              "href": "/#contact"
+            },
+            "secondary": {
+              "label": "返回醫療團隊",
+              "href": "/#team"
+            }
+          }
+        }
+      },
+      {
         "id": "huang",
         "name": "黃婷筠 醫師",
         "nameEn": "Dr. Huang",
@@ -371,74 +468,153 @@
         }
       },
       {
-        "id": "chen",
-        "name": "陳映辰 醫師",
-        "nameEn": "Dr. Chen",
-        "image": "/images/doctor-f1.jpg",
-        "specialty": "醫學美容 × 肌膚管理",
+        "id": "chang",
+        "name": "張嘉洵 醫師",
+        "nameEn": "Dr. Chang",
+        "image": "/images/doctor-chang-v2.png",
+        "specialty": "複合式逆齡 × 微整雕塑",
         "expertise": [
-          "自然感微整與肌膚治療",
-          "術後修護與膚質管理"
+          "微整填充・埋線雕塑・電音波緊實拉提",
+          "生長因子／外泌體修復再生"
         ],
         "clinics": [
           "chu"
-        ]
-      },
-      {
-        "id": "hsu",
-        "name": "許凱翔 醫師",
-        "nameEn": "Dr. Hsu",
-        "image": "/images/doctor-m2.jpg",
-        "specialty": "體態雕塑 × 運動醫學",
-        "expertise": [
-          "非侵入式體態管理",
-          "運動處方與肌肉代謝"
         ],
-        "clinics": [
-          "sen"
-        ]
-      },
-      {
-        "id": "su",
-        "name": "蘇芸溪 醫師",
-        "nameEn": "Dr. Su",
-        "image": "/images/doctor-f2.jpg",
-        "specialty": "預防醫學 × 健康管理",
-        "expertise": [
-          "功能醫學與營養評估",
-          "抗老化與長期健康規劃"
-        ],
-        "clinics": [
-          "mu"
-        ]
-      },
-      {
-        "id": "chou",
-        "name": "周承翰 醫師",
-        "nameEn": "Dr. Chou",
-        "image": "/images/doctor-m3.jpg",
-        "specialty": "微整注射 × 輪廓管理",
-        "expertise": [
-          "臉部輪廓評估與規劃",
-          "電音波拉提治療"
-        ],
-        "clinics": [
-          "chu"
-        ]
-      },
-      {
-        "id": "yang",
-        "name": "楊子萱 醫師",
-        "nameEn": "Dr. Yang",
-        "image": "/images/doctor-f3.jpg",
-        "specialty": "代謝健康 × 女性醫學",
-        "expertise": [
-          "女性荷爾蒙與代謝調理",
-          "更年期體態與健康管理"
-        ],
-        "clinics": [
-          "sen"
-        ]
+        "href": "/doctors/chang-chia-hsun",
+        "slug": "chang-chia-hsun",
+        "detail": {
+          "seoTitle": "張嘉洵醫師｜複合式逆齡・微整填充・埋線雕塑・電音波拉提｜初纖顏醫境診所",
+          "seoDesc": "張嘉洵醫師曾任台北國泰總院與北市聯醫仁愛醫院醫師，專長複合式逆齡治療：微整填充、埋線雕塑、生長因子／外泌體修復再生、消脂針、肉毒注射與電音波緊實拉提，具多項國際原廠認證。",
+          "heroEyebrow": "MEDICAL TEAM",
+          "photo": {
+            "src": "/images/doctor-chang.png",
+            "alt": "張嘉洵醫師｜初纖顏醫境診所台北信義館醫療團隊"
+          },
+          "intro": {
+            "title": "複合式逆齡，讓年輕感自然回來",
+            "paras": [
+              "張嘉洵醫師曾任台北國泰總院與北市聯醫仁愛醫院醫師，具備完整的臨床醫學訓練基礎，並持續深耕醫學美容領域，為台灣微整形美容醫學會、台灣應用雷射光電學會與中華民國美容醫學醫學會會員。",
+              "張嘉洵醫師專長複合式逆齡治療，依照不同年齡階段的臉部變化，整合微整填充、埋線雕塑、生長因子與外泌體修復再生、消脂針、肉毒注射與電音波緊實拉提，透過多種療程的搭配與比例拿捏，讓改變自然、協調而不著痕跡。"
+            ]
+          },
+          "education": {
+            "eyebrow": "EDUCATION & EXPERIENCE",
+            "title": "醫師學經歷",
+            "items": [
+              "台北國泰總院醫師",
+              "北市聯醫仁愛醫院醫師",
+              "台灣微整形美容醫學會會員",
+              "台灣應用雷射光電學會會員",
+              "中華民國美容醫學醫學會會員"
+            ]
+          },
+          "certifications": {
+            "eyebrow": "PROFESSIONAL CERTIFICATIONS",
+            "title": "國際原廠認證",
+            "items": [
+              "Allergan Juvederm 愛力根喬雅登 原廠認證",
+              "Sculptra 舒顏萃 原廠認證",
+              "Ellanse 伊漣絲 原廠認證",
+              "Profhilo 逆時針 原廠研習",
+              "Doublyx EVO 彈力針 原廠研習",
+              "Sunmax 雙美膠原蛋白針 原廠認證",
+              "PLT 凍晶 原廠研習",
+              "Teoxane 緹奧希 原廠認證",
+              "Thermage 鳳凰電波 原廠認證",
+              "Ulthera 美國音波 原廠研習",
+              "Vivabella 微貝拉 原廠認證",
+              "Mint 神力拉提線 原廠認證",
+              "Megafill 異體真皮粉 原廠認證",
+              "Potenza 無限微針電波 原廠研習"
+            ]
+          },
+          "certificateImages": {
+            "eyebrow": "CERTIFICATES",
+            "title": "原廠認證證書",
+            "items": [
+              {
+                "src": "/images/certs/chang/thermage.jpg",
+                "alt": "Thermage FLX 鳳凰電波原廠訓練證書",
+                "caption": "Thermage FLX 鳳凰電波"
+              },
+              {
+                "src": "/images/certs/chang/allergan.jpg",
+                "alt": "Allergan Medical Institute Master Class 證書",
+                "caption": "Allergan 愛力根 Master Class"
+              },
+              {
+                "src": "/images/certs/chang/sculptra.jpg",
+                "alt": "Sculptra 舒顏萃注射認證",
+                "caption": "Sculptra 舒顏萃"
+              },
+              {
+                "src": "/images/certs/chang/ellanse.jpg",
+                "alt": "Ellansé 伊漣絲訓練證書",
+                "caption": "Ellansé 伊漣絲"
+              },
+              {
+                "src": "/images/certs/chang/sunmax.jpg",
+                "alt": "雙美膠原蛋白培訓會參加證",
+                "caption": "Sunmax 雙美膠原蛋白"
+              },
+              {
+                "src": "/images/certs/chang/teoxane.jpg",
+                "alt": "Teoxane Academy 訓練證書",
+                "caption": "Teoxane 緹奧希"
+              },
+              {
+                "src": "/images/certs/chang/mint-lift.jpg",
+                "alt": "MINT Lift 神力拉提線訓練證書",
+                "caption": "MINT Lift 神力拉提線"
+              },
+              {
+                "src": "/images/certs/chang/vivabella.jpg",
+                "alt": "Vivabella 微貝拉研習證書",
+                "caption": "Vivabella 微貝拉"
+              },
+              {
+                "src": "/images/certs/chang/megafill.jpg",
+                "alt": "MegaFill 異體真皮粉原廠認證證書",
+                "caption": "MegaFill 異體真皮粉"
+              }
+            ]
+          },
+          "specialties": {
+            "eyebrow": "SPECIALTIES",
+            "title": "專長項目",
+            "items": [
+              "微整填充",
+              "埋線雕塑",
+              "生長因子／外泌體修復再生",
+              "消脂針劑",
+              "肉毒注射",
+              "電音波緊實拉提"
+            ]
+          },
+          "philosophy": {
+            "title": "多種療程的搭配，比單一療程更接近自然",
+            "paras": [
+              "老化從來不是單一問題，鬆弛、凹陷、紋路與膚質變化往往同時發生。張嘉洵醫師以複合式逆齡的角度規劃療程，針對不同層次的需求選擇適合的工具，讓每一項治療互相加乘。",
+              "療程的目標不是改變原本的樣子，而是在保留個人特色的前提下，讓整體狀態回到更有精神、更協調的模樣。"
+            ]
+          },
+          "clinicSection": {
+            "eyebrow": "CLINIC",
+            "title": "主要看診"
+          },
+          "cta": {
+            "title": "專業評估，找到適合自己的逆齡規劃",
+            "text": "每個人的膚況、輪廓條件與需求不同，實際療程仍需經由醫師評估後規劃。",
+            "primary": {
+              "label": "預約諮詢",
+              "href": "/#contact"
+            },
+            "secondary": {
+              "label": "返回醫療團隊",
+              "href": "/#team"
+            }
+          }
+        }
       }
     ],
     "note": "更多醫療團隊成員介紹陸續更新中。"
@@ -451,6 +627,144 @@
     "moreText": "探索更多醫境知識 →",
     "moreHref": "/knowledge",
     "articles": [
+      {
+        "id": "chiu-wen-chin-0930-special-event",
+        "category": "診所活動・醫學美容",
+        "title": "邱文瑾總院長來了！9/30 初纖顏台北信義館特別活動",
+        "titleEn": "SPECIAL EVENT · 9/30",
+        "hook": "把在意的細節，交給懂妳的醫師。9 月 30 日 10:00–16:00，與邱文瑾總院長相約初纖顏。",
+        "excerpt": "9 月 30 日，邱文瑾總院長於初纖顏醫境診所台北信義館舉辦特別活動，開放預約。從肌膚保養、電音波拉提、體雕減脂到微整精雕，讓我們聽聽妳的在意，一起找到適合妳的美麗安排。",
+        "image": "/images/knowledge/kn-chiu-0930-event-hero.jpg",
+        "imageAlt": "邱文瑾總院長來了！初纖顏醫境診所 9 月 30 日特別活動海報，10:00–16:00 開放預約",
+        "cta": "查看活動詳情 →",
+        "href": "/knowledge/chiu-wen-chin-0930-special-event",
+        "theme": "aesthetics",
+        "seo": {
+          "title": "9/30 邱文瑾總院長特別活動｜初纖顏醫境診所台北信義館",
+          "description": "初纖顏醫境診所 9/30 邱文瑾總院長特別活動，10:00–16:00 台北信義館開放預約。皮秒、蜂巢雷射、水光、全臉電音波、體雕減脂與肉毒玻尿酸精雕活動價目。",
+          "keywords": [
+            "初纖顏",
+            "初纖顏醫境診所",
+            "邱文瑾",
+            "邱文瑾總院長",
+            "台北醫美",
+            "信義區醫美",
+            "皮秒雷射",
+            "蜂巢雷射",
+            "水光",
+            "全臉電音波",
+            "體雕減脂",
+            "肉毒除皺",
+            "咀嚼肌肉毒",
+            "玻尿酸精雕",
+            "代謝美學"
+          ],
+          "robots": "index,follow,max-image-preview:large",
+          "ogImage": "/images/knowledge/kn-chiu-0930-event-og.jpg",
+          "ogImageAlt": "邱文瑾總院長來了！初纖顏醫境診所 9 月 30 日特別活動",
+          "ogImageWidth": 1200,
+          "ogImageHeight": 630,
+          "datePublished": "2026-09-20",
+          "dateModified": "2026-09-20",
+          "section": "診所活動",
+          "event": {
+            "name": "邱文瑾總院長特別活動｜初纖顏醫境診所台北信義館",
+            "description": "邱文瑾總院長 9 月 30 日於初纖顏醫境診所台北信義館舉辦特別活動，開放預約，提供皮秒、蜂巢雷射、水光、全臉電音波、體雕減脂與微整精雕活動價目。",
+            "startDate": "2026-09-30T10:00:00+08:00",
+            "endDate": "2026-09-30T16:00:00+08:00",
+            "locationName": "初纖顏醫境診所 台北信義館",
+            "streetAddress": "信義路二段207號3樓",
+            "addressLocality": "中正區",
+            "addressRegion": "台北市",
+            "addressCountry": "TW",
+            "performer": "邱文瑾",
+            "performerUrl": "/doctors/chiu-wen-chin"
+          },
+          "about": {
+            "name": "邱文瑾",
+            "url": "/doctors/chiu-wen-chin",
+            "jobTitle": "總院長、內科與內分泌新陳代謝專科醫師"
+          }
+        },
+        "body": [
+          {
+            "type": "p",
+            "text": "✨ 初見，是相遇；精緻，從細節開始。✨"
+          },
+          {
+            "type": "p",
+            "text": "初纖顏醫境時尚診所\n9／30 邱文瑾總院長特別活動"
+          },
+          {
+            "type": "p",
+            "text": "忙著照顧生活，也別忘了好好照顧自己。\n從肌膚保養、臉部線條到身體曲線，讓我們聽聽妳的在意，一起找到適合妳的美麗安排。💚"
+          },
+          {
+            "type": "image",
+            "src": "/images/knowledge/kn-chiu-0930-event-poster.jpg",
+            "alt": "初纖顏醫境診所邱文瑾總院長 9 月 30 日特別活動海報：10:00–16:00 開放預約，地點台北市信義路二段 207 號 3 樓，含皮秒雷射、蜂巢雷射、水光、全臉電音波、體雕減脂與微整精雕活動價目",
+            "caption": "9/30 10:00–16:00 開放預約｜初纖顏醫境診所 台北信義館（台北市中正區信義路二段 207 號 3 樓）"
+          },
+          {
+            "type": "h2",
+            "text": "✨ 肌膚保養・每項 $1,999"
+          },
+          {
+            "type": "p",
+            "text": "・皮秒雷射｜$1,999\n・蜂巢雷射｜$1,999\n・水光｜$1,999"
+          },
+          {
+            "type": "h2",
+            "text": "✨ 全臉電音波組合｜$49,999"
+          },
+          {
+            "type": "p",
+            "text": "電音波全臉合計 900 條\n＋皮秒雷射 1 堂\n＋蜂巢雷射 1 堂\n＋肉毒 1 瓶"
+          },
+          {
+            "type": "h2",
+            "text": "✨ 體雕減脂｜$49,999"
+          },
+          {
+            "type": "p",
+            "text": "施作範圍：正面全腹\n讓身體曲線，也成為這次照顧自己的重點。"
+          },
+          {
+            "type": "h2",
+            "text": "✨ 微整精雕・細節裡的美感"
+          },
+          {
+            "type": "p",
+            "text": "・肉毒除皺 單一部位｜$999\n・咀嚼肌肉毒 40 單位｜$8,888\n・咀嚼肌肉毒 50 單位｜$9,999"
+          },
+          {
+            "type": "p",
+            "text": "玻尿酸＋肉毒精雕組合｜$18,888\n玻尿酸微整形精雕 1 cc\n＋肉毒精雕細紋 20 單位"
+          },
+          {
+            "type": "p",
+            "text": "美麗的安排，從理解自己的需求開始。\n9／30，邱文瑾總院長與妳相約初纖顏。"
+          },
+          {
+            "type": "p",
+            "text": "💌 歡迎私訊詢問活動、預約醫師評估。"
+          },
+          {
+            "type": "p",
+            "text": "＊療程須經醫師評估是否適合，效果因個人條件而異。"
+          },
+          {
+            "type": "tags",
+            "items": [
+              "初纖顏醫境時尚診所",
+              "邱文瑾醫師",
+              "醫境醫療",
+              "代謝美學",
+              "台北醫美"
+            ]
+          }
+        ]
+      },
       {
         "id": "magnesium-sleep-supplementation",
         "category": "精準營養・睡眠健康",
@@ -1358,5 +1672,11 @@
         "href": "/services/lifting"
       }
     }
+  },
+  "seo": {
+    "siteUrl": "https://medirealm-origin.com",
+    "siteName": "初纖顏醫境診所",
+    "locale": "zh_TW",
+    "logo": "/images/chu-logo-mark.png"
   }
 }

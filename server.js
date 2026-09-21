@@ -60,6 +60,163 @@ function serveFile(res, filePath) {
   });
 }
 
+// ── 醫境知識文章：把 SEO 標籤直接寫進 HTML ──
+// 文章內容由前端載入，但 LINE / Facebook 等爬蟲不會執行 JavaScript，
+// 所以 title、description、canonical、Open Graph、JSON-LD 要在伺服器端先寫進 <head>。
+function htmlAttr(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function jsonLdTag(obj) {
+  return '<script type="application/ld+json">' + JSON.stringify(obj).replace(/</g, '\\u003c') + '</script>';
+}
+function buildKnowledgeHead(site, art) {
+  const cfg = site.seo || {};
+  const origin = String(cfg.siteUrl || 'https://medirealm-origin.com').replace(/\/$/, '');
+  const siteName = cfg.siteName || '初纖顏醫境診所';
+  const abs = (u) => (/^https?:\/\//i.test(u || '') ? u : origin + (u || ''));
+  const seo = art.seo || {};
+  const url = origin + art.href;
+  const title = seo.title || (art.title + '｜醫境知識庫｜' + siteName);
+  const desc = seo.description || ((art.hook || '') + ' ' + String(art.excerpt || '').slice(0, 80));
+  const ogImage = abs(seo.ogImage || art.image);
+  const heroImage = abs(art.image);
+  const logo = abs(cfg.logo);
+  const publisher = { '@type': 'Organization', name: siteName, url: origin + '/', logo: { '@type': 'ImageObject', url: logo } };
+
+  const tags = [];
+  tags.push('<title>' + htmlAttr(title) + '</title>');
+  tags.push('<meta name="description" content="' + htmlAttr(desc) + '">');
+  if (seo.keywords && seo.keywords.length) tags.push('<meta name="keywords" content="' + htmlAttr(seo.keywords.join(',')) + '">');
+  if (seo.robots) tags.push('<meta name="robots" content="' + htmlAttr(seo.robots) + '">');
+  tags.push('<link rel="canonical" href="' + htmlAttr(url) + '">');
+  tags.push('<meta property="og:type" content="article">');
+  tags.push('<meta property="og:site_name" content="' + htmlAttr(siteName) + '">');
+  tags.push('<meta property="og:locale" content="' + htmlAttr(cfg.locale || 'zh_TW') + '">');
+  tags.push('<meta property="og:title" content="' + htmlAttr(seo.ogTitle || title) + '">');
+  tags.push('<meta property="og:description" content="' + htmlAttr(desc) + '">');
+  tags.push('<meta property="og:url" content="' + htmlAttr(url) + '">');
+  tags.push('<meta property="og:image" content="' + htmlAttr(ogImage) + '">');
+  if (seo.ogImageWidth) tags.push('<meta property="og:image:width" content="' + htmlAttr(seo.ogImageWidth) + '">');
+  if (seo.ogImageHeight) tags.push('<meta property="og:image:height" content="' + htmlAttr(seo.ogImageHeight) + '">');
+  tags.push('<meta property="og:image:alt" content="' + htmlAttr(seo.ogImageAlt || art.imageAlt || art.title) + '">');
+  if (seo.datePublished) tags.push('<meta property="article:published_time" content="' + htmlAttr(seo.datePublished) + '">');
+  if (seo.dateModified) tags.push('<meta property="article:modified_time" content="' + htmlAttr(seo.dateModified) + '">');
+  if (seo.section || art.category) tags.push('<meta property="article:section" content="' + htmlAttr(seo.section || art.category) + '">');
+  (seo.keywords || []).forEach((k) => tags.push('<meta property="article:tag" content="' + htmlAttr(k) + '">'));
+  tags.push('<meta name="twitter:card" content="summary_large_image">');
+  tags.push('<meta name="twitter:title" content="' + htmlAttr(seo.ogTitle || title) + '">');
+  tags.push('<meta name="twitter:description" content="' + htmlAttr(desc) + '">');
+  tags.push('<meta name="twitter:image" content="' + htmlAttr(ogImage) + '">');
+
+  // Article
+  const article = {
+    '@context': 'https://schema.org', '@type': 'Article',
+    headline: art.title, description: desc, inLanguage: 'zh-TW',
+    image: [ogImage, heroImage].filter((v, i, a) => a.indexOf(v) === i),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    author: { '@type': 'Organization', name: siteName, url: origin + '/' },
+    publisher,
+  };
+  if (seo.datePublished) article.datePublished = seo.datePublished;
+  if (seo.dateModified || seo.datePublished) article.dateModified = seo.dateModified || seo.datePublished;
+  if (seo.keywords && seo.keywords.length) article.keywords = seo.keywords.join(',');
+  if (seo.section || art.category) article.articleSection = seo.section || art.category;
+  if (seo.about) article.about = { '@type': 'Person', name: seo.about.name, url: abs(seo.about.url), jobTitle: seo.about.jobTitle };
+  tags.push(jsonLdTag(article));
+
+  // BreadcrumbList
+  tags.push(jsonLdTag({
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首頁', item: origin + '/' },
+      { '@type': 'ListItem', position: 2, name: '醫境知識庫', item: origin + '/knowledge' },
+      { '@type': 'ListItem', position: 3, name: art.title, item: url },
+    ],
+  }));
+
+  // FAQPage（文章內有 faq 區塊時）
+  const faqs = [];
+  (art.body || []).forEach((b) => { if (b.type === 'faq') (b.items || []).forEach((it) => faqs.push(it)); });
+  if (faqs.length) {
+    tags.push(jsonLdTag({
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: faqs.map((it) => ({ '@type': 'Question', name: it.question, acceptedAnswer: { '@type': 'Answer', text: it.answer } })),
+    }));
+  }
+
+  // Event（活動型文章）
+  if (seo.event) {
+    const ev = seo.event;
+    tags.push(jsonLdTag({
+      '@context': 'https://schema.org', '@type': 'Event',
+      name: ev.name, description: ev.description || desc,
+      startDate: ev.startDate, endDate: ev.endDate,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      image: [ogImage], url,
+      location: {
+        '@type': 'Place', name: ev.locationName,
+        address: { '@type': 'PostalAddress', streetAddress: ev.streetAddress, addressLocality: ev.addressLocality, addressRegion: ev.addressRegion, addressCountry: ev.addressCountry || 'TW' },
+      },
+      performer: ev.performer ? { '@type': 'Person', name: ev.performer, url: ev.performerUrl ? abs(ev.performerUrl) : undefined } : undefined,
+      organizer: { '@type': 'Organization', name: siteName, url: origin + '/' },
+    }));
+  }
+  return tags.join('\n');
+}
+
+// ── sitemap.xml / robots.txt ──
+// 網址清單直接由 data/site.json 產生，新增文章、醫師、設備頁後不必手動維護。
+function xmlText(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function siteOrigin(site) {
+  return String((site.seo && site.seo.siteUrl) || 'https://medirealm-origin.com').replace(/\/$/, '');
+}
+function buildSitemap(site) {
+  const origin = siteOrigin(site);
+  const urls = [];
+  const add = (loc, lastmod) => urls.push({ loc: origin + loc, lastmod });
+  add('/');
+  add('/knowledge');
+  ((site.knowledge && site.knowledge.articles) || []).forEach((a) => {
+    add(a.href, a.seo && (a.seo.dateModified || a.seo.datePublished));
+  });
+  ((site.team && site.team.doctors) || []).forEach((dr) => { if (dr.slug && dr.detail) add('/doctors/' + dr.slug); });
+  add('/services/lifting');
+  ((site.lifting && site.lifting.devices) || []).forEach((dv) => { if (dv.id) add('/services/lifting/' + dv.id); });
+  add('/appointment');
+  return '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    urls.map((u) => '  <url><loc>' + xmlText(u.loc) + '</loc>' + (u.lastmod ? '<lastmod>' + xmlText(u.lastmod) + '</lastmod>' : '') + '</url>').join('\n') +
+    '\n</urlset>\n';
+}
+
+function serveKnowledgePage(res, slug) {
+  const file = path.join(PUBLIC_DIR, 'knowledge.html');
+  let art = null, site = null;
+  if (slug) {
+    try {
+      site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      art = ((site.knowledge && site.knowledge.articles) || []).filter((a) => a.id === slug)[0] || null;
+    } catch (e) {
+      console.error('  [錯誤] 讀取站台資料失敗：', e.message);
+    }
+  }
+  if (!art) return serveFile(res, file);
+  fs.readFile(file, 'utf8', (err, html) => {
+    if (err) return serveFile(res, file);
+    const head = buildKnowledgeHead(site, art);
+    // 移除範本裡預設的 title / description，改由文章自己的標籤取代
+    html = html
+      .replace(/<title>[\s\S]*?<\/title>\s*/i, () => '')
+      .replace(/<meta name="description"[^>]*>\s*/i, () => '')
+      .replace(/(<meta name="viewport"[^>]*>)/i, (m) => m + '\n' + head);
+    send(res, 200, html, { 'Content-Type': MIME['.html'] || 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
+  });
+}
+
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
 
@@ -305,7 +462,19 @@ const server = http.createServer((req, res) => {
 
   // 醫境知識：/knowledge 與 /knowledge/<slug> 皆由 knowledge.html 呈現
   if (url.pathname === '/knowledge' || url.pathname.startsWith('/knowledge/')) {
-    return serveFile(res, path.join(PUBLIC_DIR, 'knowledge.html'));
+    let slug = '';
+    try { slug = decodeURIComponent(url.pathname.replace(/^\/knowledge\/?/, '').replace(/\/$/, '')); } catch (e) { slug = ''; }
+    return serveKnowledgePage(res, slug);
+  }
+
+  // 注意：robots.txt 不封鎖 /api/，因為頁面內容是由前端呼叫 /api/site 載入，封鎖會讓搜尋引擎看不到內容
+  if (url.pathname === '/robots.txt' || url.pathname === '/sitemap.xml') {
+    let site = {};
+    try { site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); } catch (e) { console.error('  [錯誤] 讀取站台資料失敗：', e.message); }
+    if (url.pathname === '/sitemap.xml') {
+      return send(res, 200, buildSitemap(site), { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-cache' });
+    }
+    return send(res, 200, 'User-agent: *\nAllow: /\n\nSitemap: ' + siteOrigin(site) + '/sitemap.xml\n', { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-cache' });
   }
 
   if (url.pathname === '/healthz') {
