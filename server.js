@@ -53,6 +53,7 @@ function serveFile(res, filePath) {
       });
     }
     const ext = path.extname(filePath).toLowerCase();
+    if (ext === '.html') buf = applyLayout(buf.toString('utf8'), res.sitePath, filePath);
     send(res, 200, buf, {
       'Content-Type': MIME[ext] || 'application/octet-stream',
       'Cache-Control': LONG_CACHE.has(ext) ? 'public, max-age=2592000' : 'no-cache',
@@ -102,7 +103,7 @@ function serveDeviceFile(res, site, device, pathname, request) {
       '<meta name="twitter:image" content="' + htmlAttr(image) + '">',
     ].join('\n');
 
-    const html = buf.toString('utf8')
+    const html = applyLayout(buf.toString('utf8'), pathname, filePath)
       .replace(/<title>[\s\S]*?<\/title>/i, tags.split('\n')[0])
       .replace(/<meta name="description"[^>]*>/i, tags.split('\n')[1])
       .replace('</head>', tags.split('\n').slice(2).join('\n') + '\n</head>');
@@ -121,6 +122,118 @@ function htmlAttr(s) {
   return String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
+// ── 全站共用導覽列／頁尾 ──
+// 每個 HTML 只放 <!-- @site-header --> 與 <!-- @site-footer --> 佔位符，
+// 伺服器送出前依 data/site.json（nav、secondaryNav、footer、clinics）產生同一份導覽列與頁尾，
+// 所有頁面長得一樣、改一處就全站生效，而且內容寫在 HTML 裡，搜尋引擎爬得到。
+let layoutCache = { mtimeMs: -1, site: null };
+function loadSiteForLayout() {
+  try {
+    const st = fs.statSync(DATA_FILE);
+    if (st.mtimeMs !== layoutCache.mtimeMs) {
+      layoutCache = { mtimeMs: st.mtimeMs, site: JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')) };
+    }
+  } catch (e) {
+    console.error('  [錯誤] 讀取站台資料失敗（共用導覽列）：', e.message);
+  }
+  return layoutCache.site || {};
+}
+// site.json 的 nav 是寫給首頁用的相對錨點（#popular），其他頁要補成 /#popular
+function navHref(href) { return /^#/.test(href || '') ? '/' + href : (href || '/'); }
+// 目前頁面對應哪個主選單項目（加底線）
+function navIsActive(href, pathname) {
+  const h = navHref(href);
+  if (h.indexOf('#') >= 0 || h === '/') return false;
+  if (h === '/clinics') return pathname === '/clinics' || pathname.startsWith('/clinics/') || pathname.startsWith('/services/');
+  return pathname === h || pathname.startsWith(h + '/');
+}
+const SOLID_NAV_PATHS = new Set(['/appointment']);
+function buildSiteHeader(site, pathname) {
+  const links = (site.nav || []).map((n) => {
+    const active = navIsActive(n.href, pathname);
+    return '      <a href="' + htmlAttr(navHref(n.href)) + '"' + (active ? ' class="active" aria-current="page"' : '') + '>' + htmlAttr(n.label) + '</a>';
+  }).join('\n');
+  const solid = SOLID_NAV_PATHS.has(pathname);
+  return [
+    '<header class="nav' + (solid ? ' nav-solid scrolled' : '') + '" id="siteNav">',
+    '  <div class="nav-inner">',
+    '    <a class="nav-brand" href="/" aria-label="初纖顏醫境診所 回首頁">',
+    '      <span class="nav-wordmark">',
+    '        <b>初纖顏醫境診所</b>',
+    '        <i>XIAN YAN · MEDIREALM</i>',
+    '      </span>',
+    '    </a>',
+    '    <nav class="nav-links" id="navLinks" aria-label="主選單">',
+    links,
+    '    </nav>',
+    '    <a class="nav-cta" href="/appointment">線上預約</a>',
+    '    <button class="nav-toggle" id="navToggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">',
+    '      <span></span><span></span><span></span>',
+    '    </button>',
+    '  </div>',
+    '</header>',
+  ].join('\n');
+}
+// 頁尾「最後更新日期」自動產生：取該頁 HTML 檔與 site.json 兩者較新的修改時間（台灣時區）
+function lastUpdatedDate(filePath) {
+  let t = layoutCache.mtimeMs > 0 ? layoutCache.mtimeMs : 0;
+  try { if (filePath) t = Math.max(t, fs.statSync(filePath).mtimeMs); } catch (e) { /* 取不到就只用 site.json */ }
+  if (!t) return '';
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(t));
+}
+function buildSiteFooter(site, filePath) {
+  const f = site.footer || {};
+  const clinics = (site.clinics && site.clinics.items) || [];
+  const main = clinics.filter((c) => c.id === 'chu')[0] || clinics[0] || {};
+  const link = (n) => '<a href="' + htmlAttr(navHref(n.href)) + '">' + htmlAttr(n.label) + '</a>';
+  const contact = [];
+  if (main.address) contact.push('<a href="/visit">' + htmlAttr(main.address) + '</a>');
+  if (main.phone) contact.push('電話 <a href="tel:' + htmlAttr(String(main.phone).replace(/[^0-9+]/g, '')) + '">' + htmlAttr(main.phone) + '</a>');
+  const year = new Date().getFullYear();
+  const updated = lastUpdatedDate(filePath);
+  return [
+    '<footer class="footer">',
+    '  <div class="wrap">',
+    '    <p class="footer-wordmark">初纖顏醫境診所<i>XIAN YAN · MEDIREALM</i></p>',
+    f.brandDesc ? '    <p class="footer-desc">' + htmlAttr(f.brandDesc) + '</p>' : '',
+    clinics.length ? '    <ul class="footer-clinics">' + clinics.map((c) => '<li>' + htmlAttr(c.name + '・' + c.hall) + '</li>').join('') + '</ul>' : '',
+    contact.length ? '    <p class="footer-contact">' + contact.join('<span class="footer-contact-sep" aria-hidden="true">｜</span>') + '</p>' : '',
+    '    <nav class="footer-nav" aria-label="頁尾選單">' + (site.nav || []).concat(site.secondaryNav || []).map(link).join('') + '</nav>',
+    f.disclaimer ? '    <p class="footer-disclaimer">' + htmlAttr(f.disclaimer) + '</p>' : '',
+    '    <nav class="footer-legal" aria-label="網站政策">' + (f.legalLinks || []).map(link).join('') + '</nav>',
+    '    <small class="footer-copy">© ' + year + ' ' + htmlAttr(f.group || '初纖顏醫境診所') +
+      (f.groupSite ? '　|　<a href="' + htmlAttr(f.groupSite.href) + '" target="_blank" rel="noopener noreferrer">' + htmlAttr(f.groupSite.label) + '</a>' : '') + '</small>',
+    (updated ? '    <p class="footer-updated">最後更新日期：' + htmlAttr(updated) + '</p>' : ''),
+    '  </div>',
+    '</footer>',
+    '<script src="/nav.js?v=1"></script>',
+  ].filter(Boolean).join('\n');
+}
+// 懸浮 LINE 按鈕（參考曜妍 LineFloatingButton）：連結取 site.json contact.line，全站同一顆
+const LINE_ICON_PATH = 'M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314';
+function buildLineFab(site) {
+  const url = site.contact && site.contact.line;
+  if (!url) return '';
+  return [
+    '<a class="line-fab" href="' + htmlAttr(url) + '" target="_blank" rel="noopener noreferrer" aria-label="用 LINE 預約諮詢（另開新視窗）">',
+    '  <span class="line-fab-circle">',
+    '    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="' + LINE_ICON_PATH + '"/></svg>',
+    '    <i class="line-fab-sparkle" style="top:4px;right:8px"></i>',
+    '    <i class="line-fab-sparkle" style="bottom:8px;left:4px;animation-delay:.4s"></i>',
+    '    <i class="line-fab-sparkle" style="top:16px;left:8px;animation-delay:.8s"></i>',
+    '  </span>',
+    '  <span class="line-fab-label">預約諮詢</span>',
+    '</a>',
+  ].join('\n');
+}
+function applyLayout(html, pathname, filePath) {
+  if (html.indexOf('<!-- @site-header -->') < 0 && html.indexOf('<!-- @site-footer -->') < 0) return html;
+  const site = loadSiteForLayout();
+  return html
+    .replace('<!-- @site-header -->', () => buildSiteHeader(site, pathname || '/'))
+    .replace('<!-- @site-footer -->', () => buildSiteFooter(site, filePath) + '\n' + buildLineFab(site));
+}
+
 function jsonLdTag(obj) {
   return '<script type="application/ld+json">' + JSON.stringify(obj).replace(/</g, '\\u003c') + '</script>';
 }
@@ -169,9 +282,13 @@ function buildKnowledgeHead(site, art) {
     headline: art.title, description: desc, inLanguage: 'zh-TW',
     image: [ogImage, heroImage].filter((v, i, a) => a.indexOf(v) === i),
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-    author: { '@type': 'Organization', name: siteName, url: origin + '/' },
+    // 有具名撰稿醫師時採用 Person（利於 E-E-A-T），否則回退為機構本身
+    author: seo.author
+      ? { '@type': 'Person', name: seo.author, url: abs(seo.authorUrl), jobTitle: seo.authorTitle }
+      : { '@type': 'Organization', name: siteName, url: origin + '/' },
     publisher,
   };
+  if (seo.reviewedBy && seo.reviewedBy !== seo.author) article.reviewedBy = { '@type': 'Person', name: seo.reviewedBy };
   if (seo.datePublished) article.datePublished = seo.datePublished;
   if (seo.dateModified || seo.datePublished) article.dateModified = seo.dateModified || seo.datePublished;
   if (seo.keywords && seo.keywords.length) article.keywords = seo.keywords.join(',');
@@ -196,6 +313,17 @@ function buildKnowledgeHead(site, art) {
     tags.push(jsonLdTag({
       '@context': 'https://schema.org', '@type': 'FAQPage',
       mainEntity: faqs.map((it) => ({ '@type': 'Question', name: it.question, acceptedAnswer: { '@type': 'Answer', text: it.answer } })),
+    }));
+  }
+
+  // ItemList（門診／服務清單，供 AI 答案引擎直接解析「有哪些門診／服務」）
+  if (seo.services && seo.services.length) {
+    tags.push(jsonLdTag({
+      '@context': 'https://schema.org', '@type': 'ItemList',
+      itemListElement: seo.services.map((sv, i) => ({
+        '@type': 'ListItem', position: i + 1,
+        item: { '@type': 'Service', name: sv.name, description: sv.description, provider: { '@type': 'MedicalBusiness', name: siteName } },
+      })),
     }));
   }
 
@@ -233,15 +361,21 @@ function buildSitemap(site) {
   const urls = [];
   const add = (loc, lastmod) => urls.push({ loc: origin + loc, lastmod });
   add('/');
+  add('/clinics');
+  add('/doctors');
+  add('/visit');
   add('/knowledge');
   ((site.knowledge && site.knowledge.articles) || []).forEach((a) => {
     add(a.href, a.seo && (a.seo.dateModified || a.seo.datePublished));
   });
   ((site.team && site.team.doctors) || []).forEach((dr) => { if (dr.slug && dr.detail) add('/doctors/' + dr.slug); });
-  add('/services/lifting');
+  ((site.departments && site.departments.items) || []).forEach((it) => { if (it.slug) add('/clinics/' + it.slug); });
+  add('/privacy', site.policies && site.policies.privacy && site.policies.privacy.updatedDate);
+  add('/terms', site.policies && site.policies.terms && site.policies.terms.updatedDate);
+  add('/clinics/lifting');
   ((site.lifting && site.lifting.devices) || []).forEach((dv) => { if (dv.id) add('/services/lifting/' + dv.id); });
   add('/appointment');
-  add('/services/laser');
+  add('/clinics/laser');
   ((site.laser && site.laser.devices) || []).forEach((dv) => { if (dv.id) add('/services/laser/' + dv.id); });
   return '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
@@ -269,22 +403,37 @@ function serveKnowledgePage(res, slug) {
       .replace(/<title>[\s\S]*?<\/title>\s*/i, () => '')
       .replace(/<meta name="description"[^>]*>\s*/i, () => '')
       .replace(/(<meta name="viewport"[^>]*>)/i, (m) => m + '\n' + head);
+    html = applyLayout(html, '/knowledge/' + slug, file);
     send(res, 200, html, { 'Content-Type': MIME['.html'] || 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
   });
 }
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  res.sitePath = url.pathname.replace(/\/+$/, '') || '/'; // 共用導覽列用來標示目前所在頁
 
-  // 站台文案／資料：每次讀檔，改完 data/site.json 重新整理即可生效
+  // 站台文案／資料：每次讀檔。瀏覽器可快取 60 秒，過期後先用舊資料、背景再更新
+  // （stale-while-revalidate），換頁不用每次等一趟回主機；改完 data/site.json
+  // 最多約 1 分鐘（再多一次換頁）前台就會看到。ETag 讓重新驗證時沒變就回 304。
   if (url.pathname === '/api/site') {
-    return fs.readFile(DATA_FILE, 'utf8', (err, txt) => {
-      if (err) {
-        return send(res, 500, JSON.stringify({ error: 'site.json 讀取失敗' }), {
-          'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache',
-        });
+    return fs.stat(DATA_FILE, (statErr, st) => {
+      const etag = statErr ? '' : '"' + st.size.toString(36) + '-' + Math.floor(st.mtimeMs).toString(36) + '"';
+      const cacheHeaders = { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=600' };
+      if (etag) cacheHeaders.ETag = etag;
+      // Cloudflare 壓縮後會把 ETag 改成弱驗證 W/"..."，比對時去掉前綴
+      const inm = String(req.headers['if-none-match'] || '').replace(/^W\//, '');
+      if (etag && inm === etag) {
+        res.writeHead(304, cacheHeaders);
+        return res.end();
       }
-      send(res, 200, txt, { 'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache' });
+      fs.readFile(DATA_FILE, 'utf8', (err, txt) => {
+        if (err) {
+          return send(res, 500, JSON.stringify({ error: 'site.json 讀取失敗' }), {
+            'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache',
+          });
+        }
+        send(res, 200, txt, Object.assign({ 'Content-Type': MIME['.json'] }, cacheHeaders));
+      });
     });
   }
 
@@ -481,11 +630,19 @@ const server = http.createServer((req, res) => {
     return serveFile(res, path.join(PUBLIC_DIR, 'appointment.html'));
   }
 
-  // 醫療服務：電音波拉提設備瀏覽頁
+  // 電音波拉提列表頁：統一改用 /clinics/lifting，與其他六大門診網址格式一致；
+  // 舊網址 /services/lifting 保留 302 轉址，避免外部連結或書籤失效
   if (url.pathname === '/services/lifting') {
+    return send(res, 302, '', { Location: '/clinics/lifting', 'Cache-Control': 'no-cache' });
+  }
+  if (url.pathname === '/clinics/lifting') {
     return serveFile(res, path.join(PUBLIC_DIR, 'lifting.html'));
   }
+  // 雷射光療列表頁：同樣統一改用 /clinics/laser；舊網址 /services/laser 保留 302 轉址
   if (url.pathname === '/services/laser') {
+    return send(res, 302, '', { Location: '/clinics/laser', 'Cache-Control': 'no-cache' });
+  }
+  if (url.pathname === '/clinics/laser') {
     return serveFile(res, path.join(PUBLIC_DIR, 'lifting.html'));
   }
 
@@ -504,7 +661,7 @@ const server = http.createServer((req, res) => {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }
     if (valid) return serveDeviceFile(res, site, device, url.pathname, req);
-    return send(res, 302, '', { Location: '/services/lifting', 'Cache-Control': 'no-cache' });
+    return send(res, 302, '', { Location: '/clinics/lifting', 'Cache-Control': 'no-cache' });
   }
   if (url.pathname.startsWith('/services/laser/')) {
     const slug = url.pathname.slice('/services/laser/'.length);
@@ -520,10 +677,45 @@ const server = http.createServer((req, res) => {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }
     if (valid) return serveDeviceFile(res, site, device, url.pathname, req);
-    return send(res, 302, '', { Location: '/services/laser', 'Cache-Control': 'no-cache' });
+    return send(res, 302, '', { Location: '/clinics/laser', 'Cache-Control': 'no-cache' });
   }
 
-  // 醫師詳細頁：/doctors/<slug>（未知 slug 一律導回首頁醫療團隊）
+  // 網站政策頁：/privacy、/terms
+  if (url.pathname === '/privacy' || url.pathname === '/terms') {
+    return serveFile(res, path.join(PUBLIC_DIR, 'policy.html'));
+  }
+
+  // 六大門診總覽頁：/clinics（海報總覽圖＋六個門診卡片，各卡片連到下面的獨立分頁）
+  if (url.pathname === '/clinics' || url.pathname === '/clinics/') {
+    return serveFile(res, path.join(PUBLIC_DIR, 'clinics.html'));
+  }
+
+  // 六大門診詳細頁：/clinics/<slug>（未知 slug 一律導回六大門診總覽頁）
+  if (url.pathname.startsWith('/clinics/')) {
+    const slug = url.pathname.slice('/clinics/'.length).replace(/\/$/, '');
+    let valid = false;
+    try {
+      const site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      const deps = (site.departments && site.departments.items) || [];
+      valid = deps.some((it) => it.slug === slug);
+    } catch (e) {
+      console.error('  [錯誤] 讀取站台資料失敗：', e.message);
+    }
+    if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'department.html'));
+    return send(res, 302, '', { Location: '/clinics', 'Cache-Control': 'no-cache' });
+  }
+
+  // 院所資訊頁：/visit（導覽列「院所位置」：地圖、看診時間、交通、初診流程）
+  if (url.pathname === '/visit' || url.pathname === '/visit/') {
+    return serveFile(res, path.join(PUBLIC_DIR, 'visit.html'));
+  }
+
+  // 醫療團隊列表頁：/doctors（首頁醫師跑馬燈下方「認識全部醫師」按鈕的目的地）
+  if (url.pathname === '/doctors' || url.pathname === '/doctors/') {
+    return serveFile(res, path.join(PUBLIC_DIR, 'doctors.html'));
+  }
+
+  // 醫師詳細頁：/doctors/<slug>（未知 slug 一律導回醫療團隊列表頁）
   if (url.pathname.startsWith('/doctors/')) {
     const slug = url.pathname.slice('/doctors/'.length);
     let valid = false;
@@ -535,7 +727,7 @@ const server = http.createServer((req, res) => {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }
     if (valid) return serveFile(res, path.join(PUBLIC_DIR, 'doctor.html'));
-    return send(res, 302, '', { Location: '/#team', 'Cache-Control': 'no-cache' });
+    return send(res, 302, '', { Location: '/doctors', 'Cache-Control': 'no-cache' });
   }
 
   // 醫境知識：/knowledge 與 /knowledge/<slug> 皆由 knowledge.html 呈現

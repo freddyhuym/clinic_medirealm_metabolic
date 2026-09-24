@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>院所位置｜初纖顏醫境診所 XIAN YAN · MEDIREALM</title>
+<meta name="description" content="初纖顏醫境診所院所資訊：台北市中正區信義路二段207號3樓，鄰近捷運東門站，電話 02-2396-0386。提供看診時間、Google 地圖導航與初診流程說明，歡迎線上預約。">
+<link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
+<link rel="canonical" href="https://medirealm-origin.com/visit">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/api/site" as="fetch" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=48">
+<style>
+  .vs-head { background: var(--xy-ivory); padding: 150px 24px 64px; text-align: center; }
+  .vs-breadcrumb { font-size: 13.5px; color: var(--xy-text-secondary); letter-spacing: .04em; margin-bottom: 30px; }
+  .vs-breadcrumb a { color: var(--xy-teal-dark); border-bottom: 1px solid rgba(206,154,75,.4); padding-bottom: 2px; }
+  .vs-subtitle { font-size: 17px; color: var(--xy-text-secondary); max-width: 620px; margin: 0 auto; }
+
+  /* 院所卡片：左地圖、右資訊（參考曜妍分院資訊卡） */
+  .vs-clinic-section { background: var(--xy-cream); padding: 72px 24px 96px; }
+  .vs-card {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+    background: var(--xy-warm-white); border: 1px solid var(--xy-border);
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 18px 44px rgba(60, 55, 45, .07);
+  }
+  .vs-map { min-height: 440px; background: var(--xy-ivory); }
+  .vs-map iframe { display: block; width: 100%; height: 100%; min-height: 440px; border: 0; }
+  .vs-info { padding: clamp(30px, 3.6vw, 48px); display: flex; flex-direction: column; }
+  .vs-info .eyebrow { margin-bottom: 6px; }
+  .vs-name { font-family: var(--serif); font-size: clamp(24px, 2.6vw, 30px); font-weight: 500; line-height: 1.4; }
+  .vs-hall { font-size: 15px; color: var(--xy-teal-dark); margin-top: 4px; letter-spacing: .06em; }
+  .vs-rows { margin-top: 26px; display: grid; gap: 18px; }
+  .vs-row { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; }
+  .vs-row svg { width: 20px; height: 20px; color: var(--xy-gold); margin-top: 3px; }
+  .vs-row b { display: block; font-size: 13px; font-weight: 500; letter-spacing: .14em; color: var(--xy-gold); }
+  .vs-row p { font-size: 15.5px; line-height: 1.85; color: var(--xy-text); }
+  .vs-tel { color: var(--xy-teal-dark); border-bottom: 1px solid var(--xy-border); padding-bottom: 1px; }
+  .vs-tel:hover { color: var(--xy-gold); }
+  .vs-hours { width: 100%; border-collapse: collapse; margin-top: 2px; }
+  .vs-hours td { padding: 3px 0; font-size: 15px; color: var(--xy-text); }
+  .vs-hours td:last-child { text-align: right; color: var(--xy-text-secondary); }
+  .vs-hours tr.is-off td { color: #b7afa5; }
+  .vs-actions { margin-top: auto; padding-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .vs-actions .btn { padding: 12px 24px; font-size: 15px; }
+  .vs-note { max-width: 1120px; margin: 18px auto 0; font-size: 13.5px; color: var(--xy-text-secondary); text-align: center; }
+
+  /* 初診流程：沿用首頁「第一次來，怎麼安排？」資料 */
+  .vs-steps-section { background: var(--xy-ivory); padding: clamp(72px, 8vw, 110px) 24px; }
+  .vs-steps-section .fv-steps { max-width: 1120px; margin-left: auto; margin-right: auto; }
+  .vs-cta { text-align: center; margin-top: 44px; }
+
+  @media (max-width: 900px) {
+    .vs-card { grid-template-columns: 1fr; }
+    .vs-map, .vs-map iframe { min-height: 320px; }
+  }
+  @media (max-width: 640px) {
+    .vs-head { padding-top: 130px; }
+    .vs-actions .btn { flex: 1 1 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#vsMain">跳到主要內容</a>
+
+<!-- @site-header -->
+
+<main id="vsMain">
+  <section class="vs-head">
+    <div class="wrap">
+      <p class="vs-breadcrumb"><a href="/">首頁</a> ／ <span>院所位置</span></p>
+      <p class="eyebrow center">VISIT US</p>
+      <h1 class="h2 serif">院所資訊</h1>
+      <p class="vs-subtitle">地址、看診時間與交通方式，以及第一次到診所的流程，出發前先在這裡了解。</p>
+    </div>
+  </section>
+
+  <section class="vs-clinic-section">
+    <article class="vs-card" id="vsCard">
+      <div class="vs-map" id="vsMap"></div>
+      <div class="vs-info">
+        <p class="eyebrow">CLINIC</p>
+        <h2 class="vs-name" id="vsName">初纖顏醫境診所</h2>
+        <p class="vs-hall" id="vsHall"></p>
+        <div class="vs-rows">
+          <div class="vs-row">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10Z" stroke-linejoin="round"/><circle cx="10" cy="8" r="2.2"/></svg>
+            <div><b>地址</b><p id="vsAddress"></p></div>
+          </div>
+          <div class="vs-row" id="vsPhoneRow" hidden>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6.2 2.8 4 3.4c-.7.2-1.1.9-1 1.6.9 5.6 5.4 10.1 11 11 .7.1 1.4-.3 1.6-1l.6-2.2c.2-.6-.1-1.2-.7-1.5l-2.3-1c-.5-.2-1.1-.1-1.5.3l-.9 1a9.4 9.4 0 0 1-4.3-4.3l1-.9c.4-.4.5-1 .3-1.5l-1-2.3c-.3-.6-.9-.9-1.5-.7Z" stroke-linejoin="round"/></svg>
+            <div><b>電話</b><p><a class="vs-tel" id="vsPhone" href="#"></a></p></div>
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="14" height="11" rx="2.5"/><path d="M6.5 17.5h7M7 14l-1.2 3.5M13 14l1.2 3.5M3 9.5h14"/><circle cx="6.5" cy="11.8" r=".6" fill="currentColor"/><circle cx="13.5" cy="11.8" r=".6" fill="currentColor"/></svg>
+            <div><b>交通</b><p>捷運淡水信義線／中和新蘆線「東門站」，出站後沿信義路二段往新生南路方向，鄰近大安森林公園。</p></div>
+          </div>
+          <div class="vs-row" id="vsHoursRow" hidden>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 5.8V10l2.8 1.8" stroke-linecap="round"/></svg>
+            <div><b>看診時間</b><table class="vs-hours"><tbody id="vsHours"></tbody></table></div>
+          </div>
+        </div>
+        <div class="vs-actions">
+          <a class="btn btn-solid" href="/appointment">線上預約</a>
+          <a class="btn btn-ghost" id="vsDirections" href="#" target="_blank" rel="noopener">Google 地圖導航</a>
+        </div>
+      </div>
+    </article>
+    <p class="vs-note">看診時間如遇國定假日或臨時異動，以預約時專人確認為準。</p>
+  </section>
+
+  <section class="vs-steps-section" id="vsSteps" hidden>
+    <div class="wrap">
+      <p class="eyebrow center" id="fvEyebrow"></p>
+      <h2 class="h2 serif center" id="fvTitle"></h2>
+      <p class="section-intro center" id="fvIntro"></p>
+      <ol class="fv-steps" id="fvSteps"></ol>
+      <div class="vs-cta" id="fvCta"></div>
+    </div>
+  </section>
+</main>
+
+<!-- @site-footer -->
+
+
+<script src="/visit.js?v=2"></script>
+</body>
+</html>

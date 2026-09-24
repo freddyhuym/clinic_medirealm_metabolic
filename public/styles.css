@@ -18,9 +18,12 @@
   --xy-text-secondary: #77716B;
   --xy-border: rgba(206, 154, 75, .24);
 
-  --serif: "Noto Serif TC", serif;
-  --sans: "Noto Sans TC", sans-serif;
-  --display: "Cormorant Garamond", serif;
+  /* 全站字體統一：與曜妍官網 carebeautyclinic.com.tw 相同，只用思源宋體 Noto Serif TC。
+     --serif / --sans / --display 都指向同一組，舊樣式不用逐一改 */
+  --font: "Noto Serif TC", "Microsoft JhengHei", "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, serif;
+  --serif: var(--font);
+  --sans: var(--font);
+  --display: var(--font);
 
   --wrap: 1240px;
   --radius: 10px;
@@ -39,6 +42,9 @@ body {
   line-height: 1.85;
   -webkit-font-smoothing: antialiased;
 }
+
+/* 表單元件預設不繼承字體，強制跟著全站字體 */
+button, input, select, textarea, optgroup { font-family: inherit; }
 
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -173,6 +179,7 @@ ul { list-style: none; }
 .nav-cta:hover { background: var(--xy-teal-deep); transform: translateY(-1px); }
 .nav-toggle { display: none; }
 
+
 /* ── Hero ───────────────────────────────── */
 .hero {
   position: relative;
@@ -221,8 +228,24 @@ ul { list-style: none; }
   display: block; font-size: 12.5px; letter-spacing: .18em;
   color: var(--xy-text-secondary); margin-top: 8px;
 }
+/* v2：右側加入院所實景照，讓 Hero 呈現左右分割（左文字、右影像＋卡片） */
+.hero-photo {
+  position: absolute;
+  inset: 4% -6% 6% 16%;
+  border-radius: 28px;
+  overflow: hidden;
+  z-index: 0;
+  box-shadow: 0 30px 80px rgba(60, 55, 45, .16);
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg, rgba(251, 248, 243, .92) 0%, rgba(251, 248, 243, .4) 32%, rgba(251, 248, 243, 0) 58%);
+}
 .hero-cards {
   position: relative;
+  z-index: 1;
   height: clamp(480px, 46vw, 600px);
 }
 .hero-card {
@@ -467,54 +490,22 @@ ul { list-style: none; }
   .phi-value, .phi-value-icon, .phi-value-divider, .phi-value-desc { transition: none; }
 }
 
-/* ── Pillars ────────────────────────────── */
-.pillars { background: var(--xy-cream); }
+/* ── Pillars：首頁只放六大門診總覽的文字＋海報圖（.pillars-banner），
+   完整六門診卡片格在獨立分頁 /clinics；跑馬燈醫師卡的連結樣式仍在用，保留 ── */
+a.doctor-card-link { display: block; color: inherit; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease; }
+a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(60, 55, 45, .08); }
+
 .pillars-subtitle {
   font-size: 15.5px; color: var(--xy-text-secondary);
   max-width: 560px; margin: 18px auto 0;
 }
-.pillars-footnote {
-  font-size: 14px; letter-spacing: .06em;
-  color: var(--xy-text-secondary);
-  margin-top: 52px;
+.pillars-banner { background: var(--xy-cream); }
+.pillars-banner picture {
+  display: block; margin-top: 56px; border-radius: var(--radius); overflow: hidden;
+  box-shadow: 0 20px 48px rgba(60, 55, 45, .1);
 }
-.pillar-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: clamp(24px, 2.6vw, 40px); margin-top: 64px;
-}
-a.pillar-link { display: block; color: inherit; cursor: pointer; }
-a.doctor-card-link { display: block; color: inherit; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease; }
-a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(60, 55, 45, .08); }
-.pillar {
-  background: var(--xy-warm-white);
-  border: 1px solid var(--xy-border);
-  border-radius: var(--radius);
-  padding: 48px 38px 42px;
-  transition: transform .6s var(--ease), box-shadow .6s var(--ease);
-}
-.pillar:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(79, 75, 71, .06); }
-.pillar-no {
-  font-family: var(--display);
-  font-size: 44px; color: var(--xy-gold-soft); line-height: 1;
-}
-.pillar-icon { width: 52px; height: 52px; color: var(--xy-teal-deep); margin: 20px 0 22px; }
-.pillar-icon svg { width: 100%; height: 100%; }
-.pillar-en {
-  font-family: var(--display); font-size: 13px;
-  letter-spacing: .3em; color: var(--xy-gold); margin-bottom: 8px;
-}
-.pillar-zh {
-  font-family: var(--serif); font-size: 26px; font-weight: 500;
-  margin-bottom: 14px;
-}
-.pillar-desc { font-size: 15.5px; color: var(--xy-text-secondary); margin-bottom: 20px; }
-.pillar-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.pillar-tags li {
-  font-size: 13px; color: var(--xy-teal-dark);
-  border: 1px solid var(--xy-teal-soft);
-  background: rgba(220, 236, 234, .35);
-  padding: 4px 12px; border-radius: 999px;
-}
+.pillars-banner img { display: block; width: 100%; height: auto; }
+.pillars-banner-cta { margin-top: 36px; }
 
 /* ── Understand ─────────────────────────── */
 .understand { background: var(--xy-ivory); overflow: hidden; }
@@ -680,45 +671,48 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   color: var(--xy-text-secondary);
   text-align: center; margin-bottom: 16px;
 }
-.doctor-carousel { position: relative; }
+/* 醫師卡片橫向自動跑馬燈：清單在 app.js 內重複做無縫循環，
+   這裡只負責讓 track 連續位移；左右加漸層遮罩避免邊緣硬切。
+   滑鼠移入／鍵盤聚焦時暫停，方便閱讀單張卡片與操作連結。 */
+.doctor-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 6px 0 22px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
 .doctor-track {
   display: flex;
   gap: 28px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding: 6px 4px 22px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+  width: max-content;
+  animation: doctorMarquee 32s linear infinite;
 }
-.doctor-track::-webkit-scrollbar { display: none; }
-.doctor-track .doctor-card {
-  flex: 0 0 290px;
-  scroll-snap-align: start;
+.doctor-carousel:hover .doctor-track,
+.doctor-carousel:focus-within .doctor-track { animation-play-state: paused; }
+@keyframes doctorMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
-.carousel-btn {
-  position: absolute; top: 42%; transform: translateY(-50%);
-  z-index: 2;
-  width: 46px; height: 46px; border-radius: 50%;
-  border: 1px solid var(--xy-gold);
-  background: rgba(255, 252, 248, .92);
-  color: var(--xy-teal-dark);
-  font-size: 18px; line-height: 1;
-  cursor: pointer;
-  transition: background .3s var(--ease), color .3s var(--ease), opacity .3s var(--ease);
-  box-shadow: 0 6px 18px rgba(65, 127, 124, .12);
-}
-.carousel-btn:hover { background: var(--xy-teal); color: #fff; }
-.carousel-btn.prev { left: -14px; }
-.carousel-btn.next { right: -14px; }
-.carousel-btn[disabled] { opacity: .3; cursor: default; }
-.carousel-btn[disabled]:hover { background: rgba(255, 252, 248, .92); color: var(--xy-teal-dark); }
+.doctor-track .doctor-card { flex: 0 0 290px; }
 .doctor-card {
   background: var(--xy-warm-white);
   border: 1px solid var(--xy-border);
-  border-radius: var(--radius);
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 16px 40px rgba(60, 55, 45, .07);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
+.doctor-card:hover, .doctor-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 56px rgba(60, 55, 45, .13);
+}
+@media (prefers-reduced-motion: reduce) {
+  .doctor-track { animation: none; }
+}
+@media (max-width: 600px) {
+  .doctor-track .doctor-card { flex: 0 0 72vw; max-width: 290px; }
+}
+.team-cta { margin-top: 36px; }
 .doctor-card figure { overflow: hidden; aspect-ratio: 4 / 4.4; }
 .doctor-card img {
   width: 100%; height: 100%; object-fit: cover;
@@ -757,11 +751,28 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 .kn-label { font-size: 17px; color: var(--xy-gold); margin: 14px 0 10px; letter-spacing: .12em; }
 .kn-copy { font-size: 16px; line-height: 1.95; color: var(--xy-text-secondary); margin-top: 22px; }
 
-.kn-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+/* v2：首頁醫境知識庫改成橫向自動跑馬燈（沿用醫療團隊卡片同一套做法）。
+   /knowledge 索引頁不受影響，那邊是另一個 class（.kn-index-grid）。 */
+.kn-marquee {
   margin-top: 52px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+.kn-grid {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: knMarquee 46s linear infinite;
+}
+.kn-marquee:hover .kn-grid,
+.kn-marquee:focus-within .kn-grid { animation-play-state: paused; }
+@keyframes knMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kn-grid { animation: none; }
 }
 .kn-card {
   background: var(--xy-warm-white);
@@ -770,6 +781,7 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   overflow: hidden;
   box-shadow: 0 10px 34px rgba(65, 127, 124, .05);
   display: flex; flex-direction: column;
+  flex: 0 0 360px;
 }
 .kn-card-media { overflow: hidden; aspect-ratio: 4 / 3; }
 .kn-card-media img {
@@ -803,10 +815,12 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 .kn-foot { text-align: center; margin-top: 48px; }
 
 @media (max-width: 1023px) {
-  .kn-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .kn-grid { gap: 18px; }
+  .kn-card { flex-basis: 300px; }
 }
 @media (max-width: 640px) {
-  .kn-grid { grid-template-columns: 1fr; margin-top: 36px; }
+  .kn-marquee { margin-top: 36px; }
+  .kn-card { flex-basis: 82vw; }
   .kn-card-body { padding: 22px 24px 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -896,20 +910,66 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   font-size: 12.5px; line-height: 1.8;
   color: rgba(255, 252, 248, .6);
 }
+/* 頁尾地址／電話：直接寫在 HTML（利於在地搜尋），全站一致 */
+.footer-contact { margin: 0 0 14px; font-size: 13.5px; letter-spacing: .04em; color: rgba(255, 252, 248, .82); text-align: center; line-height: 1.9; }
+.footer-contact a { color: inherit; border-bottom: 1px solid rgba(255, 252, 248, .3); padding-bottom: 1px; }
+.footer-contact a:hover { color: var(--xy-champagne); border-color: var(--xy-champagne); }
+.footer-contact-sep { margin: 0 12px; color: rgba(255, 252, 248, .4); }
+@media (max-width: 520px) { .footer-contact-sep { display: block; height: 0; overflow: hidden; } }
+.footer-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; margin-bottom: 14px; }
+.footer-legal a { font-size: 12.5px; color: rgba(255, 252, 248, .7); border-bottom: 1px solid rgba(255, 252, 248, .25); padding-bottom: 1px; }
+.footer-legal a:hover { color: var(--xy-champagne); border-color: var(--xy-champagne); }
 .footer-copy { font-size: 12.5px; color: rgba(255, 252, 248, .65); }
 .footer-copy a { color: var(--xy-champagne); }
+.footer-updated { margin-top: 8px; font-size: 11.5px; color: rgba(255, 252, 248, .45); }
 
-/* ── FAB ────────────────────────────────── */
-.fab-line {
-  position: fixed; right: 20px; bottom: 22px; z-index: 90;
-  width: 58px; height: 58px; border-radius: 50%;
-  background: var(--xy-teal);
-  color: #fff; font-size: 14px; letter-spacing: .06em;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 20px rgba(65, 127, 124, .28);
-  transition: background .4s var(--ease), transform .4s var(--ease);
+/* ── 懸浮 LINE 按鈕（參考曜妍：綠色圓形＋光暈脈動＋閃光，下方「預約諮詢」標籤）── */
+.line-fab {
+  position: fixed; right: 24px; bottom: 24px; z-index: 90;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: transform .3s var(--ease);
 }
-.fab-line:hover { background: var(--xy-teal-deep); transform: translateY(-2px); }
+.line-fab:hover, .line-fab:focus-visible { transform: scale(1.08); }
+.line-fab:active { transform: scale(1); }
+.line-fab-circle {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #06C755; color: #fff;
+  box-shadow: 0 10px 24px rgba(6, 199, 85, .32);
+  animation: lineGlow 2s ease-in-out infinite;
+}
+.line-fab-circle svg { width: 34px; height: 34px; position: relative; z-index: 1; }
+.line-fab-sparkle {
+  position: absolute; width: 4px; height: 4px; border-radius: 50%;
+  background: #fff; filter: blur(1px);
+  animation: lineSparkle 1.5s infinite;
+}
+.line-fab-label {
+  padding: 3px 12px; border-radius: 999px;
+  background: #fff; color: var(--xy-teal-dark); border: 1px solid #06C755;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .06em; white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  transition: transform .3s var(--ease);
+}
+.line-fab:hover .line-fab-label { transform: translateY(-2px); }
+@keyframes lineGlow {
+  0% { box-shadow: 0 0 0 0 rgba(6, 199, 85, .6); transform: scale(1); }
+  50% { box-shadow: 0 0 0 12px rgba(6, 199, 85, 0); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 199, 85, 0); transform: scale(1); }
+}
+@keyframes lineSparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+@media (max-width: 560px) {
+  .line-fab { right: 16px; bottom: 16px; }
+  .line-fab-circle { width: 56px; height: 56px; }
+  .line-fab-circle svg { width: 28px; height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .line-fab-circle, .line-fab-sparkle { animation: none; }
+  .line-fab-sparkle { display: none; }
+}
 
 /* ── Reveal ─────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -923,7 +983,6 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 
 /* ── Responsive ─────────────────────────── */
 @media (max-width: 1024px) {
-  .pillar-grid { gap: 26px; }
   .clinic-panel { grid-template-columns: 280px 1fr; }
   .contact-grid { gap: 44px; }
   .hero-grid { grid-template-columns: minmax(0, 44fr) minmax(0, 56fr); }
@@ -931,7 +990,6 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 }
 
 @media (max-width: 1024px) and (min-width: 881px) {
-  .pillar-grid { grid-template-columns: 1fr 1fr; }
   .phi-values { grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .phi-value:nth-child(odd) { border-left: none; padding-left: 0; }
 }
@@ -953,6 +1011,7 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   .hero-body { max-width: 640px; }
   .hero-clinics-label { text-align: left; }
   .hero-clinics::before { inset: -6%; }
+  .hero-photo { display: none; } /* 卡片改成橫向滑動的手機版排版，底圖收起避免視覺打架 */
   .hero-cards {
     height: auto;
     display: flex; gap: 18px;
@@ -987,11 +1046,13 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
     background: var(--xy-ivory);
     border-bottom: 1px solid var(--xy-border);
     padding: 12px 0 18px;
+    max-height: calc(100vh - 76px); overflow-y: auto;
   }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 14px 30px; font-size: 17px; min-height: 44px; }
   .nav-links a::after { display: none; }
   .nav-cta { margin-left: auto; }
+
   .nav-toggle {
     display: flex; flex-direction: column; justify-content: center; gap: 5px;
     width: 44px; height: 44px; padding: 10px;
@@ -1006,7 +1067,6 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   .phi-values { grid-template-columns: 1fr; margin-top: 56px; }
   .phi-value { border-left: none; border-top: 1px solid rgba(206, 154, 75, .28); padding: 26px 0 20px; }
   .phi-value:first-child { border-top: none; padding-top: 0; }
-  .pillar-grid { grid-template-columns: 1fr; }
   .clinic-content { padding: 34px 30px 36px; }
   .contact-grid { grid-template-columns: 1fr; }
   .form { grid-template-columns: 1fr; padding: 30px 24px; }
@@ -1028,41 +1088,57 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 .popular-eyebrow { font-family: var(--display); font-style: italic; font-size: 14px; letter-spacing: .18em; color: var(--xy-teal-dark); }
 .popular-title { font-size: clamp(24px, 2.6vw, 30px); font-weight: 500; margin-top: 10px; }
 .popular-text { margin-top: 16px; font-size: 15px; line-height: 2; color: var(--xy-text-secondary); }
+.popular-fee-note { margin-top: 14px; font-size: 13px; color: var(--xy-text-secondary); opacity: .85; font-style: italic; }
 .popular-more { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; font-size: 14.5px; letter-spacing: .08em; color: var(--xy-teal-dark); }
 .popular-more::before { content: ""; width: 32px; height: 1px; background: var(--xy-teal-dark); transition: width .3s var(--ease); }
 .popular-more:hover::before { width: 44px; }
-.popular-viewport { overflow: hidden; }
-.popular-track { display: flex; gap: 16px; transition: transform .5s var(--ease); }
-.popular-card { flex: 0 0 calc((100% - 32px) / 3); display: block; color: inherit; }
-.popular-card-media {
-  aspect-ratio: 3 / 4; border-radius: 8px; overflow: hidden;
-  border: 1px solid var(--xy-teal-soft); box-shadow: 0 8px 22px rgba(65, 127, 124, .06);
-  background: var(--xy-ivory);
+/* v2：熱門療程改為靜態格狀卡片，不再是分頁輪播 */
+.popular-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.popular-card {
+  display: flex; flex-direction: column; color: inherit;
+  background: var(--xy-ivory); border: 1px solid var(--xy-teal-soft); border-radius: 16px;
+  overflow: hidden; box-shadow: 0 14px 34px rgba(60, 55, 45, .06);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
 }
+.popular-card:hover, .popular-card:focus-visible { transform: translateY(-6px); box-shadow: 0 22px 46px rgba(60, 55, 45, .11); }
+.popular-card-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--xy-ivory); }
 .popular-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
-.popular-card:hover .popular-card-media img { transform: scale(1.05); }
-.popular-card-name { text-align: center; margin-top: 14px; font-size: 17px; font-weight: 500; color: var(--xy-text); }
-.popular-ctrl { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-top: 22px; }
-.popular-count { font-family: var(--display); font-size: 15px; letter-spacing: .14em; color: var(--xy-text-secondary); }
-.popular-count b { font-weight: 600; color: var(--xy-text); }
-.popular-arrow {
-  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--xy-teal-soft);
-  background: transparent; color: var(--xy-teal-dark); cursor: pointer;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: background .3s var(--ease), border-color .3s var(--ease);
-}
-.popular-arrow svg { width: 18px; height: 18px; }
-.popular-arrow:hover { background: var(--xy-teal-soft); border-color: var(--xy-teal-deep); }
+.popular-card:hover .popular-card-media img { transform: scale(1.04); }
+.popular-card-body { padding: 18px 20px 22px; }
+.popular-card-name { font-size: 17px; font-weight: 500; color: var(--xy-text); }
+.popular-card-desc { margin-top: 8px; font-size: 13.5px; line-height: 1.8; color: var(--xy-text-secondary); }
 @media (max-width: 1023px) {
-  .popular-card { flex: 0 0 calc((100% - 16px) / 2); }
+  .popular-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) {
   .popular { padding: 116px 24px 48px; }
   .popular-inner { grid-template-columns: 1fr; gap: 32px; }
 }
-@media (max-width: 639px) {
-  .popular-card { flex: 0 0 75%; }
+@media (max-width: 560px) {
+  /* 手機版熱門療程改一列兩個，縮短頁面滑動長度 */
+  .popular-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .popular-card-body { padding: 12px 12px 14px; }
+  .popular-card-name { font-size: 14.5px; }
+  .popular-card-desc { margin-top: 5px; font-size: 12px; line-height: 1.65; }
 }
+
+/* v2：品牌標語列（Hero 下方，靜態置中，非跑馬燈） */
+.tagline-strip {
+  background: var(--xy-cream);
+  border-bottom: 1px solid var(--xy-border);
+  padding: 20px 24px;
+}
+.tagline-inner {
+  max-width: var(--wrap); margin: 0 auto;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 12px 22px;
+}
+.tagline-t {
+  font-family: var(--display); font-style: italic;
+  font-size: 14px; letter-spacing: .08em; color: var(--xy-text-secondary);
+}
+.tagline-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--xy-gold); flex: 0 0 auto; }
+@media (max-width: 560px) { .tagline-t { font-size: 12.5px; } }
 
 /* ===== 知識文章內文 ===== */
 .kn-body { max-width: 720px; margin: 0 auto; }
@@ -1109,4 +1185,40 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
   .kn-body h2 { font-size: 21px; margin-top: 40px; }
   .kn-body-highlight { padding: 22px 22px; font-size: 17px; }
   .kn-body-cta { padding: 26px 22px; }
+}
+
+/* ── 第一次來怎麼安排（首頁新區塊）───────── */
+.fv-steps {
+  list-style: none; margin-top: 56px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 2.4vw, 32px);
+}
+.fv-step {
+  background: var(--xy-warm-white); border: 1px solid var(--xy-border); border-radius: var(--radius);
+  padding: 32px 26px; text-align: left;
+}
+.fv-step-no { font-family: var(--display); font-size: 32px; color: var(--xy-gold-soft); line-height: 1; }
+.fv-step-title { font-size: 19px; font-weight: 500; margin: 14px 0 10px; }
+.fv-step-desc { font-size: 14.5px; line-height: 1.8; color: var(--xy-text-secondary); }
+.fv-cta { margin-top: 46px; }
+
+/* ── 就診前常見問題（首頁新區塊）─────────── */
+.pf-list { max-width: 760px; margin: 48px auto 0; }
+.pf-item {
+  border-bottom: 1px solid var(--xy-border); padding: 20px 4px;
+}
+.pf-item:first-child { border-top: 1px solid var(--xy-border); }
+.pf-q {
+  cursor: pointer; font-size: 16.5px; font-weight: 500; color: var(--xy-text);
+  list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.pf-q::-webkit-details-marker { display: none; }
+.pf-q::after { content: '+'; font-family: var(--display); font-size: 20px; color: var(--xy-gold); flex: 0 0 auto; }
+.pf-item[open] .pf-q::after { content: '−'; }
+.pf-a { margin-top: 12px; font-size: 15px; line-height: 1.9; color: var(--xy-text-secondary); }
+
+@media (max-width: 900px) {
+  .fv-steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .fv-steps { grid-template-columns: 1fr; }
 }

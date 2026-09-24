@@ -9,31 +9,13 @@
 <link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=19">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=48">
 <link rel="stylesheet" href="/appointment.css?v=3">
 </head>
 <body class="appointment-page">
 <a class="skip-link" href="#appointmentMain">跳到主要內容</a>
-<header class="nav scrolled" id="siteNav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="/" aria-label="纖顏醫境 回首頁">
-      <span class="brand-zh serif">初纖顏醫境診所</span>
-      <span class="brand-en">XIAN YAN · MEDIREALM</span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-links" id="navLinks" aria-label="主選單">
-      <a href="/#about">關於纖顏</a>
-      <a href="/#services">醫療服務</a>
-      <a href="/#locations">院所資訊</a>
-      <a href="/#team">醫療團隊</a>
-      <a href="/#knowledge">醫境知識</a>
-    </nav>
-    <a class="nav-cta" href="/appointment" aria-current="page">線上預約</a>
-  </div>
-</header>
+<!-- @site-header -->
 
 <main id="appointmentMain">
   <section class="ap-hero">
@@ -120,7 +102,7 @@
 
           <section class="ap-form-section ap-confirm">
             <header class="ap-section-head"><span>05</span><div><h2 class="serif">確認送出</h2><p>請確認資料無誤後送出預約申請。</p></div></header>
-            <label class="ap-consent"><input id="privacyConsent" name="privacyConsent" type="checkbox" required><span>我已確認以上資料，並同意初纖顏醫境為預約聯繫目的使用本人所填寫的聯絡資訊。</span></label>
+            <label class="ap-consent"><input id="privacyConsent" name="privacyConsent" type="checkbox" required><span>我已確認以上資料，並同意初纖顏醫境依<a href="/privacy" target="_blank" rel="noopener noreferrer">隱私權政策</a>為預約聯繫目的使用本人所填寫的聯絡資訊。</span></label>
             <p class="ap-error" id="consentError" role="alert"></p>
             <p class="ap-disclaimer">療程效果因個人狀況而異，實際療程內容、適應症與施作方式，仍須經由專業醫師現場評估。</p>
             <button class="btn btn-solid ap-submit" type="submit"><span class="ap-spinner" aria-hidden="true"></span><span class="ap-submit-label">送出預約</span></button>
@@ -140,17 +122,8 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="wrap">
-    <p class="footer-wordmark">初纖顏醫境診所<i>XIAN YAN · MEDIREALM</i></p>
-    <p class="footer-desc">都會代謝 × 體態 × 精緻美學</p>
-    <ul class="footer-clinics"><li>初纖顏醫境診所・台北信義館</li></ul>
-    <nav class="footer-nav" aria-label="頁尾選單"><a href="/">首頁</a><a href="/#services">醫療服務</a><a href="/#team">醫療團隊</a><a href="/#knowledge">醫境知識</a><a href="/appointment">線上預約</a></nav>
-    <p class="footer-disclaimer">本網站內容僅供醫療資訊參考，不構成療效保證。任何療程效果因個人體質而異，實際適應症與風險請由醫師當面評估說明。</p>
-    <small class="footer-copy">© <span id="apYear"></span> 初纖顏醫境診所</small>
-  </div>
-</footer>
+<!-- @site-footer -->
 <script src="/appointment-treatments.js"></script>
-<script src="/appointment.js?v=2"></script>
+<script src="/appointment.js?v=3"></script>
 </body>
 </html>

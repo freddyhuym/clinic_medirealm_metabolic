@@ -7,7 +7,7 @@
 <meta name="description" content="纖顏醫境以代謝健康、體態管理與精緻美學為核心，由多位醫師共同組成醫療團隊，旗下初纖顏醫境診所位於台北信義，依不同需求提供專業醫療評估與健康美學管理方向。">
 <meta name="theme-color" content="#FBF8F3">
 <link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
-<link rel="canonical" href="https://medirealm-metabolic.com/">
+<link rel="canonical" href="https://medirealm-origin.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="初纖顏醫境診所｜都會代謝美學・體態管理・精緻醫美">
@@ -16,8 +16,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=Noto+Sans+TC:wght@350;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=19">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/api/site" as="fetch" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=48">
 
 <script type="application/ld+json">
 {
@@ -25,7 +26,7 @@
   "@type": "MedicalOrganization",
   "name": "初纖顏醫境診所",
   "alternateName": "XIAN YAN · MEDIREALM",
-  "url": "https://medirealm-metabolic.com/",
+  "url": "https://medirealm-origin.com/",
   "description": "纖顏醫境體系 — 都會代謝 × 體態 × 精緻美學。由多位醫師共同組成醫療團隊的都會型代謝美學連鎖。",
   "parentOrganization": { "@type": "Organization", "name": "醫境醫療集團", "url": "https://medirealms.org/" },
   "subOrganization": [
@@ -50,52 +51,9 @@
 <a class="skip-link" href="#main">跳到主要內容</a>
 
 <!-- ── 導覽列 ───────────────────────────── -->
-<header class="nav" id="nav">
-  <div class="nav-inner">
-    <a class="nav-brand" href="#top" aria-label="初纖顏醫境診所 首頁">
-      <span class="nav-wordmark">
-        <b>初纖顏醫境診所</b>
-        <i>XIAN YAN · MEDIREALM</i>
-      </span>
-    </a>
-
-    <nav class="nav-links" id="navLinks" aria-label="主選單"></nav>
-
-    <a class="nav-cta" href="/appointment">線上預約</a>
-
-    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+<!-- @site-header -->
 
 <main id="main">
-
-<!-- ── 00 熱門療程 ──────────────────────── -->
-<section class="popular" id="popular" hidden>
-  <div class="wrap popular-inner">
-    <div class="popular-head">
-      <p class="popular-eyebrow" id="popEyebrow"></p>
-      <h2 class="popular-title serif" id="popTitle"></h2>
-      <p class="popular-text" id="popText"></p>
-      <a class="popular-more" id="popMore" href="/#services"></a>
-    </div>
-    <div class="popular-carousel">
-      <div class="popular-viewport" id="popViewport">
-        <div class="popular-track" id="popTrack"></div>
-      </div>
-      <div class="popular-ctrl">
-        <span class="popular-count" id="popCount" aria-live="polite"></span>
-        <button class="popular-arrow" id="popPrev" type="button" aria-label="上一個療程">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l-6 6 6 6"/></svg>
-        </button>
-        <button class="popular-arrow" id="popNext" type="button" aria-label="下一個療程">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l6 6-6 6"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ── 01 Hero ─────────────────────────── -->
 <section class="hero" id="top">
@@ -133,12 +91,85 @@
         <span class="en">XIAN YAN CLINIC<em>ONE XIAN YAN SYSTEM</em></span>
         <span class="zh">纖顏醫境・共同醫療體系</span>
       </p>
+      <figure class="hero-photo" aria-hidden="true"><img src="/images/clinic-chu.jpg" alt="" loading="eager"></figure>
       <div class="hero-cards" id="heroClinics"></div>
     </div>
   </div>
 </section>
-
-<!-- ── 02 關於纖顏 ─────────────────────── -->
+<!-- ── 01b 品牌標語列（沿用既有品牌文案，不新增內容）── -->
+<div class="tagline-strip" role="complementary" aria-label="品牌標語">
+  <div class="tagline-inner" id="taglineInner"></div>
+</div>
+<!-- ── 02 六大門診總覽（文字＋海報圖；完整六門診卡片格在獨立分頁 /clinics）── -->
+<section class="section pillars-banner" id="services">
+  <div class="wrap">
+    <p class="eyebrow center" id="pillarsEyebrow"></p>
+    <h2 class="h2 serif center" id="pillarsTitle"></h2>
+    <p class="pillars-subtitle center" id="pillarsSubtitle"></p>
+    <picture>
+      <source media="(max-width: 640px)" srcset="/images/clinics/six-clinics-banner-mobile.jpg">
+      <img src="/images/clinics/six-clinics-banner.jpg" alt="初纖顏醫境診所六大門診總覽：01減脂體雕(最推)、02代謝減重、03臉部的電音波拉提、04臉部的微整形精雕、05雷射光療、06女性私密管理" loading="lazy">
+    </picture>
+    <div class="pillars-banner-cta center">
+      <a class="btn btn-ghost" href="/clinics">查看六大門診 →</a>
+    </div>
+  </div>
+</section>
+<!-- ── 03 療程與費用速覽 ───────────────── -->
+<section class="popular" id="popular" hidden>
+  <div class="wrap popular-inner">
+    <div class="popular-head">
+      <p class="popular-eyebrow" id="popEyebrow"></p>
+      <h2 class="popular-title serif" id="popTitle"></h2>
+      <p class="popular-text" id="popText"></p>
+      <p class="popular-fee-note" id="popFeeNote"></p>
+      <a class="popular-more" id="popMore" href="/clinics"></a>
+    </div>
+    <div class="popular-grid" id="popTrack"></div>
+  </div>
+</section>
+<!-- ── 04 醫療團隊／醫師與評估方式 ─────── -->
+<section class="section team" id="team">
+  <div class="wrap team-inner">
+    <p class="eyebrow center" id="teamEyebrow"></p>
+    <h2 class="h2 serif center" id="teamTitle"></h2>
+    <p class="team-subtitle center" id="teamSubtitle"></p>
+    <div class="team-prose" id="teamBody"></div>
+    <div class="doctor-carousel" aria-label="醫療團隊卡片，自動橫向滾動">
+      <div class="doctor-track" id="doctorGrid"></div>
+    </div>
+    <p class="team-note center" id="teamNote"></p>
+    <div class="team-cta center"><a class="btn btn-ghost" href="/doctors">認識全部醫師 →</a></div>
+  </div>
+</section>
+<!-- ── 05 第一次來怎麼安排 ─────────────── -->
+<section class="section firstvisit" id="visit">
+  <div class="wrap">
+    <p class="eyebrow center" id="fvEyebrow"></p>
+    <h2 class="h2 serif center" id="fvTitle"></h2>
+    <p class="section-intro center" id="fvIntro"></p>
+    <ol class="fv-steps" id="fvSteps"></ol>
+    <div class="fv-cta center" id="fvCta"></div>
+  </div>
+</section>
+<!-- ── 06 就診前常見問題 ─────────────── -->
+<section class="section prefaq" id="faq">
+  <div class="wrap">
+    <p class="eyebrow center" id="pfEyebrow"></p>
+    <h2 class="h2 serif center" id="pfTitle"></h2>
+    <div class="pf-list" id="pfList"></div>
+  </div>
+</section>
+<!-- ── 07 地點與門診時間（院所資訊）───── -->
+<section class="section clinics" id="locations">
+  <div class="wrap">
+    <p class="eyebrow center" id="clinicsEyebrow"></p>
+    <h2 class="h2 serif center" id="clinicsTitle"></h2>
+    <p class="section-intro center" id="clinicsIntro"></p>
+    <div class="clinic-panels" id="clinicPanels"></div>
+  </div>
+</section>
+<!-- ── 09 關於纖顏（補充內容，非規劃書主流程）── -->
 <section class="section philosophy" id="about">
   <div class="wrap">
     <div class="phi-top">
@@ -188,19 +219,7 @@
     </div>
   </div>
 </section>
-
-<!-- ── 03 三大核心 ─────────────────────── -->
-<section class="section pillars" id="services">
-  <div class="wrap">
-    <p class="eyebrow center" id="pillarsEyebrow"></p>
-    <h2 class="h2 serif center" id="pillarsTitle"></h2>
-    <p class="pillars-subtitle center" id="pillarsSubtitle"></p>
-    <div class="pillar-grid" id="pillarGrid"></div>
-    <p class="pillars-footnote center" id="pillarsFootnote"></p>
-  </div>
-</section>
-
-<!-- ── 04 不是先選療程 ─────────────────── -->
+<!-- ── 10 不是先選療程（補充內容）─────── -->
 <section class="section understand" id="understand">
   <div class="wrap und-grid">
     <div class="understand-inner">
@@ -216,34 +235,7 @@
     </figure>
   </div>
 </section>
-
-<!-- ── 05 院所資訊（保留 #locations anchor）── -->
-<section class="section clinics" id="locations">
-  <div class="wrap">
-    <p class="eyebrow center" id="clinicsEyebrow"></p>
-    <h2 class="h2 serif center" id="clinicsTitle"></h2>
-    <p class="section-intro center" id="clinicsIntro"></p>
-    <div class="clinic-panels" id="clinicPanels"></div>
-  </div>
-</section>
-
-<!-- ── 06 多位醫師共同主理 ─────────────── -->
-<section class="section team" id="team">
-  <div class="wrap team-inner">
-    <p class="eyebrow center" id="teamEyebrow"></p>
-    <h2 class="h2 serif center" id="teamTitle"></h2>
-    <p class="team-subtitle center" id="teamSubtitle"></p>
-    <div class="team-prose" id="teamBody"></div>
-    <div class="doctor-carousel">
-      <button type="button" class="carousel-btn prev" id="teamPrev" aria-label="上一位醫師">←</button>
-      <div class="doctor-track" id="doctorGrid" tabindex="0" aria-label="醫療團隊卡片，可左右滑動"></div>
-      <button type="button" class="carousel-btn next" id="teamNext" aria-label="下一位醫師">→</button>
-    </div>
-    <p class="team-note center" id="teamNote"></p>
-  </div>
-</section>
-
-<!-- ── 08 醫境知識庫（Sticky Scroll Story）── -->
+<!-- ── 11 醫境知識庫（補充內容，規劃書列為次選單）── -->
 <section class="section knowledge" id="knowledge">
   <span class="kn-bgword" aria-hidden="true">KNOWLEDGE</span>
   <div class="wrap">
@@ -253,7 +245,9 @@
       <h2 class="h2 serif" id="knTitle"></h2>
       <p class="kn-copy" id="knIntro"></p>
     </header>
-    <div class="kn-grid" id="knArticles"></div>
+    <div class="kn-marquee" aria-label="醫境知識庫文章，自動橫向輪播">
+      <div class="kn-grid" id="knArticles"></div>
+    </div>
     <div class="kn-foot">
       <a class="btn btn-ghost" id="knMore" href="/knowledge">探索更多醫境知識 →</a>
     </div>
@@ -263,21 +257,9 @@
 </main>
 
 <!-- ── 頁尾 ─────────────────────────────── -->
-<footer class="footer">
-  <div class="wrap">
-    <p class="footer-wordmark">初纖顏醫境診所<i>XIAN YAN · MEDIREALM</i></p>
-    <p class="footer-desc" id="footerDesc"></p>
-    <ul class="footer-clinics" id="footerClinics"></ul>
-    <nav class="footer-nav" id="footerNav" aria-label="頁尾選單"></nav>
-    <p class="footer-disclaimer" id="footerDisclaimer"></p>
-    <small class="footer-copy">© <span id="year"></span> <span id="footerGroup"></span>　|　<a id="footerGroupLink" href="#" target="_blank" rel="noopener noreferrer"></a></small>
-  </div>
-</footer>
+<!-- @site-footer -->
 
-<a class="fab-line" id="fabLine" href="/appointment" aria-label="線上預約">
-  <span>預約</span>
-</a>
 
-<script src="/app.js?v=5"></script>
+<script src="/app.js?v=25"></script>
 </body>
 </html>

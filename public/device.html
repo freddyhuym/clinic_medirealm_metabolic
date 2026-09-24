@@ -8,8 +8,9 @@
 <link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=19">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/api/site" as="fetch" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=48">
 <style>
   .dv-hero { background: var(--xy-ivory); padding: 150px 24px 70px; }
   .dv-hero-inner {
@@ -104,36 +105,21 @@
 <body>
 <a class="skip-link" href="#dvMain">跳到主要內容</a>
 
-<header class="nav" id="siteNav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="/" aria-label="纖顏醫境 回首頁">
-      <span class="brand-zh serif">初纖顏醫境診所</span>
-      <span class="brand-en">XIAN YAN · MEDIREALM</span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-links" id="navLinks" aria-label="主選單">
-      <a href="/#services">醫療服務</a>
-      <a href="/#locations">院所資訊</a>
-      <a class="btn btn-primary btn-sm" href="/appointment">線上預約</a>
-    </nav>
-  </div>
-</header>
+<!-- @site-header -->
 
 <main id="dvMain">
   <section class="dv-hero">
     <div class="dv-hero-inner">
       <div class="dv-hero-text">
         <p class="dv-breadcrumb">
-          <a href="/">首頁</a> ／ <a href="/#services">醫療服務</a> ／ <a id="dvCategoryLink" href="/services/lifting"><span id="dvCategoryName">電音波拉提</span></a> ／ <span id="dvCrumbName"></span>
+          <a href="/">首頁</a> ／ <a href="/clinics">六大門診</a> ／ <a id="dvCategoryLink" href="/clinics/lifting"><span id="dvCategoryName">電音波拉提</span></a> ／ <span id="dvCrumbName"></span>
         </p>
         <p class="eyebrow" id="dvEyebrow"></p>
         <h1 class="dv-name" id="dvName"></h1>
         <p class="dv-zh" id="dvZhName"></p>
         <p class="dv-type" id="dvType"></p>
         <p class="dv-intro" id="dvIntro" style="display:none"></p>
-        <a class="dv-back" id="dvBack" href="/services/lifting">← 返回電音波拉提</a>
+        <a class="dv-back" id="dvBack" href="/clinics/lifting">← 返回電音波拉提</a>
       </div>
       <div class="dv-hero-visual">
         <img id="dvImage" src="" alt="">
@@ -148,16 +134,8 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-bottom" style="border-top:none">
-    <p id="dvFooterCopy">© 初纖顏醫境診所</p>
-  </div>
-</footer>
+<!-- @site-footer -->
 
-<script src="/device.js"></script>
-<script>
-(function(){var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
-if(t&&l){t.addEventListener('click',function(){var o=l.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');t.setAttribute('aria-label',o?'關閉選單':'開啟選單');});}})();
-</script>
+<script src="/device.js?v=1"></script>
 </body>
 </html>

@@ -62,7 +62,6 @@
     renderTreatments();
     var today = new Date(), y = today.getFullYear(), m = String(today.getMonth() + 1).padStart(2, '0'), d = String(today.getDate()).padStart(2, '0');
     controls.appointmentDate.min = y + '-' + m + '-' + d;
-    byId('apYear').textContent = y;
     byId('treatmentGrid').addEventListener('change', function (e) {
       var input = e.target;
       if (input.name === 'treatment') {
@@ -77,8 +76,6 @@
       }
     });
     byId('sourceOtherToggle').addEventListener('change', function (e) { byId('sourceOtherWrap').hidden = !e.target.checked; if (!e.target.checked) controls.sourceOther.value = ''; });
-    var toggle = byId('navToggle'), links = byId('navLinks');
-    toggle.addEventListener('click', function () { var open = links.classList.toggle('open'); toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? '關閉選單' : '開啟選單'); });
     form.addEventListener('submit', submit);
     byId('appointmentAgain').addEventListener('click', reset);
   }

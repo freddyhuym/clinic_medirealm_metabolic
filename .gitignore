@@ -5,3 +5,9 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
+
+# 線上預約表單紀錄同樣含患者個資，不進版控
+data/appointments.jsonl
+
+# 手動修改前留下的備份檔
+*.bak-*

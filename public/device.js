@@ -43,10 +43,10 @@
       var catalog = isLaser ? (d.laser || {}) : (d.lifting || {});
       var devices = catalog.devices || [];
       var dev = devices.filter(function (x) { return x.id === slug; })[0];
-      if (!dev) { location.replace(isLaser ? '/services/laser' : '/services/lifting'); return; }
+      if (!dev) { location.replace(isLaser ? '/clinics/laser' : '/clinics/lifting'); return; }
       var det = dev.detail || {};
-      var categoryHref = isLaser ? '/services/laser' : (catalog.categoryHref || '/services/lifting');
-      var categoryName = catalog.categoryName || catalog.title || (isLaser ? '雷射美膚' : '電音波拉提');
+      var categoryHref = isLaser ? '/clinics/laser' : (catalog.categoryHref || '/clinics/lifting');
+      var categoryName = catalog.categoryName || catalog.title || (isLaser ? '雷射光療' : '電音波拉提');
 
       /* ── SEO ── */
       document.title = det.seoTitle || (dev.name + ' ' + dev.zhName + '｜初纖顏醫境診所 XIAN YAN · MEDIREALM');
@@ -181,7 +181,7 @@
         '@context': 'https://schema.org', '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: '首頁', item: location.origin + '/' },
-          { '@type': 'ListItem', position: 2, name: '醫療服務', item: location.origin + '/#services' },
+          { '@type': 'ListItem', position: 2, name: '六大門診', item: location.origin + '/clinics' },
            { '@type': 'ListItem', position: 3, name: categoryName, item: location.origin + categoryHref },
           { '@type': 'ListItem', position: 4, name: dev.name + ' ' + dev.zhName, item: location.origin + location.pathname }
         ]

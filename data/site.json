@@ -16,12 +16,12 @@
     "positioning": "都會代謝 × 體態 × 精緻美學",
     "lead": "從代謝、體態到外在美學，以醫療專業評估為核心，為不同生活階段建立更完整的健康與美管理。",
     "cta": {
-      "label": "探索院所",
-      "href": "#locations"
+      "label": "找適合的門診",
+      "href": "/clinics"
     },
     "ctaAlt": {
-      "label": "預約諮詢",
-      "href": "#contact"
+      "label": "查看療程與費用",
+      "href": "#popular"
     }
   },
   "popular": {
@@ -30,14 +30,14 @@
     "text": "依照您的肌膚、輪廓與體態需求，由專業醫師評估並提供最適合的療程建議，陪伴您安心變美，找回自信光采。",
     "more": {
       "label": "更多療程",
-      "href": "/#services"
+      "href": "/clinics"
     },
     "items": [
       {
         "name": "鳳凰電波",
         "desc": "Thermage FLX 鳳凰電波，緊緻拉提、促進膠原新生，改善肌膚鬆弛。",
         "image": "/images/popular/01-phoenix.webp?v=2",
-        "href": "/services/lifting"
+        "href": "/clinics/lifting"
       },
       {
         "name": "美音二代",
@@ -49,27 +49,28 @@
         "name": "彈力針",
         "desc": "Doublyx EVO 彈力針，重建肌膚彈力結構，恢復澎潤緊緻。",
         "image": "/images/popular/03-doublyx.webp?v=2",
-        "href": "/#contact"
+        "href": "/appointment"
       },
       {
         "name": "微針外泌",
         "desc": "微針導入外泌體精華，促進肌膚修復再生，改善膚質與毛孔。",
         "image": "/images/popular/04-exosome.webp?v=3",
-        "href": "/#contact"
+        "href": "/appointment"
       },
       {
         "name": "輪廓精雕",
         "desc": "結合多種專業針劑，修飾臉部比例，打造自然立體的輪廓。",
         "image": "/images/popular/05-contour.webp?v=3",
-        "href": "/#contact"
+        "href": "/appointment"
       },
       {
         "name": "減重",
         "desc": "醫師專業評估的醫學減重方案，安全達成體重管理目標。",
         "image": "/images/popular/06-weight.webp?v=3",
-        "href": "/#contact"
+        "href": "/appointment"
       }
-    ]
+    ],
+    "feeNote": "完整療程項目與費用，將由醫師評估後提供；正式金額請至各門診頁面或預約諮詢時確認。"
   },
   "about": {
     "eyebrow": "OUR PHILOSOPHY",
@@ -144,19 +145,6 @@
     "items": [
       {
         "no": "01",
-        "en": "METABOLIC WEIGHT",
-        "zh": "代謝減重",
-        "icon": "metabolic",
-        "desc": "從代謝狀態出發，協助理解體重變化與管理方向。",
-        "tags": [
-          "醫師減重",
-          "代謝評估",
-          "體重管理",
-          "更年期代謝"
-        ]
-      },
-      {
-        "no": "02",
         "en": "BODY SCULPTING",
         "zh": "體雕減脂",
         "icon": "body",
@@ -166,7 +154,33 @@
           "脂肪管理",
           "身體線條",
           "非侵入式體態"
-        ]
+        ],
+        "need": "在意腰腹、側腰、手臂或大腿的線條",
+        "href": "/clinics/body-contouring",
+        "image": {
+          "src": "/images/clinics/body-contouring-hero.jpg",
+          "alt": "體雕減脂門診示意照片"
+        }
+      },
+      {
+        "no": "02",
+        "en": "METABOLIC WEIGHT",
+        "zh": "代謝減重",
+        "icon": "metabolic",
+        "desc": "從代謝狀態出發，協助理解體重變化與管理方向。",
+        "tags": [
+          "醫師減重",
+          "代謝評估",
+          "體重管理",
+          "更年期代謝"
+        ],
+        "need": "體重增加、反覆復胖，想了解原因",
+        "href": "/clinics/metabolic-weight-management",
+        "image": {
+          "src": "/images/clinics/metabolic-weight-management-hero.jpg",
+          "alt": "代謝減重門診示意照片",
+          "shiftY": 20
+        }
       },
       {
         "no": "03",
@@ -180,12 +194,18 @@
           "輪廓緊實",
           "老化管理"
         ],
-        "href": "/services/lifting"
+        "href": "/clinics/lifting",
+        "need": "在意臉部鬆弛與下顎線",
+        "image": {
+          "src": "/images/clinics/lifting-hero.jpg",
+          "alt": "輕齡電音波拉提門診示意照片",
+          "shiftY": 20
+        }
       },
       {
         "no": "04",
         "en": "INJECTABLES",
-        "zh": "微整注射",
+        "zh": "微整形精雕",
         "icon": "inject",
         "desc": "透過專業評估，進行更細緻自然的輪廓與比例調整。",
         "tags": [
@@ -193,12 +213,19 @@
           "肉毒",
           "輪廓調整",
           "精緻微整"
-        ]
+        ],
+        "need": "想了解凹陷、皺紋與輪廓修飾",
+        "href": "/clinics/facial-injectables",
+        "image": {
+          "src": "/images/clinics/facial-injectables-hero.jpg",
+          "alt": "微整形精雕門診示意照片",
+          "shiftY": 20
+        }
       },
       {
         "no": "05",
         "en": "LASER SKINCARE",
-        "zh": "雷射美膚",
+        "zh": "雷射光療",
         "icon": "laser",
         "desc": "從膚況出發，規劃更貼近個人需求的肌膚管理方向。",
         "tags": [
@@ -207,20 +234,33 @@
           "毛孔痘疤",
           "亮白嫩膚"
         ],
-        "href": "/services/laser"
+        "href": "/clinics/laser",
+        "need": "在意斑點、痘疤與膚況",
+        "image": {
+          "src": "/images/clinics/laser-hero.jpg",
+          "alt": "雷射光療門診示意照片",
+          "shiftY": 20
+        }
       },
       {
         "no": "06",
-        "en": "PREVENTIVE CARE",
-        "zh": "預防醫學",
+        "en": "INTIMATE CARE",
+        "zh": "女性私密管理",
         "icon": "shield",
-        "desc": "透過健康評估與管理概念，建立更長期的身體照護方向。",
+        "desc": "從日常的不適到生命階段的轉變，在尊重隱私的空間裡，陪妳細緻照顧自己。",
         "tags": [
-          "健康檢測",
-          "預防管理",
-          "抗老照護",
-          "健康評估"
-        ]
+          "乾澀不適",
+          "產後變化",
+          "更年期需求",
+          "隱私照護"
+        ],
+        "need": "乾澀不適、產後變化或更年期需求，想找到合適的照護方式",
+        "href": "/clinics/intimate-care",
+        "image": {
+          "src": "/images/clinics/intimate-care-hero.jpg",
+          "alt": "女性私密管理門診示意照片",
+          "shiftY": 20
+        }
       }
     ]
   },
@@ -263,11 +303,12 @@
         "services": [
           "體態管理",
           "電音波拉提",
-          "微整注射",
+          "微整形精雕",
           "肌膚管理",
           "代謝健康"
         ],
         "address": "台北市中正區信義路二段207號3樓",
+        "phone": "02-2396-0386",
         "mapQuery": "台北市中正區信義路二段207號3樓",
         "cta": "探索初纖顏",
         "website": "https://medirealm-origin.com/",
@@ -294,6 +335,7 @@
         "nameEn": "Dr. Chiu",
         "image": "/images/doctor-chiu-v3.png",
         "specialty": "代謝醫學 × 醫學美容",
+        "tags": ["代謝減重", "電音波拉提"],
         "expertise": [
           "內分泌新陳代謝專科・體重與代謝管理",
           "抗老醫學與由內而外的代謝美學"
@@ -333,6 +375,7 @@
           },
           "certifications": {
             "eyebrow": "CURRENT POSITIONS",
+            "asBio": true,
             "title": "現任職務",
             "items": [
               "醫境醫療集團創辦人暨醫療執行長",
@@ -376,11 +419,11 @@
             "text": "每個人的代謝狀態、體態條件與需求不同，實際療程仍需經由醫師評估後規劃。",
             "primary": {
               "label": "預約諮詢",
-              "href": "/#contact"
+              "href": "/appointment"
             },
             "secondary": {
               "label": "返回醫療團隊",
-              "href": "/#team"
+              "href": "/doctors"
             }
           }
         }
@@ -391,6 +434,7 @@
         "nameEn": "Dr. Huang",
         "image": "/images/doctor-huang.png",
         "specialty": "緊緻拉提 × 微整注射",
+        "tags": ["微整注射", "電音波拉提"],
         "expertise": [
           "自然感微整與微整注射",
           "醫學美容與膚質管理"
@@ -459,11 +503,11 @@
             "text": "每個人的膚況、輪廓條件與需求不同，實際療程仍需經由醫師評估後規劃。",
             "primary": {
               "label": "預約諮詢",
-              "href": "/#contact"
+              "href": "/appointment"
             },
             "secondary": {
               "label": "返回醫療團隊",
-              "href": "/#team"
+              "href": "/doctors"
             }
           }
         }
@@ -472,8 +516,9 @@
         "id": "chang",
         "name": "張嘉洵 醫師",
         "nameEn": "Dr. Chang",
-        "image": "/images/doctor-chang-v2.png",
+        "image": "/images/doctor-chang-v7.jpg",
         "specialty": "複合式逆齡 × 微整雕塑",
+        "tags": ["微整注射", "電音波拉提"],
         "expertise": [
           "微整填充・埋線雕塑・電音波緊實拉提",
           "生長因子／外泌體修復再生"
@@ -488,7 +533,7 @@
           "seoDesc": "張嘉洵醫師曾任台北國泰總院與北市聯醫仁愛醫院醫師，專長複合式逆齡治療：微整填充、埋線雕塑、生長因子／外泌體修復再生、消脂針、肉毒注射與電音波緊實拉提，具多項國際原廠認證。",
           "heroEyebrow": "MEDICAL TEAM",
           "photo": {
-            "src": "/images/doctor-chang.png",
+            "src": "/images/doctor-chang-v7.jpg",
             "alt": "張嘉洵醫師｜初纖顏醫境診所台北信義館醫療團隊"
           },
           "intro": {
@@ -502,6 +547,7 @@
             "eyebrow": "EDUCATION & EXPERIENCE",
             "title": "醫師學經歷",
             "items": [
+              "家醫科專科醫師",
               "台北國泰總院醫師",
               "北市聯醫仁愛醫院醫師",
               "台灣微整形美容醫學會會員",
@@ -601,23 +647,27 @@
           },
           "clinicSection": {
             "eyebrow": "CLINIC",
-            "title": "主要看診"
+            "title": "主要看診",
+            "hours": "每週四 11:00–17:00",
+            "schedule": [{ "day": "四", "hours": "11:00–17:00" }]
           },
           "cta": {
             "title": "專業評估，找到適合自己的逆齡規劃",
             "text": "每個人的膚況、輪廓條件與需求不同，實際療程仍需經由醫師評估後規劃。",
             "primary": {
               "label": "預約諮詢",
-              "href": "/#contact"
+              "href": "/appointment"
             },
             "secondary": {
               "label": "返回醫療團隊",
-              "href": "/#team"
+              "href": "/doctors"
             }
           }
         }
       }
     ],
+    "filters": ["代謝減重", "微整注射", "電音波拉提"],
+    "tagLinks": { "代謝減重": "/clinics/metabolic-weight-management", "微整注射": "/clinics/facial-injectables", "電音波拉提": "/clinics/lifting" },
     "note": "更多醫療團隊成員介紹陸續更新中。"
   },
   "knowledge": {
@@ -628,6 +678,192 @@
     "moreText": "探索更多醫境知識 →",
     "moreHref": "/knowledge",
     "articles": [
+      {
+        "id": "six-clinics-metabolic-facial-aesthetics",
+        "category": "六大門診・代謝美學",
+        "title": "初纖顏醫境診所 代謝纖體・嫩顏美學",
+        "titleEn": "SIX SIGNATURE CLINICS",
+        "hook": "讓健康，成為美麗的底蘊。",
+        "excerpt": "初纖顏醫境診所以醫療專業為起點，提供減脂體雕、代謝減重、電音波拉提、微整形精雕、雷射光療與女性私密管理六大門診，陪妳找到適合自己的照護步調。",
+        "image": "/images/knowledge/kn-six-clinics-hero.jpg",
+        "imageAlt": "初纖顏醫境診所六大門診海報：減脂體雕、代謝減重、電音波拉提、微整形精雕、雷射光療、女性私密管理",
+        "cta": "查看六大門診 →",
+        "href": "/knowledge/six-clinics-metabolic-facial-aesthetics",
+        "theme": "aesthetics",
+        "seo": {
+          "title": "代謝纖體・嫩顏美學｜初纖顏醫境診所六大門診",
+          "description": "初纖顏醫境診所六大門診：減脂體雕、代謝減重、電音波拉提、微整形精雕、雷射光療與女性私密管理，台北信義路醫療專業評估與美學規劃。",
+          "keywords": [
+            "初纖顏醫境診所",
+            "代謝纖體",
+            "嫩顏美學",
+            "減脂體雕",
+            "代謝減重",
+            "電音波拉提",
+            "微整形精雕",
+            "雷射光療",
+            "女性私密管理",
+            "台北醫美",
+            "醫境醫療集團",
+            "台北東門醫美"
+          ],
+          "robots": "index,follow,max-image-preview:large",
+          "ogImage": "/images/knowledge/kn-six-clinics-og.jpg",
+          "ogImageAlt": "初纖顏醫境診所六大門診：代謝纖體・嫩顏美學",
+          "ogImageWidth": 1200,
+          "ogImageHeight": 630,
+          "datePublished": "2026-09-22",
+          "dateModified": "2026-09-22",
+          "section": "六大門診・代謝美學",
+          "services": [
+            {
+              "name": "減脂體雕",
+              "description": "把對美的想像，寫進身體的線條，細緻評估局部脂肪與體態需求。"
+            },
+            {
+              "name": "代謝減重",
+              "description": "從體重變化、飲食、睡眠到日常習慣，透過醫師評估與持續追蹤。"
+            },
+            {
+              "name": "臉部的電音波拉提",
+              "description": "依照臉部鬆弛、肌膚狀態與個人需求，規劃適合的電音波評估與療程。"
+            },
+            {
+              "name": "臉部的微整形精雕",
+              "description": "從表情、凹陷到輪廓線條，細膩規劃貼近個人氣質的美學調整。"
+            },
+            {
+              "name": "雷射光療",
+              "description": "從斑點、暗沉到膚質需求，安排合適的光療評估與日常照護。"
+            },
+            {
+              "name": "女性私密管理",
+              "description": "從日常的不適到生命階段的轉變，在尊重隱私的空間裡，陪妳細緻照顧自己。"
+            }
+          ],
+          "source": "初纖顏醫境診所／醫境醫療官方社群發佈內容"
+        },
+        "body": [
+          {
+            "type": "p",
+            "text": "讓健康，成為美麗的底蘊。"
+          },
+          {
+            "type": "p",
+            "text": "在城市匆忙的日常裡， 留一段時間，好好照顧自己。"
+          },
+          {
+            "type": "p",
+            "text": "從身體的輕盈、肌膚的光澤， 到輪廓的細節與女性私密健康， 我們以醫療專業為起點， 細細聆聽妳的期待，陪妳找到適合自己的照護步調。"
+          },
+          {
+            "type": "p",
+            "text": "初纖顏，為妳準備六大門診——"
+          },
+          {
+            "type": "h2",
+            "text": "01｜#減脂體雕・主打門診"
+          },
+          {
+            "type": "p",
+            "text": "把對美的想像，寫進身體的線條。\n從腰腹、手臂到大腿，細緻評估局部脂肪與體態需求，為每一份想穿得自在的心願，規劃合適的照護。"
+          },
+          {
+            "type": "h2",
+            "text": "02｜#代謝減重"
+          },
+          {
+            "type": "p",
+            "text": "讀懂身體，也重新整理生活的節奏。\n從體重變化、飲食、睡眠到日常習慣，透過醫師評估與持續追蹤，陪妳走向更自在的健康生活。"
+          },
+          {
+            "type": "h2",
+            "text": "03｜#臉部的電音波拉提"
+          },
+          {
+            "type": "p",
+            "text": "溫柔看待歲月，也用心照顧輪廓。\n依照臉部鬆弛、肌膚狀態與個人需求，規劃適合的電音波評估與療程。"
+          },
+          {
+            "type": "h2",
+            "text": "04｜#臉部的微整形精雕"
+          },
+          {
+            "type": "p",
+            "text": "美，藏在比例與神情的細節裡。\n從表情、凹陷到輪廓線條，細膩討論每一處在意的地方，讓美學規劃貼近妳獨有的氣質。"
+          },
+          {
+            "type": "h2",
+            "text": "05｜#雷射光療"
+          },
+          {
+            "type": "p",
+            "text": "為素顏，留一份被好好照顧的光。\n從斑點、暗沉到膚質需求，了解肌膚的故事，安排合適的光療評估與日常照護。"
+          },
+          {
+            "type": "h2",
+            "text": "06｜#女性私密管理"
+          },
+          {
+            "type": "p",
+            "text": "那些不容易說出口的感受，也值得被溫柔傾聽。\n在尊重隱私的空間裡，從諮詢與醫師評估開始，照顧不同人生階段的女性需求。"
+          },
+          {
+            "type": "p",
+            "text": "美好的照護，始於理解。\n歡迎私訊預約，告訴我們妳想先照顧自己的哪一部分。"
+          },
+          {
+            "type": "p",
+            "text": "📍 初纖顏醫境診所｜台北・東門\n地址：台北市信義路二段207號3樓"
+          },
+          {
+            "type": "p",
+            "text": "醫療回歸本位，美麗回歸健康。\n醫境醫療集團"
+          },
+          {
+            "type": "tags",
+            "items": [
+              "初纖顏醫境診所",
+              "醫境醫療集團",
+              "代謝纖體",
+              "嫩顏美學",
+              "六大門診"
+            ]
+          },
+          {
+            "type": "faq",
+            "title": "六大門診常見問題 FAQ",
+            "items": [
+              {
+                "question": "初纖顏醫境診所的「減脂體雕」門診主要提供什麼樣的照護？",
+                "answer": "減脂體雕是六大門診中的主打門診，從腰腹、手臂到大腿，細緻評估局部脂肪與體態需求，為每一份想穿得自在的心願規劃合適的照護。"
+              },
+              {
+                "question": "「代謝減重」門診會如何協助我？",
+                "answer": "代謝減重門診從體重變化、飲食、睡眠到日常習慣切入，透過醫師評估與持續追蹤，陪妳走向更自在的健康生活。"
+              },
+              {
+                "question": "臉部電音波拉提適合什麼樣的需求？",
+                "answer": "會依照臉部鬆弛、肌膚狀態與個人需求，規劃適合的電音波評估與療程。"
+              },
+              {
+                "question": "臉部微整形精雕主要著重哪些細節？",
+                "answer": "從表情、凹陷到輪廓線條著手，細膩討論每一處在意的地方，讓美學規劃貼近妳獨有的氣質。"
+              },
+              {
+                "question": "雷射光療可以照顧哪些肌膚需求？",
+                "answer": "從斑點、暗沉到膚質需求出發，了解肌膚的狀況後，安排合適的光療評估與日常照護。"
+              },
+              {
+                "question": "女性私密管理門診如何兼顧隱私與個人需求？",
+                "answer": "在尊重隱私的空間裡，從諮詢與醫師評估開始，照顧不同人生階段的女性需求。"
+              }
+            ]
+          }
+        ],
+        "imageMobile": "/images/knowledge/kn-six-clinics-body-mobile.jpg",
+        "imageMobileAlt": "初纖顏醫境診所六大門診直式海報：01減脂體雕(最推)、02代謝減重、03臉部的電音波拉提、04臉部的微整形精雕、05雷射光療、06女性私密管理"
+      },
       {
         "id": "chiu-wen-chin-0930-special-event",
         "category": "診所活動・醫學美容",
@@ -685,7 +921,11 @@
             "name": "邱文瑾",
             "url": "/doctors/chiu-wen-chin",
             "jobTitle": "總院長、內科與內分泌新陳代謝專科醫師"
-          }
+          },
+          "author": "邱文瑾",
+          "authorTitle": "內分泌新陳代謝專科醫師・初纖顏醫境診所總院長",
+          "authorUrl": "/doctors/chiu-wen-chin",
+          "source": "初纖顏醫境診所／醫境醫療官方社群發佈內容"
         },
         "body": [
           {
@@ -796,7 +1036,15 @@
             "src": "https://www.youtube.com/embed/MynrLDHsyJw",
             "title": "補鎂就能睡得好？邱文瑾醫師解析補充關鍵"
           }
-        ]
+        ],
+        "seo": {
+          "author": "邱文瑾",
+          "authorTitle": "內分泌新陳代謝專科醫師・初纖顏醫境診所總院長",
+          "authorUrl": "/doctors/chiu-wen-chin",
+          "source": "初纖顏醫境診所／醫境醫療官方社群發佈內容",
+          "datePublished": "2026-09-15",
+          "dateModified": "2026-09-15"
+        }
       },
       {
         "id": "magnesium-mineral-health",
@@ -828,7 +1076,15 @@
             "type": "byline",
             "text": "#醫境醫療  #初纖顏醫境診所 #曜妍診所 #邱文瑾醫師 #代謝你好嗎"
           }
-        ]
+        ],
+        "seo": {
+          "author": "邱文瑾",
+          "authorTitle": "內分泌新陳代謝專科醫師・初纖顏醫境診所總院長",
+          "authorUrl": "/doctors/chiu-wen-chin",
+          "source": "初纖顏醫境診所／醫境醫療官方社群發佈內容",
+          "datePublished": "2026-09-15",
+          "dateModified": "2026-09-15"
+        }
       },
       {
         "id": "exercise-belly-fat-body-contouring",
@@ -1036,7 +1292,15 @@
               }
             ]
           }
-        ]
+        ],
+        "seo": {
+          "author": "邱文瑾",
+          "authorTitle": "內分泌新陳代謝專科醫師・初纖顏醫境診所總院長",
+          "authorUrl": "/doctors/chiu-wen-chin",
+          "source": "初纖顏醫境診所／醫境醫療官方社群發佈內容",
+          "datePublished": "2026-09-08",
+          "dateModified": "2026-09-08"
+        }
       },
       {
         "id": "safe-iv-assessment",
@@ -1097,7 +1361,12 @@
               "初纖顏"
             ]
           }
-        ]
+        ],
+        "seo": {
+          "source": "醫境醫療｜新竹曜妍診所・台北初纖顏醫境診所",
+          "datePublished": "2026-09-02",
+          "dateModified": "2026-09-02"
+        }
       },
       {
         "id": "supplements-really-needed",
@@ -1190,7 +1459,15 @@
               "精準營養"
             ]
           }
-        ]
+        ],
+        "seo": {
+          "author": "邱文瑾",
+          "authorTitle": "內分泌新陳代謝專科醫師・初纖顏醫境診所總院長",
+          "authorUrl": "/doctors/chiu-wen-chin",
+          "source": "初纖顏醫境診所／醫境醫療官方社群發佈內容",
+          "datePublished": "2026-08-13",
+          "dateModified": "2026-08-13"
+        }
       },
       {
         "id": "why-weight-not-dropping",
@@ -1203,7 +1480,11 @@
         "imageAlt": "體重與代謝管理概念",
         "cta": "了解為什麼 →",
         "href": "/knowledge/why-weight-not-dropping",
-        "theme": "metabolic"
+        "theme": "metabolic",
+        "seo": {
+          "datePublished": "2026-08-07",
+          "dateModified": "2026-08-07"
+        }
       },
       {
         "id": "insulin-resistance-and-obesity",
@@ -1216,7 +1497,11 @@
         "imageAlt": "代謝健康與胰島素阻抗概念",
         "cta": "認識胰島素阻抗 →",
         "href": "/knowledge/insulin-resistance-and-obesity",
-        "theme": "metabolic"
+        "theme": "metabolic",
+        "seo": {
+          "datePublished": "2026-08-07",
+          "dateModified": "2026-08-07"
+        }
       },
       {
         "id": "rf-vs-ultrasound",
@@ -1229,7 +1514,11 @@
         "imageAlt": "醫學美容拉提評估概念",
         "cta": "一次看懂電波與音波 →",
         "href": "/knowledge/rf-vs-ultrasound",
-        "theme": "aesthetics"
+        "theme": "aesthetics",
+        "seo": {
+          "datePublished": "2026-08-07",
+          "dateModified": "2026-08-07"
+        }
       },
       {
         "id": "weight-vs-body-fat",
@@ -1242,7 +1531,11 @@
         "imageAlt": "體重與身體組成管理概念",
         "cta": "了解體重與體脂的差別 →",
         "href": "/knowledge/weight-vs-body-fat",
-        "theme": "body"
+        "theme": "body",
+        "seo": {
+          "datePublished": "2026-08-07",
+          "dateModified": "2026-08-07"
+        }
       }
     ],
     "placeholderNote": "本篇完整文章內容目前由醫療團隊審閱籌備中，正式版本將於近期發布。"
@@ -1251,17 +1544,13 @@
     "eyebrow": "RESERVATION",
     "title": "預約諮詢",
     "subtitle": "留下需求，專人將盡快與您聯繫",
-    "line": "",
-    "phone": "",
+    "line": "https://lin.ee/v1IeCtP",
+    "phone": "02-2396-0386",
     "email": "",
     "hours": [
       {
-        "days": "週一 ～ 週五",
-        "time": "11:00 – 20:00"
-      },
-      {
-        "days": "週六",
-        "time": "11:00 – 18:00"
+        "days": "週一 ～ 週六",
+        "time": "10:00 – 19:00"
       },
       {
         "days": "週日 / 國定假日",
@@ -1277,38 +1566,82 @@
       "label": "醫境醫療集團",
       "href": "https://medirealms.org/"
     },
-    "disclaimer": "本網站內容僅供醫療資訊參考，不構成療效保證。任何療程效果因個人體質而異，實際適應症與風險請由醫師當面評估說明。"
+    "disclaimer": "本網站內容僅供醫療資訊參考，不構成療效保證。任何療程效果因個人體質而異，實際適應症與風險請由醫師當面評估說明。本網站內容（含文字、圖片及其他資料），未經本診所書面同意，禁止以任何形式重製、轉載或散布。",
+    "legalLinks": [
+      {
+        "label": "隱私權政策",
+        "href": "/privacy"
+      },
+      {
+        "label": "使用條款",
+        "href": "/terms"
+      }
+    ],
+    "lastUpdated": "2026-09-22"
   },
   "nav": [
     {
-      "label": "關於纖顏",
-      "href": "#about"
+      "label": "六大門診",
+      "href": "/clinics"
     },
     {
-      "label": "醫療服務",
-      "href": "#services"
+      "label": "療程與費用",
+      "href": "#popular"
     },
     {
-      "label": "院所資訊",
-      "href": "#locations"
+      "label": "醫師團隊",
+      "href": "/doctors"
     },
     {
-      "label": "醫療團隊",
-      "href": "#team"
+      "label": "院所位置",
+      "href": "/visit"
     },
     {
-      "label": "醫境知識",
-      "href": "#knowledge"
-    },
-    {
-      "label": "聯絡我們",
+      "label": "預約諮詢",
       "href": "/appointment"
     }
   ],
   "lifting": {
     "eyebrow": "LIFTING TECHNOLOGY",
     "title": "電音波拉提",
+    "tagline": "細緻看待輪廓，溫柔回應時光。",
     "subtitle": "以專業醫療評估為核心，依照不同肌膚狀態與需求，規劃適合的電波與音波療程。",
+    "heroImage": {
+      "src": "/images/clinics/lifting-hero.jpg",
+      "alt": "初纖顏醫境診所 電音波拉提門診示意"
+    },
+    "needs": [
+      "臉部出現鬆弛，雙頰線條不如以往",
+      "在意下顎輪廓，想找回立體感",
+      "想了解電波、音波的差異，選擇合適療程"
+    ],
+    "categories": [
+      {
+        "title": "在意的變化",
+        "desc": "臉部鬆弛、雙頰線條、下顎輪廓等在意的部位與程度。"
+      },
+      {
+        "title": "分區評估",
+        "desc": "皮膚狀態、組織條件、既往療程，由醫師逐區評估。"
+      },
+      {
+        "title": "個別規劃",
+        "desc": "電音波選擇、治療說明、影像追蹤，依評估結果規劃。"
+      }
+    ],
+    "categoriesNote": "儀器選擇、治療範圍與能量將由醫師評估後說明，實際費用依療程規劃另計。",
+    "highlights": [
+      "評估過程會先了解您在意的變化與期待，再說明可能的方向",
+      "儀器與治療部位會列出實際名稱與適用範圍",
+      "恢復狀況、建議間隔與追蹤安排，會在確認項目後一併說明"
+    ],
+    "faq": [
+      { "q": "電波和音波拉提有什麼不同？該怎麼選？" },
+      { "q": "治療當天可以正常上班、化妝嗎？" },
+      { "q": "效果大約可以維持多久？需要打幾次？" },
+      { "q": "現在的鬆弛程度適合哪一種儀器？" }
+    ],
+    "closingLine": "醫療回歸本位，美麗回歸健康。",
     "devicesEyebrow": "LIFTING DEVICES",
     "devicesTitle": "頂級電音波",
     "devices": [
@@ -1666,22 +1999,59 @@
       "text": "每個人的膚況、鬆弛程度與期待方向都不同，實際療程安排仍需由醫師專業評估後規劃。若你想了解自己適合 Oligio X 超完美電波或 Tightan 咻音波，歡迎預約纖顏醫境諮詢。",
       "primary": {
         "label": "預約諮詢",
-        "href": "/#contact"
+        "href": "/appointment"
       },
       "secondary": {
         "label": "返回電音波拉提",
-        "href": "/services/lifting"
+        "href": "/clinics/lifting"
       }
     }
   },
   "laser": {
     "eyebrow": "LASER SKIN TREATMENT",
-    "title": "雷射美膚",
+    "title": "雷射光療",
+    "tagline": "把光采，留給自在的素顏。",
     "subtitle": "透過不同雷射波長、脈衝時間與能量模式，依肌膚色素、膚質與個人需求進行專業評估與療程規劃。從色素管理、膚色不均，到毛孔與痘疤等肌膚問題，由醫師依實際膚況選擇合適療程。",
+    "heroImage": {
+      "src": "/images/clinics/laser-hero.jpg",
+      "alt": "初纖顏醫境診所 雷射光療門診示意"
+    },
+    "needs": [
+      "在意斑點與暗沉，想找回均勻膚色",
+      "毛孔粗大、紋理不平整，想改善膚質",
+      "反覆痘疤困擾，想搭配雷射調理"
+    ],
+    "categories": [
+      {
+        "title": "在意的膚況",
+        "desc": "斑點暗沉、毛孔紋理、痘疤困擾等在意的部位與程度。"
+      },
+      {
+        "title": "專業評估",
+        "desc": "色素類型、皮膚狀態、既往療程，由醫師逐項評估。"
+      },
+      {
+        "title": "個別照護",
+        "desc": "療程選擇、術後衛教、影像追蹤，依評估結果規劃。"
+      }
+    ],
+    "categoriesNote": "儀器選擇、治療參數與能量將由醫師評估後說明，實際費用依療程規劃另計。",
+    "highlights": [
+      "評估過程會先了解您在意的膚況與期待，再說明可能的方向",
+      "儀器與治療參數會列出實際名稱與適用範圍",
+      "術後保養、建議間隔與追蹤安排，會在確認項目後一併說明"
+    ],
+    "faq": [
+      { "q": "雷射術後會有恢復期嗎？大概多久？" },
+      { "q": "膚色偏黑或容易曬黑，也適合做雷射嗎？" },
+      { "q": "打完可以直接上妝、曬太陽嗎？" },
+      { "q": "需要打幾次才會看到效果？" }
+    ],
+    "closingLine": "醫療回歸本位，美麗回歸健康。",
     "devicesEyebrow": "LASER DEVICES",
     "devicesTitle": "頂級雷射",
-    "categoryHref": "/#services",
-    "categoryName": "雷射美膚",
+    "categoryHref": "/clinics",
+    "categoryName": "雷射光療",
     "devices": [
       {
         "id": "picocare",
@@ -1694,7 +2064,7 @@
         "href": "/services/laser/picocare",
         "typeZh": "皮秒雷射療程",
         "detail": {
-          "seoTitle": "PICOCARE皮秒雷射｜雷射美膚｜初纖顏醫境診所",
+          "seoTitle": "PICOCARE皮秒雷射｜雷射光療｜初纖顏醫境診所",
           "seoDesc": "PICOCARE皮秒雷射採用450ps極短脈衝、HEXA智能聚焦與多波長治療設計。了解PICOCARE作用原理、特色、適合對象、療程流程、術前術後照護與常見問題。",
           "heroEyebrow": "PICOCARE PICSECOND LASER",
           "heroIntro": "450ps 極短脈衝 × HEXA 智能聚焦 × 多波長治療設計。依不同色素深度、膚況與療程需求，由醫師評估合適的治療模式。",
@@ -1876,8 +2246,8 @@
         "href": "/appointment"
       },
       "secondary": {
-        "label": "返回雷射美膚",
-        "href": "/services/laser"
+        "label": "返回雷射光療",
+        "href": "/clinics/laser"
       }
     }
   },
@@ -1886,5 +2256,371 @@
     "siteName": "初纖顏醫境診所",
     "locale": "zh_TW",
     "logo": "/images/chu-logo-mark.png"
+  },
+  "firstVisit": {
+    "eyebrow": "YOUR FIRST VISIT",
+    "title": "第一次來，怎麼安排？",
+    "intro": "不確定該從哪裡開始也沒關係，第一次到診所，我們會依照這樣的節奏，陪您一步步找到方向。",
+    "steps": [
+      {
+        "no": "01",
+        "title": "預約",
+        "desc": "選擇想諮詢的門診或困擾，留下希望的日期與時段，也可以先勾選「不確定，想先評估」。"
+      },
+      {
+        "no": "02",
+        "title": "評估",
+        "desc": "由醫師了解您的狀況與需求，說明可能的方向與注意事項。"
+      },
+      {
+        "no": "03",
+        "title": "討論選項與費用",
+        "desc": "評估後，醫師會說明可行的治療選擇，並清楚說明對應的費用組成。"
+      },
+      {
+        "no": "04",
+        "title": "決定後安排治療與追蹤",
+        "desc": "確認方向後再安排實際療程，並依需要規劃後續回診與追蹤。"
+      }
+    ],
+    "cta": {
+      "label": "預約評估諮詢",
+      "href": "/appointment"
+    }
+  },
+  "preVisitFaq": {
+    "eyebrow": "BEFORE YOUR VISIT",
+    "title": "就診前，你可能想先知道",
+    "items": [
+      {
+        "q": "可以只諮詢，不一定要當天決定治療嗎？",
+        "a": "可以。初診以了解狀況與說明選項為主，是否進行治療、何時開始，都由您在了解費用與內容後再決定。"
+      },
+      {
+        "q": "費用怎麼計算？",
+        "a": "費用會依評估後的實際治療內容而定，醫師會在說明選項時一併說明對應費用，詳細金額請以門診頁面或現場說明為準。"
+      },
+      {
+        "q": "當天可以直接安排治療嗎？",
+        "a": "需視評估結果與治療項目而定，部分項目可能建議另約時間；實際安排會與您當面討論後確認。"
+      },
+      {
+        "q": "之後想改預約時間，該怎麼做？",
+        "a": "可透過線上預約表單留言，或以電話、官方 LINE 與診所聯繫，我們會協助確認新的時段。"
+      }
+    ]
+  },
+  "departments": {
+    "eyebrow": "OUR CLINICS",
+    "title": "六大門診",
+    "items": [
+      {
+        "id": "body-contouring",
+        "slug": "body-contouring",
+        "name": "減脂體雕",
+        "nameEn": "BODY CONTOURING",
+        "status": "draft",
+        "lead": "從身體的比例，到衣著的自在，以醫師評估為起點，細緻規劃屬於妳的體態美學。",
+        "needs": [
+          "在意的部位：腰腹・側腰・手臂・大腿"
+        ],
+        "categories": [
+          {
+            "title": "在意的部位",
+            "desc": "腰腹、側腰、手臂、大腿等局部線條。"
+          },
+          {
+            "title": "專業評估",
+            "desc": "脂肪分布、皮膚鬆弛、體態比例，由醫師逐項評估。"
+          },
+          {
+            "title": "照護規劃",
+            "desc": "量測建檔、個別規劃、定期追蹤，陪伴妳掌握變化。"
+          }
+        ],
+        "categoriesNote": "以上為評估方向與流程架構，實際可提供的療程項目、計價方式與費用，將由醫師與院方核定後於本頁更新。",
+        "highlights": [
+          "評估過程會先了解您的困擾與期待，再說明可能的方向",
+          "設備與處理範圍將列出實際名稱與適用部位",
+          "恢復資訊、需預留的時間與可能的次數，會在確認項目後一併說明"
+        ],
+        "faq": [
+          {
+            "q": "我需要先減重再做體雕嗎？"
+          },
+          {
+            "q": "一個部位怎麼計算？左右手臂算一次還是兩次？"
+          },
+          {
+            "q": "需要幾次評估與追蹤？"
+          },
+          {
+            "q": "費用是否包含後續檢查與照護？"
+          }
+        ],
+        "heroImage": {
+          "src": "/images/clinics/body-contouring-hero.jpg",
+          "alt": "初纖顏醫境診所 體雕減脂門診示意"
+        },
+        "tagline": "讓線條有韻，讓自己從容。",
+        "closingLine": "醫療回歸本位，美麗回歸健康。"
+      },
+      {
+        "id": "metabolic-weight-management",
+        "slug": "metabolic-weight-management",
+        "name": "代謝減重",
+        "nameEn": "METABOLIC WEIGHT MANAGEMENT",
+        "status": "draft",
+        "lead": "體重管理，從了解身體與生活開始。透過醫師評估，討論飲食、活動、睡眠、代謝狀況及適合的治療與追蹤安排。",
+        "needs": [
+          "體重增加或反覆復胖，想了解原因",
+          "想知道第一次看診會做什麼",
+          "想了解需不需要用藥"
+        ],
+        "categories": [
+          {
+            "title": "初次評估",
+            "desc": "醫師問診、既往資料，以及院內實際提供的量測項目。"
+          },
+          {
+            "title": "必要檢查",
+            "desc": "依個別狀況安排，可攜帶近期報告供醫師參考。"
+          },
+          {
+            "title": "管理計畫",
+            "desc": "飲食活動建議、必要治療與追蹤頻率，依評估結果規劃。"
+          },
+          {
+            "title": "後續追蹤",
+            "desc": "依計畫調整並維持長期追蹤安排。"
+          }
+        ],
+        "categoriesNote": "初診費、檢查、藥物與追蹤費用是否分開計算，將由院方確認後於本頁更新；目前僅呈現流程架構。",
+        "highlights": [
+          "看診前可準備既往用藥與健康資料",
+          "醫師會與您討論目標與可行方向，而非直接指定療程",
+          "如評估後需用藥，會說明選擇依據、適用性與追蹤方式"
+        ],
+        "faq": [
+          {
+            "q": "可以先諮詢而不立即用藥嗎？"
+          },
+          {
+            "q": "每個月一定是一樣的費用嗎？"
+          },
+          {
+            "q": "可以帶之前的抽血報告嗎？"
+          },
+          {
+            "q": "需要多久回診一次？"
+          }
+        ],
+        "heroImage": {
+          "src": "/images/clinics/metabolic-weight-management-hero.jpg",
+          "alt": "初纖顏醫境診所 代謝減重門診示意"
+        }
+      },
+      {
+        "id": "facial-injectables",
+        "slug": "facial-injectables",
+        "name": "微整形精雕",
+        "nameEn": "FACIAL INJECTABLES",
+        "status": "draft",
+        "lead": "從在意的表情、凹陷與輪廓開始討論，讓醫師了解您希望保留的特色，再評估合適的處理方式。",
+        "needs": [
+          "表情相關紋路與肌肉相關需求",
+          "凹陷與輪廓修飾",
+          "膚質與組織支持相關需求"
+        ],
+        "categories": [
+          {
+            "title": "表情紋路評估",
+            "desc": "評估表情相關紋路與肌肉狀況，討論可行的處理方向。"
+          },
+          {
+            "title": "輪廓修飾評估",
+            "desc": "評估凹陷與輪廓需求，討論合適的填充方向。"
+          },
+          {
+            "title": "膚質支持評估",
+            "desc": "評估膚質與組織支持相關需求。"
+          }
+        ],
+        "categoriesNote": "產品品牌、每部位或單位計價方式與實際費用，將由醫師與院方核定後於本頁更新。",
+        "highlights": [
+          "醫師會先分辨紋路、凹陷或鬆弛等不同原因，再說明目標與限制",
+          "採用產品的實際名稱與來源會清楚說明",
+          "保守分次或追蹤調整的安排方式，將依評估結果討論"
+        ],
+        "faq": [
+          {
+            "q": "第一次可以先做少量評估嗎？"
+          },
+          {
+            "q": "每部位價格包含多少量？"
+          },
+          {
+            "q": "若評估後不適合，是否只收諮詢費？"
+          },
+          {
+            "q": "補充處置或追蹤是否另計？"
+          }
+        ],
+        "heroImage": {
+          "src": "/images/clinics/facial-injectables-hero.jpg",
+          "alt": "初纖顏醫境診所 微整形精雕門診示意"
+        }
+      },
+      {
+        "id": "intimate-care",
+        "slug": "intimate-care",
+        "name": "女性私密管理",
+        "nameEn": "INTIMATE CARE",
+        "status": "draft",
+        "tagline": "妳的感受，值得被溫柔聽見。",
+        "lead": "從日常的不適，到生命階段的轉變，在尊重隱私的空間裡，以專業評估，陪妳細緻照顧自己。",
+        "needs": [
+          "私密處乾澀不適，影響日常生活",
+          "產後身心變化，想了解照護方向",
+          "更年期相關不適，想找到合適的因應方式"
+        ],
+        "categories": [
+          {
+            "title": "關注的需求",
+            "desc": "乾澀不適、產後變化、更年期需求等在意的狀況。"
+          },
+          {
+            "title": "專業評估",
+            "desc": "症狀問診、生活影響、既往病史，由醫師逐項評估。"
+          },
+          {
+            "title": "個別照護",
+            "desc": "照護說明、持續追蹤、必要轉介，依評估結果規劃。"
+          }
+        ],
+        "categoriesNote": "評估項目與轉介安排將由醫師視個別狀況說明，過程注重隱私與溝通節奏。",
+        "highlights": [
+          "問診過程會在獨立空間進行，尊重您的隱私與步調",
+          "醫師會先了解您的困擾與生活影響，再說明可能的方向",
+          "如需進一步檢查或轉介，會清楚說明原因與後續安排"
+        ],
+        "faq": [
+          {
+            "q": "第一次就診會做什麼樣的檢查？"
+          },
+          {
+            "q": "產後多久可以開始諮詢？"
+          },
+          {
+            "q": "更年期相關的不適，也可以來這裡討論嗎？"
+          },
+          {
+            "q": "看診過程會很不舒服或尷尬嗎？"
+          }
+        ],
+        "heroImage": {
+          "src": "/images/clinics/intimate-care-hero.jpg",
+          "alt": "初纖顏醫境診所 女性私密管理門診示意"
+        },
+        "closingLine": "醫療回歸本位，美麗回歸健康。"
+      }
+    ]
+  },
+  "secondaryNav": [
+    {
+      "label": "關於纖顏",
+      "href": "#about"
+    },
+    {
+      "label": "醫境知識",
+      "href": "#knowledge"
+    }
+  ],
+  "policies": {
+    "privacy": {
+      "slug": "privacy",
+      "title": "隱私權政策",
+      "eyebrow": "PRIVACY POLICY",
+      "updatedDate": "2026-09-22",
+      "intro": "初纖顏醫境診所（以下稱「本診所」）重視您的隱私與個人資料保護。當您透過本網站使用線上預約或聯繫功能時，我們會蒐集必要的聯絡資訊，僅用於預約確認與諮詢聯繫。本政策說明我們如何蒐集、使用及保護這些資料。",
+      "sections": [
+        {
+          "heading": "一、我們蒐集哪些資料",
+          "paragraphs": [
+            "當您使用本網站的線上預約表單時，我們會請您提供：姓名、手機號碼、Email（選填）、LINE ID（選填）、希望預約的門診與日期時段、想改善的問題或備註，以及您勾選的資訊來源管道。",
+            "除表單中您主動提供的內容外，本網站目前未使用第三方廣告或行銷追蹤工具蒐集您的瀏覽行為；未來如啟用相關工具，將於本頁更新公告。"
+          ]
+        },
+        {
+          "heading": "二、資料蒐集與使用目的",
+          "paragraphs": [
+            "您所提供的資料，僅用於：(1) 確認並安排您的預約時段；(2) 由本診所人員與您聯繫，說明看診相關事宜；(3) 回覆您於備註欄提出的詢問。",
+            "我們不會將您的資料用於前述目的以外的用途，也不會提供、出售或交換予無關的第三方。"
+          ]
+        },
+        {
+          "heading": "三、資料保存與保護",
+          "paragraphs": [
+            "您的資料由負責預約與客服作業之人員存取及處理，並採取合理之保護措施，避免資料遺失、遭不當使用或未經授權之存取。",
+            "我們會在完成聯繫目的所需的合理期間內保存相關紀錄。"
+          ]
+        },
+        {
+          "heading": "四、您的權利",
+          "paragraphs": [
+            "您可以隨時透過線上預約表單留言，或以本網站公告之聯絡方式，向本診所提出查詢、更正或刪除您所提供個人資料的請求，我們會在合理時間內處理。"
+          ]
+        },
+        {
+          "heading": "五、政策修訂",
+          "paragraphs": [
+            "本政策如有修訂，將公告於本頁，並更新下方之最後更新日期。"
+          ]
+        }
+      ],
+      "contactNote": "如對本政策有任何疑問，歡迎透過線上預約表單與我們聯繫：初纖顏醫境診所・台北市中正區信義路二段207號3樓。"
+    },
+    "terms": {
+      "slug": "terms",
+      "title": "使用條款",
+      "eyebrow": "TERMS OF USE",
+      "updatedDate": "2026-09-22",
+      "intro": "歡迎使用初纖顏醫境診所官方網站（以下稱「本網站」）。當您瀏覽或使用本網站，即表示您同意遵守以下使用條款。",
+      "sections": [
+        {
+          "heading": "一、網站內容之著作權與禁止轉錄聲明",
+          "paragraphs": [
+            "本網站所刊載之文字、圖片、影音、設計、標誌及其他內容，其著作權及其他智慧財產權均屬初纖顏醫境診所或其權利人所有。",
+            "未經本診所事前書面同意，任何人不得以重製、轉載、公開傳輸、改作、散布或其他方式，將本網站內容之全部或一部分使用於商業或其他目的。"
+          ]
+        },
+        {
+          "heading": "二、醫療資訊聲明",
+          "paragraphs": [
+            "本網站所提供之六大門診介紹、療程說明、醫師介紹及醫境知識庫文章，僅供一般民眾了解本診所服務內容及衛教參考之用，不構成醫療診斷、治療建議或療效保證。",
+            "實際適應症、治療方式、風險與費用，均須經醫師親自評估後方能確定，請勿逕自依本網站內容自行判斷病情或延誤就醫。"
+          ]
+        },
+        {
+          "heading": "三、網站內容之異動",
+          "paragraphs": [
+            "本診所保留隨時修改、暫停或終止本網站全部或部分內容、服務項目及本使用條款之權利，異動後之內容自公告之日起生效。"
+          ]
+        },
+        {
+          "heading": "四、外部連結",
+          "paragraphs": [
+            "本網站可能包含連結至第三方網站或服務（如 Google 地圖、LINE 官方帳號等），該等網站或服務之內容、使用條款及隱私權政策由第三方自行負責，本診所不對其內容之正確性或可用性負保證責任。"
+          ]
+        },
+        {
+          "heading": "五、準據法",
+          "paragraphs": [
+            "本使用條款之解釋與適用，以中華民國法律為準據法。"
+          ]
+        }
+      ],
+      "contactNote": "如對本條款有任何疑問，歡迎透過線上預約表單與我們聯繫：初纖顏醫境診所・台北市中正區信義路二段207號3樓。"
+    }
   }
 }

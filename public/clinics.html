@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六大門診｜初纖顏醫境診所 XIAN YAN · MEDIREALM</title>
+<meta name="description" content="初纖顏醫境診所六大門診總覽：減脂體雕、代謝減重、電音波拉提、微整形精雕、雷射光療、女性私密管理，由醫師專業評估，規劃適合的療程方向。">
+<link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
+<link rel="canonical" href="https://medirealm-origin.com/clinics">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/api/site" as="fetch" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=48">
+<style>
+  .cl-grid-section { background: var(--xy-cream); padding: 160px 24px 100px; }
+  .cl-footnote { text-align: center; font-size: 14px; letter-spacing: .06em; color: var(--xy-text-secondary); margin-bottom: 52px; }
+  .cl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 2.6vw, 40px); }
+
+  /* 每個門診用完整直式海報圖呈現，圖片本身已含文案，右下角疊一顆「查看門診」按鈕 */
+  a.cl-card {
+    display: block; position: relative; color: inherit;
+    border-radius: var(--radius); overflow: hidden;
+    aspect-ratio: 4 / 5.25;
+    box-shadow: 0 14px 34px rgba(60, 55, 45, .06);
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  a.cl-card:hover { transform: translateY(-4px); box-shadow: 0 22px 46px rgba(60, 55, 45, .11); }
+  .cl-card img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center center;
+    transform: scale(1.28); display: block;
+  }
+  .cl-card-btn {
+    position: absolute; right: 16px; bottom: 16px; overflow: hidden;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 24px; border-radius: 999px;
+    font-size: 13px; letter-spacing: .08em; color: var(--xy-teal-dark);
+    background: rgba(255, 255, 255, .78);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 28px rgba(60, 55, 45, .2);
+    transition: background .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .cl-card-btn i { font-style: normal; position: relative; z-index: 1; transition: transform .35s var(--ease); }
+  .cl-card-btn-label { position: relative; z-index: 1; }
+  .cl-card-btn::after {
+    content: ''; position: absolute; top: 0; left: -60%; width: 45%; height: 100%;
+    background: linear-gradient(115deg, transparent 15%, rgba(255, 255, 255, .95) 50%, transparent 85%);
+    transform: skewX(-20deg);
+    animation: clBtnShine 3.6s ease-in-out infinite;
+  }
+  @keyframes clBtnShine { 0% { left: -60%; } 28% { left: 130%; } 100% { left: 130%; } }
+  @media (prefers-reduced-motion: reduce) { .cl-card-btn::after { animation: none; display: none; } }
+  a.cl-card:hover .cl-card-btn { background: #fff; transform: translateY(-2px); box-shadow: 0 16px 36px rgba(60, 55, 45, .26); }
+  a.cl-card:hover .cl-card-btn i { transform: translateX(3px); }
+
+  @media (max-width: 900px) { .cl-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) {
+    .cl-grid-section { padding-top: 130px; }
+    .cl-grid { grid-template-columns: 1fr; gap: 28px; max-width: 420px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#clMain">跳到主要內容</a>
+
+<!-- @site-header -->
+
+<main id="clMain">
+  <section class="cl-grid-section">
+    <div class="wrap">
+      <p class="cl-footnote" id="clFootnote"></p>
+      <div class="cl-grid" id="clGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- @site-footer -->
+
+<script src="/clinics.js?v=3"></script>
+</body>
+</html>

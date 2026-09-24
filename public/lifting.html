@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>電音波拉提｜初纖顏醫境診所 XIAN YAN · MEDIREALM</title>
-<meta name="description" content="纖顏醫境電音波拉提：以專業醫療評估為核心，依照不同肌膚狀態與需求，規劃適合的電波與音波療程。">
+<title>特色門診｜初纖顏醫境診所 XIAN YAN · MEDIREALM</title>
+<meta name="description" content="初纖顏醫境診所特色門診：由醫師專業評估，規劃適合的療程方向。">
 <link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=19">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/api/site" as="fetch" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=48">
 <style>
   .lt-hero { background: var(--xy-ivory); padding: 170px 24px 84px; text-align: center; }
   .lt-hero .eyebrow { justify-content: center; }
@@ -18,6 +19,28 @@
   .lt-breadcrumb { font-size: 13.5px; color: var(--xy-text-secondary); letter-spacing: .04em; margin-bottom: 30px; }
   .lt-breadcrumb a { color: var(--xy-teal-dark); border-bottom: 1px solid rgba(206,154,75,.4); padding-bottom: 2px; }
   .lt-breadcrumb a:hover { color: var(--xy-gold); }
+  .lt-hero-visual:empty { display: none; }
+
+  /* 有海報圖時的分割式 Hero（圖片＋文字；跟六大門診詳情頁一致的版型）── */
+  .lt-hero-split .lt-hero-inner {
+    max-width: 1080px; margin: 0 auto; text-align: left;
+    display: grid; grid-template-columns: 45fr 55fr;
+    gap: clamp(32px, 4.5vw, 72px); align-items: center;
+  }
+  .lt-hero-split .eyebrow { justify-content: flex-start; }
+  .lt-hero-split p { margin-left: 0; margin-right: 0; max-width: none; }
+  .lt-hero-visual {
+    order: -1;
+    position: relative; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 26px 64px rgba(60, 55, 45, .14);
+    border: 1px solid var(--xy-border);
+    aspect-ratio: 4 / 4.8; max-height: 560px;
+  }
+  .lt-hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  @media (max-width: 900px) {
+    .lt-hero-split .lt-hero-inner { grid-template-columns: 1fr; }
+    .lt-hero-split .lt-hero-visual { max-width: 420px; margin: 0 auto; }
+  }
 
   .lt-devices { background: var(--xy-cream); padding: 90px 24px 110px; }
   .lt-devices-inner { max-width: 1080px; margin: 0 auto; }
@@ -69,35 +92,71 @@
     .lt-card:hover { transform: none; }
     .lt-card:hover .lt-card-visual img { transform: none; }
   }
+
+  /* 跟六大門診詳情頁共用的內文區塊樣式（哪些狀況適合／治療方向／就診流程／常見問題／結尾 CTA）── */
+  #ltTagline:empty, #ltHeroActions:empty { display: none; }
+  .lt-hero .dp-tagline { font-family: var(--serif); font-size: clamp(18px, 2vw, 22px); font-weight: 500; color: var(--xy-teal-dark); margin-top: 12px; }
+  .dp-hero-actions { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .dp-main { background: var(--xy-cream); padding: 10px 24px 0; }
+  .dp-main-inner { max-width: 760px; margin: 0 auto; }
+  .dp-section { padding: 56px 0; border-bottom: 1px solid var(--xy-border); }
+  .dp-section:last-child { border-bottom: none; }
+  .dp-section h2 { font-family: var(--serif); font-size: clamp(21px, 2.6vw, 27px); font-weight: 500; margin-bottom: 20px; }
+
+  .dp-need-list { list-style: none; }
+  .dp-need-list li { position: relative; padding: 10px 0 10px 26px; font-size: 16px; color: var(--xy-text); }
+  .dp-need-list li::before {
+    content: ''; position: absolute; left: 4px; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--xy-gold);
+  }
+
+  .dp-cat-grid { display: grid; gap: 16px; }
+  .dp-cat-card {
+    background: var(--xy-warm-white); border: 1px solid var(--xy-border); border-radius: 16px;
+    padding: 22px 24px; box-shadow: 0 10px 28px rgba(60, 55, 45, .05);
+  }
+  .dp-cat-card h3 { font-family: var(--serif); font-size: 17.5px; font-weight: 500; margin-bottom: 6px; }
+  .dp-cat-card p { font-size: 14.5px; line-height: 1.8; color: var(--xy-text-secondary); }
+  .dp-cat-note { margin-top: 18px; font-size: 13.5px; line-height: 1.8; color: var(--xy-text-secondary); font-style: italic; }
+
+  .dp-highlight-list { list-style: none; }
+  .dp-highlight-list li { position: relative; padding: 9px 0 9px 26px; font-size: 15.5px; line-height: 1.8; color: var(--xy-text-secondary); }
+  .dp-highlight-list li::before { content: '—'; position: absolute; left: 0; top: 9px; color: var(--xy-gold); }
+
+  .dp-faq-item { padding: 18px 0; border-bottom: 1px solid var(--xy-border); }
+  .dp-faq-item:last-child { border-bottom: none; }
+  .dp-faq-q { font-size: 16px; font-weight: 500; color: var(--xy-text); }
+  .dp-faq-a { margin-top: 8px; font-size: 14.5px; line-height: 1.8; color: var(--xy-text-secondary); }
+
+  .dp-cta { background: var(--xy-ivory); padding: 80px 24px; text-align: center; margin-top: 30px; }
+  .dp-cta-inner { max-width: 560px; margin: 0 auto; }
+  .dp-cta h2 { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 28px); font-weight: 500; }
+  .dp-cta p { margin-top: 14px; font-size: 15px; line-height: 1.9; color: var(--xy-text-secondary); }
+  .dp-cta-actions { margin-top: 26px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .dp-closing { text-align: center; font-size: clamp(18px, 2.2vw, 22px); font-weight: 500; color: var(--xy-teal-dark); margin-bottom: 18px; }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#ltMain">跳到主要內容</a>
 
-<header class="nav" id="siteNav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="/" aria-label="纖顏醫境 回首頁">
-      <span class="brand-zh serif">初纖顏醫境診所</span>
-      <span class="brand-en">XIAN YAN · MEDIREALM</span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-links" id="navLinks" aria-label="主選單">
-      <a href="/#services">醫療服務</a>
-      <a href="/#locations">院所資訊</a>
-      <a class="btn btn-primary btn-sm" href="/appointment">線上預約</a>
-    </nav>
-  </div>
-</header>
+<!-- @site-header -->
 
 <main id="ltMain">
-  <section class="lt-hero">
-    <p class="lt-breadcrumb"><a href="/">首頁</a> ／ <a href="/#services">醫療服務</a> ／ <a id="ltCategoryLink" href="/#services"><span id="ltCategoryName"></span></a></p>
-    <p class="eyebrow" id="ltEyebrow"></p>
-    <h1 id="ltTitle"></h1>
-    <p id="ltSubtitle"></p>
+  <section class="lt-hero" id="ltHero">
+    <div class="lt-hero-inner">
+      <figure class="lt-hero-visual" id="ltHeroVisual"></figure>
+      <div class="lt-hero-text">
+        <p class="lt-breadcrumb"><a href="/">首頁</a> ／ <a href="/clinics" id="ltSectionLink">醫療服務</a> ／ <a id="ltCategoryLink" href="/clinics"><span id="ltCategoryName"></span></a></p>
+        <p class="eyebrow" id="ltEyebrow"></p>
+        <h1 id="ltTitle"></h1>
+        <p class="dp-tagline serif" id="ltTagline"></p>
+        <p id="ltSubtitle"></p>
+        <div class="dp-hero-actions" id="ltHeroActions"></div>
+      </div>
+    </div>
   </section>
+  <div id="ltPreDevices"></div>
   <section class="lt-devices">
     <div class="lt-devices-inner">
     <p class="eyebrow center" id="ltDevicesEyebrow"></p>
@@ -105,18 +164,11 @@
       <div class="lt-grid" id="ltGrid"></div>
     </div>
   </section>
+  <div id="ltPostDevices"></div>
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-bottom" style="border-top:none">
-    <p id="ltFooterCopy">© 初纖顏醫境診所</p>
-  </div>
-</footer>
+<!-- @site-footer -->
 
-<script src="/lifting.js"></script>
-<script>
-(function(){var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
-if(t&&l){t.addEventListener('click',function(){var o=l.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');t.setAttribute('aria-label',o?'關閉選單':'開啟選單');});}})();
-</script>
+<script src="/lifting.js?v=2"></script>
 </body>
 </html>

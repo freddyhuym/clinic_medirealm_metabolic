@@ -59,6 +59,13 @@
           return '<li>' + esc(item) + '</li>';
         }).join('') + '</ul>';
       }
+      if (b.type === 'picture') {
+        // 同一張圖的桌機／手機兩種構圖（art direction），依螢幕寬度切換，不裁切變形
+        return '<figure class="kn-body-picture"><picture>' +
+          '<source media="(max-width: 640px)" srcset="' + esc(b.srcMobile) + '">' +
+          '<img src="' + esc(b.srcDesktop) + '" alt="' + esc(b.altDesktop || b.alt || '') + '" loading="lazy"></picture>' +
+          (b.caption ? '<figcaption>' + esc(b.caption) + '</figcaption>' : '') + '</figure>';
+      }
       if (b.type === 'image') {
         return '<figure class="kn-body-img"><img src="' + esc(b.src) + '" alt="' + esc(b.alt || '') + '" loading="lazy">' +
           (b.caption ? '<figcaption>' + esc(b.caption) + '</figcaption>' : '') + '</figure>';
@@ -89,6 +96,23 @@
     }).join('') + '</div>';
   }
 
+  // 文章可信度資訊：撰稿／審閱醫師、更新日期、資料來源（只顯示實際存在的欄位，不補假資料）
+  function renderCredibility(seo) {
+    var parts = [];
+    if (seo.author) {
+      var name = seo.authorUrl ? '<a href="' + esc(seo.authorUrl) + '">' + esc(seo.author) + '</a>' : esc(seo.author);
+      parts.push('<span class="kn-cred-item">撰稿：' + name + (seo.authorTitle ? '<i>' + esc(seo.authorTitle) + '</i>' : '') + '</span>');
+    }
+    if (seo.reviewedBy && seo.reviewedBy !== seo.author) {
+      parts.push('<span class="kn-cred-item">審閱：' + esc(seo.reviewedBy) + '</span>');
+    }
+    var d = seo.dateModified || seo.datePublished;
+    if (d) parts.push('<span class="kn-cred-item">更新日期：<time datetime="' + esc(d) + '">' + esc(d) + '</time></span>');
+    if (seo.source) parts.push('<span class="kn-cred-item">資料來源：' + esc(seo.source) + '</span>');
+    if (!parts.length) return '';
+    return '<div class="kn-credibility">' + parts.join('<span class="kn-cred-dot" aria-hidden="true"></span>') + '</div>';
+  }
+
   function renderArticle(k, arts, a, siteSeo) {
     var seo = a.seo || {};
     document.title = seo.title || (a.title + '｜醫境知識庫｜初纖顏醫境診所');
@@ -109,7 +133,13 @@
       '<p class="kn-page-cat">' + esc(a.category) + (a.titleEn ? '<i>' + esc(a.titleEn) + '</i>' : '') + '</p>' +
       '<h1>' + esc(a.title) + '</h1>' +
       '<p class="kn-page-hook">' + esc(a.hook) + '</p>' +
-      '<figure class="kn-page-hero"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '"></figure>' +
+      renderCredibility(seo) +
+      '<figure class="kn-page-hero' + (a.imageMobile ? ' has-mobile-hero' : '') + '">' + (
+        a.imageMobile
+          ? '<picture><source media="(max-width: 640px)" srcset="' + esc(a.imageMobile) + '">' +
+            '<img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '"></picture>'
+          : '<img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '">'
+      ) + '</figure>' +
       (a.body && a.body.length ? renderBody(a.body) :
         '<p class="kn-page-intro">' + esc(a.excerpt) + '</p>' +
         '<div class="kn-placeholder"><b>完整文章籌備中</b>' + esc(k.placeholderNote || '完整內容將於近期發布。') + '</div>') +

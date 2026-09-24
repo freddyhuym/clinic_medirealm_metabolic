@@ -12,34 +12,16 @@
   function setText(id, txt) { var el = $(id); if (el && txt != null) el.textContent = txt; }
   function setHTML(id, html) { var el = $(id); if (el) el.innerHTML = html; }
 
-  /* ── 細線醫療 Icon（Monoline，呼應招牌 Icon 語彙） ── */
-  var ICONS = {
-    metabolic: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M14 27l5-6 4 4 6-8 5 7"/><path d="M14 33h20"/></svg>',
-    body: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M19 13c0 4-2.4 6.4-2.4 10S19 30 19 35"/><path d="M29 13c0 4 2.4 6.4 2.4 10S29 30 29 35"/></svg>',
-    aesthetics: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M24 14c2.8 3.4 4.6 6.6 4.6 10a4.6 4.6 0 1 1-9.2 0c0-3.4 1.8-6.6 4.6-10Z"/><path d="M17 33.5c4.6 2 9.4 2 14 0"/></svg>',
-    lifting: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M17 32c0-7 3-13 7-17 4 4 7 10 7 17"/><path d="M15 26l6-5M33 26l-6-5"/></svg>',
-    inject: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M24 13c2.4 3 4 5.8 4 8.4a4 4 0 1 1-8 0c0-2.6 1.6-5.4 4-8.4Z"/><circle cx="24" cy="31.5" r="1.1"/><circle cx="18.5" cy="34.5" r="1.1"/><circle cx="29.5" cy="34.5" r="1.1"/></svg>',
-    laser: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="6.5"/><path d="M24 12.5v4M24 31.5v4M12.5 24h4M31.5 24h4M16 16l2.6 2.6M32 32l-2.6-2.6M32 16l-2.6 2.6M16 32l2.6-2.6"/></svg>',
-    shield: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<circle cx="24" cy="24" r="19"/><path d="M24 13.5l8 3v7c0 5.4-3.2 9.4-8 11.5-4.8-2.1-8-6.1-8-11.5v-7l8-3Z"/><path d="M20.5 24l2.6 2.6 4.6-5.2"/></svg>'
-  };
-
   /* ── 各區塊渲染 ───────────────────────── */
 
-  function renderNav(d) {
-    var links = (d.nav || []).map(function (n) {
-      return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
-    }).join('');
-    setHTML('navLinks', links);
-    setHTML('footerNav', (d.nav || []).map(function (n) {
-      return '<a href="' + esc(n.href) + '">' + esc(n.label) + '</a>';
-    }).join(''));
+
+  // 首頁「六大門診」區塊只放文字＋總覽海報圖（圖片本身是靜態 HTML）；
+  // 完整六門診卡片格改在獨立分頁 /clinics 呈現
+  function renderPillarsBanner(d) {
+    var p = d.pillars || {};
+    setText('pillarsEyebrow', p.eyebrow);
+    setText('pillarsTitle', p.title);
+    setText('pillarsSubtitle', p.subtitle);
   }
 
   function renderHero(d) {
@@ -123,95 +105,22 @@
     setText('popTitle', p.title);
     setText('popText', p.text);
     var more = $('popMore');
-    if (more && p.more) { more.textContent = p.more.label + ' →'; more.href = p.more.href || '/#services'; }
+    if (more && p.more) { more.textContent = p.more.label + ' →'; more.href = p.more.href || '/clinics'; }
+    var feeEl = $('popFeeNote');
+    if (feeEl) feeEl.textContent = p.feeNote || '';
 
+    // 靜態格狀卡片：沿用 site.json 原本就有、但先前沒渲染出來的 desc／href 欄位
     setHTML('popTrack', items.map(function (it) {
-      return '<div class="popular-card">' +
-        '<figure class="popular-card-media"><img src="' + esc(it.image) + '" alt="' + esc(it.name) + '" loading="lazy"></figure>' +
-        '<h3 class="popular-card-name serif">' + esc(it.name) + '</h3>' +
-      '</div>';
-    }).join(''));
-
-    initPopularCarousel(items.length);
-  }
-
-  function initPopularCarousel(total) {
-    var viewport = $('popViewport');
-    var track = $('popTrack');
-    var prev = $('popPrev');
-    var next = $('popNext');
-    var count = $('popCount');
-    if (!viewport || !track || !prev || !next) return;
-
-    /* 無限循環：尾端補上前幾張的複製卡 */
-    var CLONES = 3;
-    var cards = Array.prototype.slice.call(track.children);
-    cards.slice(0, CLONES).forEach(function (c) {
-      var clone = c.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      track.appendChild(clone);
-    });
-
-    var index = 0;
-    var animating = false;
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    function cardWidth() {
-      var card = track.querySelector('.popular-card');
-      return card ? card.offsetWidth + 16 : 300;
-    }
-    function setX(noAnim) {
-      if (noAnim) track.style.transition = 'none';
-      track.style.transform = 'translateX(' + (-index * cardWidth()) + 'px)';
-      if (noAnim) { void track.offsetWidth; track.style.transition = ''; }
-      if (count) count.innerHTML = '<b>' + pad((index % total) + 1) + '</b>／' + pad(total);
-    }
-    function go(dir) {
-      if (animating) return;
-      animating = true;
-      if (dir < 0 && index === 0) { index = total; setX(true); } // 從第一張往前 → 先無感跳到複製區
-      index += dir;
-      setX(false);
-      window.setTimeout(function () {
-        if (index >= total) { index = index % total; setX(true); } // 滑進複製區後無感跳回真卡
-        animating = false;
-      }, 520);
-    }
-    prev.addEventListener('click', function () { go(-1); });
-    next.addEventListener('click', function () { go(1); });
-    window.addEventListener('resize', function () { setX(true); });
-
-    /* 觸控滑動 */
-    var startX = null;
-    viewport.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-    viewport.addEventListener('touchend', function (e) {
-      if (startX == null) return;
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
-      startX = null;
-    }, { passive: true });
-
-    setX(true);
-  }
-
-  function renderPillars(d) {
-    var p = d.pillars || {};
-    setText('pillarsEyebrow', p.eyebrow);
-    setText('pillarsTitle', p.title);
-    setText('pillarsSubtitle', p.subtitle);
-    setText('pillarsFootnote', p.footnote);
-    setHTML('pillarGrid', (p.items || []).map(function (it) {
-      var tags = (it.tags || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
       var inner =
-        '<p class="pillar-no" aria-hidden="true">' + esc(it.no) + '</p>' +
-        '<div class="pillar-icon" aria-hidden="true">' + (ICONS[it.icon] || '') + '</div>' +
-        '<p class="pillar-en">' + esc(it.en) + '</p>' +
-        '<h3 class="pillar-zh">' + esc(it.zh) + '</h3>' +
-        '<p class="pillar-desc">' + esc(it.desc) + '</p>' +
-        (tags ? '<ul class="pillar-tags">' + tags + '</ul>' : '');
+        '<figure class="popular-card-media"><img src="' + esc(it.image) + '" alt="' + esc(it.name) + '" loading="lazy"></figure>' +
+        '<div class="popular-card-body">' +
+          '<h3 class="popular-card-name serif">' + esc(it.name) + '</h3>' +
+          (it.desc ? '<p class="popular-card-desc">' + esc(it.desc) + '</p>' : '') +
+        '</div>';
       if (it.href) {
-        return '<a class="pillar pillar-link reveal" href="' + esc(it.href) + '" aria-label="' + esc(it.zh) + '：查看更多">' + inner + '</a>';
+        return '<a class="popular-card" href="' + esc(it.href) + '" aria-label="' + esc(it.name) + '：了解更多">' + inner + '</a>';
       }
-      return '<article class="pillar reveal">' + inner + '</article>';
+      return '<div class="popular-card">' + inner + '</div>';
     }).join(''));
   }
 
@@ -238,6 +147,37 @@
   }
 
   var STATUS_LABEL = { open: '營運中', preparing: '籌備中' };
+
+  /* ── 第一次來怎麼安排（流程說明，非醫療承諾）───── */
+  function renderFirstVisit(d) {
+    var fv = d.firstVisit;
+    if (!fv) return;
+    setText('fvEyebrow', fv.eyebrow);
+    setText('fvTitle', fv.title);
+    setText('fvIntro', fv.intro);
+    setHTML('fvSteps', (fv.steps || []).map(function (s) {
+      return '<li class="fv-step">' +
+        '<span class="fv-step-no" aria-hidden="true">' + esc(s.no) + '</span>' +
+        '<h3 class="fv-step-title serif">' + esc(s.title) + '</h3>' +
+        '<p class="fv-step-desc">' + esc(s.desc) + '</p>' +
+      '</li>';
+    }).join(''));
+    if (fv.cta) setHTML('fvCta', '<a class="btn btn-primary" href="' + esc(fv.cta.href) + '">' + esc(fv.cta.label) + '</a>');
+  }
+
+  /* ── 就診前常見問題（一般性流程說明，非個案醫療判斷）── */
+  function renderPreVisitFaq(d) {
+    var pf = d.preVisitFaq;
+    if (!pf) return;
+    setText('pfEyebrow', pf.eyebrow);
+    setText('pfTitle', pf.title);
+    setHTML('pfList', (pf.items || []).map(function (it, i) {
+      return '<details class="pf-item"' + (i === 0 ? ' open' : '') + '>' +
+        '<summary class="pf-q">' + esc(it.q) + '</summary>' +
+        '<p class="pf-a">' + esc(it.a) + '</p>' +
+      '</details>';
+    }).join(''));
+  }
 
   function renderClinics(d) {
     var c = d.clinics || {};
@@ -293,47 +233,43 @@
     var clinicName = {};
     ((d.clinics || {}).items || []).forEach(function (c) { clinicName[c.id] = c.shortName + '｜' + c.hall; });
 
-    setHTML('doctorGrid', (t.doctors || []).map(function (dr) {
+    var doctors = t.doctors || [];
+    function doctorCardHTML(dr, isDuplicate) {
       var exp = (dr.expertise || []).map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('');
       var cl = (dr.clinics || []).map(function (id) { return clinicName[id] || ''; }).filter(Boolean).join('、');
       var inner =
-        (dr.image ? '<figure><img src="' + esc(dr.image) + '" alt="' + esc(dr.name) + '" loading="lazy"></figure>' : '') +
+        (dr.image ? '<figure><img src="' + esc(dr.image) + '" alt="' + esc(dr.name) + '" loading="lazy"' + (isDuplicate ? ' aria-hidden="true"' : '') + '></figure>' : '') +
         '<div class="doctor-card-body">' +
           '<h3 class="doctor-card-name">' + esc(dr.name) + (dr.nameEn ? '<i>' + esc(dr.nameEn) + '</i>' : '') + '</h3>' +
           '<p class="doctor-card-spec">' + esc(dr.specialty) + '</p>' +
           (exp ? '<ul class="doctor-card-exp">' + exp + '</ul>' : '') +
           (cl ? '<p class="doctor-card-clinic">主要看診：' + esc(cl) + '</p>' : '') +
         '</div>';
+      // 跑馬燈會把清單重複幾份做無縫循環；重複的那幾份對輔助科技隱藏，避免重複朗讀
+      var cls = 'doctor-card' + (isDuplicate ? '' : ' reveal');
+      var attrs = isDuplicate ? ' aria-hidden="true" tabindex="-1"' : '';
       if (dr.href) {
-        return '<a class="doctor-card doctor-card-link reveal" href="' + esc(dr.href) + '" aria-label="' + esc(dr.name) + '：查看詳細介紹">' + inner + '</a>';
+        return '<a class="' + cls + ' doctor-card-link" href="' + esc(dr.href) + '" aria-label="' + esc(dr.name) + '：查看詳細介紹"' + attrs + '>' + inner + '</a>';
       }
-      return '<article class="doctor-card reveal">' + inner + '</article>';
-    }).join(''));
+      return '<article class="' + cls + '"' + attrs + '>' + inner + '</article>';
+    }
+
+    // 橫向跑馬燈：半圈至少要比畫面寬，醫師人數少時先把清單重複幾份，再整組複製一份做無縫循環
+    var reps = doctors.length ? Math.max(1, Math.ceil(1800 / (doctors.length * 318))) : 1;
+    var half = [];
+    for (var r = 0; r < reps; r++) {
+      half = half.concat(doctors.map(function (dr) { return doctorCardHTML(dr, r > 0); }));
+    }
+    var dup = [];
+    for (var r2 = 0; r2 < reps; r2++) {
+      dup = dup.concat(doctors.map(function (dr) { return doctorCardHTML(dr, true); }));
+    }
+    setHTML('doctorGrid', half.join('') + dup.join(''));
 
     setText('teamNote', t.note);
-    initTeamCarousel();
-  }
-
-  function initTeamCarousel() {
     var track = $('doctorGrid');
-    var prev = $('teamPrev');
-    var next = $('teamNext');
-    if (!track || !prev || !next) return;
-
-    function step() {
-      var card = track.querySelector('.doctor-card');
-      return card ? card.offsetWidth + 28 : 320;
-    }
-    function update() {
-      var max = track.scrollWidth - track.clientWidth - 2;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max;
-    }
-    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    // 醫師卡片愈多，動畫時間愈長，讓橫移速度維持一致
+    if (track && doctors.length) track.style.animationDuration = (doctors.length * reps * 8) + 's';
   }
 
   function renderKnowledge(d) {
@@ -346,20 +282,37 @@
     if (more) { more.textContent = '探索更多醫境知識 →'; more.href = k.moreHref || '/knowledge'; }
 
     var arts = (k.articles || []).slice(0, 6); // 首頁最多顯示六篇
-    setHTML('knArticles', arts.map(function (a, i) {
-      return '<article class="kn-card" data-index="' + i + '">' +
+    function articleCardHTML(a, isDuplicate) {
+      var attrs = isDuplicate ? ' aria-hidden="true" tabindex="-1"' : '';
+      return '<article class="kn-card"' + attrs + '>' +
         '<figure class="kn-card-media">' +
-          '<img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '"' + (i === 0 ? '' : ' loading="lazy"') + '>' +
+          '<img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '" loading="lazy"' + (isDuplicate ? ' aria-hidden="true"' : '') + '>' +
         '</figure>' +
         '<div class="kn-card-body">' +
           '<p class="kn-card-cat">' + esc(a.category) + (a.titleEn ? '<i>' + esc(a.titleEn) + '</i>' : '') + '</p>' +
           '<h3 class="kn-card-title serif">' + esc(a.title) + '</h3>' +
           '<p class="kn-card-hook">' + esc(a.hook) + '</p>' +
           '<p class="kn-card-excerpt">' + esc(a.excerpt) + '</p>' +
-          '<a class="kn-card-cta" href="' + esc(a.href) + '">' + esc(a.cta || '閱讀完整文章 →') + '</a>' +
+          '<a class="kn-card-cta" href="' + esc(a.href) + '"' + (isDuplicate ? ' tabindex="-1"' : '') + '>' + esc(a.cta || '閱讀完整文章 →') + '</a>' +
         '</div>' +
       '</article>';
-    }).join(''));
+    }
+    // 橫向自動跑馬燈：清單重複一份做無縫循環（做法與醫療團隊卡片一致）
+    setHTML(
+      'knArticles',
+      arts.map(function (a) { return articleCardHTML(a, false); }).join('') +
+      arts.map(function (a) { return articleCardHTML(a, true); }).join('')
+    );
+    var knTrack = $('knArticles');
+    if (knTrack && arts.length) knTrack.style.animationDuration = Math.max(28, arts.length * 9) + 's';
+  }
+
+  function renderTagline(d) {
+    var b = d.brand || {};
+    var parts = [b.subtitle, b.philosophy, b.nameEn].filter(Boolean);
+    setHTML('taglineInner', parts.map(function (t) {
+      return '<span class="tagline-t">' + esc(t) + '</span>';
+    }).join('<span class="tagline-dot" aria-hidden="true"></span>'));
   }
 
   function renderContact(d) {
@@ -394,55 +347,7 @@
       '<option>健康抗老</option><option>其他／不確定</option>';
   }
 
-  function renderFooter(d) {
-    var f = d.footer || {};
-    setText('footerDesc', f.brandDesc);
-    setHTML('footerClinics', ((d.clinics || {}).items || []).map(function (c) {
-      return '<li>' + esc(c.name + '・' + c.hall) + '</li>';
-    }).join(''));
-    setText('footerDisclaimer', f.disclaimer);
-    setText('footerGroup', f.group);
-    if (f.groupSite) {
-      var a = $('footerGroupLink');
-      a.href = f.groupSite.href; a.textContent = f.groupSite.label;
-    }
-  }
 
-  /* ── 互動：導覽列 ─────────────────────── */
-  function initNav() {
-    var nav = $('nav'), toggle = $('navToggle'), links = $('navLinks');
-
-    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 24); };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    toggle.addEventListener('click', function () {
-      var open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
-    });
-
-    links.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
-        links.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    var sections = [].slice.call(document.querySelectorAll('main section[id]'));
-    var anchors = [].slice.call(links.querySelectorAll('a'));
-    if (!('IntersectionObserver' in window) || !sections.length) return;
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        anchors.forEach(function (a) {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id);
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (s) { io.observe(s); });
-  }
 
   /* ── 互動：捲動進場 ───────────────────── */
   function initReveal() {
@@ -513,17 +418,16 @@
   }
 
   /* ── 啟動 ─────────────────────────────── */
-  $('year').textContent = new Date().getFullYear();
 
   fetch('/api/site')
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (d) {
-      renderNav(d); renderHero(d); renderPopular(d); renderAbout(d); renderPillars(d);
+      renderHero(d); renderTagline(d); renderPillarsBanner(d); renderPopular(d); renderAbout(d);
       renderUnderstand(d); renderClinics(d); renderTeam(d);
+      renderFirstVisit(d); renderPreVisitFaq(d);
       renderKnowledge(d);
-      renderFooter(d);
 
-      initNav(); initReveal(); initForm();
+      initReveal(); initForm();
 
       // 內容為 JS 渲染，深層連結（如 /#locations）需在渲染後重新定位
       if (location.hash) {

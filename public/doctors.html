@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>醫療團隊｜初纖顏醫境診所 XIAN YAN · MEDIREALM</title>
+<meta name="description" content="初纖顏醫境診所醫療團隊：由代謝醫學、微整注射、複合式逆齡等不同專業的醫師共同主理，依個人狀況評估並規劃適合的療程方向。">
+<link rel="icon" href="/images/chu-logo-mark.png" type="image/png">
+<link rel="canonical" href="https://medirealm-origin.com/doctors">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/api/site" as="fetch" crossorigin>
+<link rel="stylesheet" href="/styles.css?v=48">
+<style>
+  .drs-head { background: var(--xy-ivory); padding: 150px 24px 56px; }
+  .drs-breadcrumb { font-size: 13.5px; color: var(--xy-text-secondary); letter-spacing: .04em; margin-bottom: 34px; }
+  .drs-breadcrumb a { color: var(--xy-teal-dark); border-bottom: 1px solid rgba(206,154,75,.4); padding-bottom: 2px; }
+  .drs-breadcrumb a:hover { color: var(--xy-gold); }
+  .drs-subtitle { font-size: 17px; color: var(--xy-text-secondary); }
+
+  .drs-list-section { background: var(--xy-cream); padding: 48px 24px 110px; }
+
+  /* 依專長篩選：膠囊按鈕，選中的填滿青綠色 */
+  .drs-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 auto 44px; max-width: 1080px; }
+  .drs-filter-pill {
+    font: inherit; font-size: 14.5px; letter-spacing: .08em; cursor: pointer;
+    padding: 9px 22px; border-radius: 999px;
+    color: var(--xy-text); background: var(--xy-warm-white);
+    border: 1px solid var(--xy-border);
+    transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .drs-filter-pill:hover { border-color: var(--xy-gold); }
+  .drs-filter-pill.is-active { background: var(--xy-teal); border-color: var(--xy-teal); color: #fff; }
+
+  /* 醫師卡片格：直式照片＋姓名／專長＋ View Profile */
+  .drs-grid { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.6vw, 34px); }
+  .drs-card {
+    display: flex; flex-direction: column; color: inherit;
+    background: var(--xy-warm-white);
+    border: 1px solid var(--xy-border);
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 14px 36px rgba(60, 55, 45, .06);
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .drs-card[hidden] { display: none; }
+  a.drs-card:hover { transform: translateY(-4px); box-shadow: 0 24px 52px rgba(60, 55, 45, .11); }
+  .drs-photo { margin: 0; overflow: hidden; aspect-ratio: 3 / 4; background: var(--xy-ivory); }
+  .drs-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .7s var(--ease); }
+  a.drs-card:hover .drs-photo img { transform: scale(1.03); }
+  .drs-info { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
+  .drs-eyebrow { font-family: var(--display); font-size: 12.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--xy-gold); }
+  .drs-name { font-family: var(--serif); font-size: 24px; font-weight: 500; line-height: 1.45; margin-top: 6px; }
+  .drs-name-suffix { font-size: 15px; color: var(--xy-text-secondary); margin-left: 4px; }
+  .drs-title { font-size: 14.5px; color: var(--xy-teal-dark); margin-top: 6px; }
+  .drs-cta {
+    margin-top: auto; padding-top: 20px;
+    font-family: var(--display); font-size: 14px; letter-spacing: .16em; color: var(--xy-text);
+  }
+  .drs-cta-arrow { display: inline-block; margin-left: 8px; color: var(--xy-gold); transition: transform .3s var(--ease); }
+  a.drs-card:hover .drs-cta-arrow { transform: translateX(4px); }
+  .drs-empty { grid-column: 1 / -1; text-align: center; color: var(--xy-text-secondary); padding: 40px 0; }
+  .drs-note { max-width: 1080px; margin: 36px auto 0; text-align: center; font-size: 14.5px; color: var(--xy-text-secondary); }
+
+  /* 不確定找哪位醫師 → 引導線上預約 */
+  .drs-inline-cta {
+    max-width: 760px; margin: 72px auto 0; text-align: center;
+    background: var(--xy-warm-white); border: 1px solid var(--xy-border);
+    border-radius: 20px; padding: clamp(36px, 5vw, 56px) clamp(24px, 5vw, 60px);
+    box-shadow: 0 14px 36px rgba(60, 55, 45, .05);
+  }
+  .drs-inline-cta-title { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 28px); font-weight: 500; }
+  .drs-inline-cta-lede { margin-top: 12px; font-size: 16px; color: var(--xy-text-secondary); }
+  .drs-inline-cta .btn { margin-top: 26px; }
+  .drs-inline-cta-note { margin-top: 18px; font-size: 13.5px; color: var(--xy-text-secondary); }
+
+  @media (max-width: 900px) { .drs-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .drs-head { padding-top: 130px; } }
+  @media (max-width: 520px) {
+    .drs-grid { grid-template-columns: 1fr; max-width: 400px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#drsMain">跳到主要內容</a>
+
+<!-- @site-header -->
+
+<main id="drsMain">
+  <section class="drs-head">
+    <div class="wrap">
+      <p class="drs-breadcrumb"><a href="/">首頁</a> ／ <span>醫療團隊</span></p>
+      <p class="eyebrow" id="drsEyebrow">OUR MEDICAL TEAM</p>
+      <h1 class="h2 serif" id="drsTitle">醫療團隊</h1>
+      <p class="drs-subtitle" id="drsSubtitle"></p>
+    </div>
+  </section>
+  <section class="drs-list-section">
+    <nav class="drs-filter" id="drsFilter" aria-label="按專長篩選醫師" hidden></nav>
+    <div class="drs-grid" id="drsGrid" aria-live="polite"></div>
+    <p class="drs-note" id="drsNote"></p>
+    <aside class="drs-inline-cta" aria-labelledby="drsCtaTitle">
+      <h2 class="drs-inline-cta-title" id="drsCtaTitle">不確定該找哪一位？</h2>
+      <p class="drs-inline-cta-lede">可以直接說明你的困擾與需求，由我們協助安排適合的醫師。</p>
+      <a class="btn btn-solid" href="/appointment">線上預約諮詢</a>
+      <p class="drs-inline-cta-note">填寫預約資訊後，將由專人與您聯繫確認；實際療程內容仍需依現場醫師專業評估為準。</p>
+    </aside>
+  </section>
+</main>
+
+<!-- @site-footer -->
+
+
+<script src="/doctors.js?v=2"></script>
+</body>
+</html>
