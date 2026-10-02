@@ -62,6 +62,72 @@ function serveFile(res, filePath) {
   });
 }
 
+// M4 主頁的正文與 FAQ 在首次 HTML 回應即可閱讀，無需爬蟲執行 JavaScript。
+function serveMetabolicPage(res, site, department) {
+  const filePath = path.join(PUBLIC_DIR, 'metabolic.html');
+  fs.readFile(filePath, 'utf8', (err, template) => {
+    if (err) {
+      console.error('  [錯誤] M4 頁面讀取失敗：', err.message);
+      return send(res, 500, '頁面暫時無法載入，請稍後再試。', {
+        'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-cache',
+      });
+    }
+    const seo = department.seo || {};
+    const title = seo.title || department.tagline;
+    const description = seo.description || department.lead;
+    const canonical = seo.canonicalUrl || siteOrigin(site) + '/clinics/' + department.slug;
+    const origin = new URL(canonical).origin;
+    const image = new URL(department.heroImage.src, origin).href;
+    const faq = (department.faq || []).filter((item) => item.q && item.a);
+    const head = [
+      '<link rel="canonical" href="' + htmlAttr(canonical) + '">',
+      '<meta property="og:type" content="website">',
+      '<meta property="og:site_name" content="初纖顏醫境診所">',
+      '<meta property="og:locale" content="zh_TW">',
+      '<meta property="og:title" content="' + htmlAttr(title) + '">',
+      '<meta property="og:description" content="' + htmlAttr(description) + '">',
+      '<meta property="og:url" content="' + htmlAttr(canonical) + '">',
+      '<meta property="og:image" content="' + htmlAttr(image) + '">',
+      '<meta property="og:image:alt" content="初纖顏醫境診所代謝減重門診形象示意，非治療成果">',
+      '<meta name="twitter:card" content="summary_large_image">',
+      '<meta name="twitter:title" content="' + htmlAttr(title) + '">',
+      '<meta name="twitter:description" content="' + htmlAttr(description) + '">',
+      '<meta name="twitter:image" content="' + htmlAttr(image) + '">',
+      jsonLdTag({
+        '@context': 'https://schema.org', '@type': 'WebPage',
+        '@id': canonical + '#webpage', url: canonical, name: title,
+        description, inLanguage: 'zh-TW',
+        about: { '@type': 'Thing', name: '醫境 M4 四軸代謝減重' },
+      }),
+      jsonLdTag({
+        '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '首頁', item: origin + '/' },
+          { '@type': 'ListItem', position: 2, name: '六大門診', item: origin + '/clinics' },
+          { '@type': 'ListItem', position: 3, name: '代謝減重', item: canonical },
+        ],
+      }),
+      jsonLdTag({
+        '@context': 'https://schema.org', '@type': 'FAQPage',
+        mainEntity: faq.map((item) => ({
+          '@type': 'Question', name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }),
+    ].join('\n');
+    const faqHTML = faq.map((item) =>
+      '<details class="mw-faq-item"><summary>' + htmlAttr(item.q) +
+      '</summary><p class="mw-faq-a">' + htmlAttr(item.a) + '</p></details>'
+    ).join('\n');
+    const html = applyLayout(template, res.sitePath, filePath)
+      .replace(/<title>[\s\S]*?<\/title>/i, () => '<title>' + htmlAttr(title) + '</title>')
+      .replace(/<meta name="description"[^>]*>/i, () => '<meta name="description" content="' + htmlAttr(description) + '">')
+      .replace('<!-- @metabolic-head -->', () => head)
+      .replace('<!-- @metabolic-faq -->', () => faqHTML);
+    return send(res, 200, html, { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache' });
+  });
+}
+
 // 設備詳細頁的社群分享預覽需要伺服器端 meta；
 // LINE、Facebook、WhatsApp 等爬蟲不會執行 device.js。
 function serveDeviceFile(res, site, device, pathname, request) {
@@ -723,7 +789,11 @@ const server = http.createServer((req, res) => {
     try {
       const site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
       const deps = (site.departments && site.departments.items) || [];
-      valid = deps.some((it) => it.slug === slug);
+      const department = deps.find((it) => it.slug === slug);
+      valid = Boolean(department);
+      if (department && slug === 'metabolic-weight-management') {
+        return serveMetabolicPage(res, site, department);
+      }
     } catch (e) {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }
