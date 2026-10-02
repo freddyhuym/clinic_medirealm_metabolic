@@ -209,23 +209,17 @@ function loadSiteForLayout() {
 }
 // 站台資料 = site.json（依檔案修改時間快取）＋ Payload CMS 的醫境知識文章
 function getSiteData() {
-  const site = cms.mergeSite(loadSiteForLayout());
-  if (!site || !Object.keys(site).length) return site;
-  const knowledge = site.knowledge || {};
-  const article = {
+  return cms.mergeSite(loadSiteForLayout());
+}
+// 客製廣告頁独立管理，不混入後台文章、列表、分頁或計數。
+function getFaceTypesArticle() {
+  return {
     ...faceTypesGuide.article,
     title: faceTypesGuide.title,
     body: [
       ...faceTypesGuide.paragraphs.map((text) => ({ type: 'p', text })),
       { type: 'faq', items: faceTypesGuide.faq },
     ],
-  };
-  return {
-    ...site,
-    knowledge: {
-      ...knowledge,
-      articles: [article, ...(knowledge.articles || []).filter((a) => a.id !== article.id)],
-    },
   };
 }
 // site.json 的 nav 是寫給首頁用的相對錨點（#popular），其他頁要補成 /#popular
@@ -459,6 +453,10 @@ function buildSitemap(site) {
   ((site.knowledge && site.knowledge.articles) || []).forEach((a) => {
     add(a.href, a.seo && (a.seo.dateModified || a.seo.datePublished));
   });
+  // 獨立廣告頁仍可被搜尋收錄，但不加入 knowledge.articles。
+  if (!urls.some((u) => u.loc === origin + faceTypesGuide.article.href)) {
+    add(faceTypesGuide.article.href, faceTypesGuide.article.seo.dateModified);
+  }
   ((site.team && site.team.doctors) || []).forEach((dr) => { if (dr.slug && dr.detail) add('/doctors/' + dr.slug); });
   ((site.departments && site.departments.items) || []).forEach((it) => { if (it.slug) add('/clinics/' + it.slug); });
   add('/privacy', site.policies && site.policies.privacy && site.policies.privacy.updatedDate);
@@ -480,7 +478,9 @@ function serveKnowledgePage(res, slug) {
   if (slug) {
     try {
       site = getSiteData();
-      art = ((site.knowledge && site.knowledge.articles) || []).filter((a) => a.id === slug)[0] || null;
+      art = slug === faceTypesGuide.article.id
+        ? getFaceTypesArticle()
+        : ((site.knowledge && site.knowledge.articles) || []).filter((a) => a.id === slug)[0] || null;
     } catch (e) {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
     }

@@ -5,4 +5,4 @@
 - [Editorial copy fidelity](editorial-copy-fidelity.md) — publish supplied article copy verbatim; preserve wording, order, labels, and paragraph breaks unless explicitly asked to edit.
 - [M4 page positioning](metabolic-positioning.md) — one main metabolic page for advertising and organic discovery; distinguish individualized care from guaranteed outcomes or fixed bundles.
 - [Preview verification](preview-verification.md) — the built-in Preview must work; verify its exact external URL, including any port, rather than only local screenshots.
-- [Social campaign CTAs](social-campaign-ctas.md) — no website comments; adapt the face-guide campaign’s comment-to-receive CTA to direct table access, without changing the remaining supplied copy.
+- [Social campaign CTAs](social-campaign-ctas.md) — adapt unsupported comment CTAs; manual ad pages stay in independent featured blocks, never in database article lists or counts.

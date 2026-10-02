@@ -8,3 +8,9 @@ The user stated that this website has no comment feature. For the five-face-type
 **Why:** The user requested a custom advertising article and a featured knowledge-library entry, and specifically pointed out that the social comment CTA cannot work on this website.
 
 **How to apply:** Do not reproduce a comment-to-receive promise, require invented lead capture, or add a comment system just to match an uploaded poster. Adapt only the unsupported CTA to an action the website actually supports. A supplied doctor portrait or hashtag does not establish that the doctor authored or reviewed new explanatory copy.
+
+Manually created advertising pages must stay separate from database articles. Their knowledge-library entry is only an independent featured block at the top; they must not enter the database article list, article count, or pagination.
+
+**Why:** The user explicitly corrected this distinction and stated that the database is on another machine, not this workspace. The existing knowledge-library list is sourced from that backend.
+
+**How to apply:** Preserve the existing backend article loading and lower list. Serve custom advertising pages separately, including any needed search metadata, without adding them to the shared article collection. Do not reconstruct database records from pasted page HTML or fabricate a local replacement.
