@@ -20,3 +20,9 @@ A no-text lifestyle Hero illustration is approved next to the main title, replac
 **Why:** The user approved adding a welcoming visual near the M4 title while preserving the clear introduction and appointment action.
 
 **How to apply:** On phones, put the main title and primary appointment action before the image. Use restrained lifestyle imagery with an illustration disclosure, not an AI physician or an implied treatment-result photograph. Real physician imagery requires confirmed authorization.
+
+The user specified「不復胖」as the advertising focus and「不復胖、代謝減重門診、M4代謝、醫境 M4 四軸代謝」as the target keyword group.
+
+**Why:** The user explicitly asked whether the M4 landing page delivers this positioning for advertising, SEO and AIEO.
+
+**How to apply:** Address the desire for「不復胖」explicitly as a search intent and maintenance goal, not a guaranteed medical outcome. Do not omit the term merely to avoid guarantees; use clear questions and qualified answers. Naturally connect「M4代謝」to the full named care framework rather than stuffing repeated keywords.
