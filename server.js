@@ -97,7 +97,8 @@ function serveMetabolicPage(res, site, department) {
         '@context': 'https://schema.org', '@type': 'WebPage',
         '@id': canonical + '#webpage', url: canonical, name: title,
         description, inLanguage: 'zh-TW',
-        about: { '@type': 'Thing', name: '醫境 M4 四軸代謝減重' },
+        about: { '@type': 'Thing', name: '醫境 M4 四軸代謝減重', alternateName: 'M4代謝' },
+        publisher: { '@type': 'Organization', name: '初纖顏醫境診所', url: origin + '/' },
       }),
       jsonLdTag({
         '@context': 'https://schema.org', '@type': 'BreadcrumbList',
