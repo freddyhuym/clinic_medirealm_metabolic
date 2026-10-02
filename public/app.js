@@ -281,7 +281,11 @@
     var more = $('knMore');
     if (more) { more.textContent = '探索更多醫境知識 →'; more.href = k.moreHref || '/knowledge'; }
 
-    var arts = (k.articles || []).slice(0, 6); // 首頁最多顯示六篇
+    // 首頁跑馬燈：只放後台（CMS）文章，依發布時間取最新 6 篇；完整列表在 /knowledge
+    var arts = (k.articles || [])
+      .filter(function (a) { return a.source === 'cms'; })
+      .sort(function (a, b) { return new Date(b.publishedAt) - new Date(a.publishedAt); })
+      .slice(0, 6);
     function articleCardHTML(a, isDuplicate) {
       var attrs = isDuplicate ? ' aria-hidden="true" tabindex="-1"' : '';
       return '<article class="kn-card"' + attrs + '>' +

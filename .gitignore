@@ -11,3 +11,6 @@ data/appointments.jsonl
 
 # 手動修改前留下的備份檔
 *.bak-*
+
+# 環境變數（含密鑰）
+.env

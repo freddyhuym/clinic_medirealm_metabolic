@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" href="/api/site" as="fetch" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=48">
+<link rel="stylesheet" href="/styles.css?v=50">
 <style>
   .kn-page { max-width: 880px; margin: 0 auto; padding: 140px 24px 90px; }
   .kn-breadcrumb { font-size: 13.5px; color: var(--xy-text-secondary); letter-spacing: .04em; margin-bottom: 34px; }
@@ -57,6 +57,23 @@
   .kn-related-list a:hover { border-color: var(--xy-gold); }
   .kn-related-list .cat { font-size: 12px; letter-spacing: .12em; color: var(--xy-gold); }
   .kn-related-list .ttl { font-family: var(--serif); font-size: 16.5px; margin-top: 8px; line-height: 1.6; }
+  .kn-index-count { margin-top: 18px; font-size: 14px; letter-spacing: .06em; color: var(--xy-text-secondary); }
+  .kn-index-grid .kn-card-cat time { margin-left: 12px; color: var(--xy-text-secondary); letter-spacing: .04em; }
+  .kn-index-grid .kn-card-title a { color: inherit; }
+  .kn-index-grid .kn-card-title a:hover { color: var(--xy-teal-dark); }
+  .kn-index-grid a.kn-card-media { display: block; }
+  /* 分頁：上一頁／頁碼／下一頁 */
+  .kn-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin: 56px 0 10px; }
+  .kn-pager-btn, .kn-pager-num {
+    min-width: 42px; height: 42px; padding: 0 14px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--xy-border); border-radius: 8px; background: var(--xy-warm-white);
+    font-size: 15px; color: var(--xy-text); transition: border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+  }
+  a.kn-pager-btn:hover, a.kn-pager-num:hover { border-color: var(--xy-gold); color: var(--xy-teal-dark); }
+  .kn-pager-num.is-current { background: var(--xy-teal); border-color: var(--xy-teal); color: #fff; }
+  .kn-pager-btn.is-disabled { opacity: .4; }
+  @media (max-width: 520px) { .kn-pager-btn { flex: 1 1 40%; } }
   .kn-index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 50px; }
 </style>
 </head>
@@ -69,6 +86,6 @@
 
 <!-- @site-footer -->
 
-<script src="/knowledge.js?v=9"></script>
+<script src="/knowledge.js?v=12"></script>
 </body>
 </html>

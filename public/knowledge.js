@@ -29,29 +29,69 @@
       main.innerHTML = '<p>資料載入失敗，請稍後再試。</p>';
     });
 
+  // 文章列表：全部文章依發布時間新到舊，每頁 20 篇，網址 /knowledge?page=N
+  var PER_PAGE = 20;
+
+  function pageHref(n) { return n > 1 ? '/knowledge?page=' + n : '/knowledge'; }
+
+  function pagerHTML(page, total) {
+    if (total <= 1) return '';
+    var items = [];
+    items.push(page > 1
+      ? '<a class="kn-pager-btn" href="' + pageHref(page - 1) + '" rel="prev">← 上一頁</a>'
+      : '<span class="kn-pager-btn is-disabled" aria-disabled="true">← 上一頁</span>');
+    for (var i = 1; i <= total; i++) {
+      items.push(i === page
+        ? '<span class="kn-pager-num is-current" aria-current="page">' + i + '</span>'
+        : '<a class="kn-pager-num" href="' + pageHref(i) + '">' + i + '</a>');
+    }
+    items.push(page < total
+      ? '<a class="kn-pager-btn" href="' + pageHref(page + 1) + '" rel="next">下一頁 →</a>'
+      : '<span class="kn-pager-btn is-disabled" aria-disabled="true">下一頁 →</span>');
+    return '<nav class="kn-pager" aria-label="文章列表分頁">' + items.join('') + '</nav>';
+  }
+
   function renderIndex(k, arts) {
-    document.title = '醫境知識庫｜初纖顏醫境診所 XIAN YAN · MEDIREALM';
+    var sorted = arts.slice().sort(function (a, b) {
+      return new Date(b.publishedAt || (b.seo && b.seo.datePublished) || 0) - new Date(a.publishedAt || (a.seo && a.seo.datePublished) || 0);
+    });
+    var total = Math.max(1, Math.ceil(sorted.length / PER_PAGE));
+    var raw = new URLSearchParams(location.search).get('page');
+    var page = parseInt(raw, 10) || 1;
+    var fixed = Math.min(Math.max(page, 1), total);
+    // 無效頁碼（0、負數、超出範圍、非數字，或 ?page=1）一律導回正確網址
+    if (raw !== null && pageHref(fixed) !== location.pathname + location.search) { location.replace(pageHref(fixed)); return; }
+    page = fixed;
+    var list = sorted.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+    document.title = (page > 1 ? '第 ' + page + ' 頁｜' : '') + '醫境知識庫｜初纖顏醫境診所 XIAN YAN · MEDIREALM';
     main.innerHTML =
       '<p class="kn-breadcrumb"><a href="/">首頁</a>　／　醫境知識庫</p>' +
       '<p class="kn-page-cat">' + esc(k.eyebrow || 'MEDIREALM KNOWLEDGE') + '</p>' +
       '<h1>' + esc(k.label || '醫境知識庫') + '</h1>' +
       '<p class="kn-page-intro">' + esc(k.intro || '') + '</p>' +
-      '<div class="kn-index-grid">' + arts.map(function (a) {
+      '<p class="kn-index-count">共 ' + sorted.length + ' 篇文章' + (total > 1 ? '・第 ' + page + ' / ' + total + ' 頁' : '') + '</p>' +
+      (list.length ? '<div class="kn-index-grid">' + list.map(function (a) {
+        var date = (a.seo && a.seo.datePublished) || '';
         return '<article class="kn-card active">' +
-          '<figure class="kn-card-media"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || a.title) + '" loading="lazy"></figure>' +
+          '<a class="kn-card-media" href="' + esc(a.href) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(a.image) + '" alt="" loading="lazy"></a>' +
           '<div class="kn-card-body">' +
-            '<p class="kn-card-cat">' + esc(a.category) + '</p>' +
-            '<h3 class="kn-card-title serif" style="font-size:22px">' + esc(a.title) + '</h3>' +
+            '<p class="kn-card-cat">' + esc(a.category) + (date ? '<time datetime="' + esc(date) + '">' + esc(date) + '</time>' : '') + '</p>' +
+            '<h3 class="kn-card-title serif" style="font-size:22px"><a href="' + esc(a.href) + '">' + esc(a.title) + '</a></h3>' +
             '<p class="kn-card-hook" style="font-size:16px">' + esc(a.hook) + '</p>' +
             '<a class="kn-card-cta" href="' + esc(a.href) + '">閱讀文章 →</a>' +
           '</div>' +
         '</article>';
-      }).join('') + '</div>';
+      }).join('') + '</div>' : '<p class="kn-page-intro">目前還沒有文章，敬請期待。</p>') +
+      pagerHTML(page, total);
+    if (page > 1) window.scrollTo(0, 0);
   }
 
   function renderBody(blocks) {
     return '<div class="kn-body">' + blocks.map(function (b) {
       if (b.type === 'p') return '<p>' + esc(b.text).replace(/\n/g, '<br>') + '</p>';
+      // 後台（Payload CMS）文章的段落／清單：HTML 由伺服器 cms.js 產生，文字已跳脫、連結已過濾
+      if (b.type === 'html') return b.html || '';
       if (b.type === 'h2') return '<h2 class="serif">' + esc(b.text) + '</h2>';
       if (b.type === 'h3') return '<h3 class="kn-body-subtitle serif">' + esc(b.text) + '</h3>';
       if (b.type === 'list') {

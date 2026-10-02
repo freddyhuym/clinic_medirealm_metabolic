@@ -111,11 +111,12 @@ ul { list-style: none; }
   border: 1px solid transparent;
   cursor: pointer;
 }
-.btn-solid {
+/* .btn-primary 在門診頁、療程頁、醫師頁、文章行動按鈕都有用到，外觀同 .btn-solid */
+.btn-solid, .btn-primary {
   background: var(--xy-teal);
   color: #fff;
 }
-.btn-solid:hover { background: var(--xy-teal-deep); transform: translateY(-1px); }
+.btn-solid:hover, .btn-primary:hover { background: var(--xy-teal-deep); transform: translateY(-1px); }
 .btn-ghost {
   background: transparent;
   border-color: var(--xy-gold);
@@ -1222,3 +1223,9 @@ a.doctor-card-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px 
 @media (max-width: 560px) {
   .fv-steps { grid-template-columns: 1fr; }
 }
+
+/* 後台（CMS）文章：粗體、連結、分隔線 */
+.kn-body strong { font-weight: 600; color: var(--xy-text); }
+.kn-body p a { color: var(--xy-teal-dark); border-bottom: 1px solid var(--xy-border); }
+.kn-body p a:hover { color: var(--xy-gold); }
+.kn-body-hr { border: 0; border-top: 1px solid var(--xy-border); margin: 36px 0; }

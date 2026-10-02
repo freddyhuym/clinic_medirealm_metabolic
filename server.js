@@ -6,6 +6,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const cms = require('./cms'); // 醫境知識文章：Payload CMS 同步
 
 const PORT = Number(process.env.PORT) || 3309;
 // 不指定 host：Node 預設以雙堆疊監聽（IPv4 0.0.0.0 + IPv6 ::1），
@@ -138,6 +139,10 @@ function loadSiteForLayout() {
   }
   return layoutCache.site || {};
 }
+// 站台資料 = site.json（依檔案修改時間快取）＋ Payload CMS 的醫境知識文章
+function getSiteData() {
+  return cms.mergeSite(loadSiteForLayout());
+}
 // site.json 的 nav 是寫給首頁用的相對錨點（#popular），其他頁要補成 /#popular
 function navHref(href) { return /^#/.test(href || '') ? '/' + href : (href || '/'); }
 // 目前頁面對應哪個主選單項目（加底線）
@@ -149,7 +154,8 @@ function navIsActive(href, pathname) {
 }
 const SOLID_NAV_PATHS = new Set(['/appointment']);
 function buildSiteHeader(site, pathname) {
-  const links = (site.nav || []).map((n) => {
+  // hidden: true 的選單項目（例如暫時隱藏的「療程與費用」）不顯示，資料保留方便日後恢復
+  const links = (site.nav || []).filter((n) => !n.hidden).map((n) => {
     const active = navIsActive(n.href, pathname);
     return '      <a href="' + htmlAttr(navHref(n.href)) + '"' + (active ? ' class="active" aria-current="page"' : '') + '>' + htmlAttr(n.label) + '</a>';
   }).join('\n');
@@ -198,7 +204,7 @@ function buildSiteFooter(site, filePath) {
     f.brandDesc ? '    <p class="footer-desc">' + htmlAttr(f.brandDesc) + '</p>' : '',
     clinics.length ? '    <ul class="footer-clinics">' + clinics.map((c) => '<li>' + htmlAttr(c.name + '・' + c.hall) + '</li>').join('') + '</ul>' : '',
     contact.length ? '    <p class="footer-contact">' + contact.join('<span class="footer-contact-sep" aria-hidden="true">｜</span>') + '</p>' : '',
-    '    <nav class="footer-nav" aria-label="頁尾選單">' + (site.nav || []).concat(site.secondaryNav || []).map(link).join('') + '</nav>',
+    '    <nav class="footer-nav" aria-label="頁尾選單">' + (site.nav || []).concat(site.secondaryNav || []).filter((n) => !n.hidden).map(link).join('') + '</nav>',
     f.disclaimer ? '    <p class="footer-disclaimer">' + htmlAttr(f.disclaimer) + '</p>' : '',
     '    <nav class="footer-legal" aria-label="網站政策">' + (f.legalLinks || []).map(link).join('') + '</nav>',
     '    <small class="footer-copy">© ' + year + ' ' + htmlAttr(f.group || '初纖顏醫境診所') +
@@ -388,7 +394,7 @@ function serveKnowledgePage(res, slug) {
   let art = null, site = null;
   if (slug) {
     try {
-      site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      site = getSiteData();
       art = ((site.knowledge && site.knowledge.articles) || []).filter((a) => a.id === slug)[0] || null;
     } catch (e) {
       console.error('  [錯誤] 讀取站台資料失敗：', e.message);
@@ -415,26 +421,46 @@ const server = http.createServer((req, res) => {
   // 站台文案／資料：每次讀檔。瀏覽器可快取 60 秒，過期後先用舊資料、背景再更新
   // （stale-while-revalidate），換頁不用每次等一趟回主機；改完 data/site.json
   // 最多約 1 分鐘（再多一次換頁）前台就會看到。ETag 讓重新驗證時沒變就回 304。
+  // 站台文案／資料：site.json 加上 CMS 文章。瀏覽器可快取 60 秒，過期後先用舊資料、背景再更新
+  // （stale-while-revalidate），換頁不用每次等一趟回主機。ETag 讓重新驗證時沒變就回 304。
   if (url.pathname === '/api/site') {
-    return fs.stat(DATA_FILE, (statErr, st) => {
-      const etag = statErr ? '' : '"' + st.size.toString(36) + '-' + Math.floor(st.mtimeMs).toString(36) + '"';
-      const cacheHeaders = { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=600' };
-      if (etag) cacheHeaders.ETag = etag;
-      // Cloudflare 壓縮後會把 ETag 改成弱驗證 W/"..."，比對時去掉前綴
-      const inm = String(req.headers['if-none-match'] || '').replace(/^W\//, '');
-      if (etag && inm === etag) {
-        res.writeHead(304, cacheHeaders);
-        return res.end();
-      }
-      fs.readFile(DATA_FILE, 'utf8', (err, txt) => {
-        if (err) {
-          return send(res, 500, JSON.stringify({ error: 'site.json 讀取失敗' }), {
-            'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache',
-          });
-        }
-        send(res, 200, txt, Object.assign({ 'Content-Type': MIME['.json'] }, cacheHeaders));
+    const data = getSiteData();
+    if (!data || !Object.keys(data).length) {
+      return send(res, 500, JSON.stringify({ error: 'site.json 讀取失敗' }), {
+        'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache',
+      });
+    }
+    const body = JSON.stringify(data);
+    const etag = '"' + crypto.createHash('md5').update(body).digest('hex').slice(0, 16) + '"';
+    const cacheHeaders = { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=600', ETag: etag };
+    // Cloudflare 壓縮後會把 ETag 改成弱驗證 W/"..."，比對時去掉前綴
+    const inm = String(req.headers['if-none-match'] || '').replace(/^W\//, '');
+    if (inm === etag) {
+      res.writeHead(304, cacheHeaders);
+      return res.end();
+    }
+    return send(res, 200, body, Object.assign({ 'Content-Type': MIME['.json'] }, cacheHeaders));
+  }
+
+  // CMS 圖片代理：/cms-media/<檔名> → Payload metabolic-media
+  if (url.pathname.startsWith('/cms-media/')) {
+    return cms.serveMedia(res, url.pathname.slice('/cms-media/'.length));
+  }
+
+  // Payload 後台儲存／刪除文章時通知這裡立即重新同步（需帶正確密鑰）
+  if (url.pathname === '/api/cms-revalidate') {
+    if (req.method !== 'POST') return send(res, 405, 'Method Not Allowed', { Allow: 'POST', 'Cache-Control': 'no-cache' });
+    let raw = '';
+    req.on('data', (c) => { raw += c; if (raw.length > 4096) req.destroy(); });
+    req.on('end', () => {
+      let secret = '';
+      try { secret = JSON.parse(raw || '{}').secret; } catch (e) { /* 格式錯誤視為沒帶密鑰 */ }
+      if (!cms.secretMatches(secret)) return send(res, 401, JSON.stringify({ ok: false }), { 'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache' });
+      cms.refresh().then(() => {
+        send(res, 200, JSON.stringify({ ok: true, articles: cms.status().articles.length }), { 'Content-Type': MIME['.json'], 'Cache-Control': 'no-cache' });
       });
     });
+    return;
   }
 
   // 預約表單：附加寫入 data/bookings.jsonl（一行一筆）
@@ -740,7 +766,7 @@ const server = http.createServer((req, res) => {
   // 注意：robots.txt 不封鎖 /api/，因為頁面內容是由前端呼叫 /api/site 載入，封鎖會讓搜尋引擎看不到內容
   if (url.pathname === '/robots.txt' || url.pathname === '/sitemap.xml') {
     let site = {};
-    try { site = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); } catch (e) { console.error('  [錯誤] 讀取站台資料失敗：', e.message); }
+    try { site = getSiteData(); } catch (e) { console.error('  [錯誤] 讀取站台資料失敗：', e.message); }
     if (url.pathname === '/sitemap.xml') {
       return send(res, 200, buildSitemap(site), { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'no-cache' });
     }
@@ -772,6 +798,8 @@ const server = http.createServer((req, res) => {
     serveFile(res, filePath);
   });
 });
+
+cms.start();
 
 server.listen(PORT, HOST, () => {
   console.log('');
