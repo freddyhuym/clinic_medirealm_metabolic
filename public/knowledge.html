@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" href="/api/site" as="fetch" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=50">
+<link rel="stylesheet" href="/face-types.css?v=1">
 <style>
   .kn-page { max-width: 880px; margin: 0 auto; padding: 140px 24px 90px; }
   .kn-breadcrumb { font-size: 13.5px; color: var(--xy-text-secondary); letter-spacing: .04em; margin-bottom: 34px; }
@@ -84,8 +85,22 @@
 
 <main id="knMain" class="kn-page"></main>
 
+<template id="faceTypesFeature">
+  <section class="ft-feature" aria-labelledby="ft-feature-title">
+    <div class="ft-feature-copy">
+      <p class="ft-feature-label">EDITORIAL FEATURE · FACE &amp; HEALTH</p>
+      <h2 id="ft-feature-title">5種臉型一次看懂</h2>
+      <p class="ft-feature-desc">從泡泡臉、脂肪型臉到咬肌型方臉，透過完整對照表了解常見外觀、評估時可能關注的資訊，以及可與醫師討論的方向。分類是衛教參考，不是診斷或療程清單。</p>
+      <a class="ft-feature-link" href="/knowledge/five-face-types">閱讀完整專題 <span aria-hidden="true">→</span></a>
+    </div>
+    <a class="ft-feature-visual" href="/knowledge/five-face-types" tabindex="-1" aria-hidden="true">
+      <img src="/images/knowledge/face-types/portrait-wide.webp" width="960" height="640" alt="" loading="lazy">
+    </a>
+  </section>
+</template>
+
 <!-- @site-footer -->
 
-<script src="/knowledge.js?v=12"></script>
+<script src="/knowledge.js?v=13"></script>
 </body>
 </html>

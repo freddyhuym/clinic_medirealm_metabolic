@@ -52,6 +52,8 @@
   }
 
   function renderIndex(k, arts) {
+    var featureTemplate = document.getElementById('faceTypesFeature');
+    var featureHTML = featureTemplate ? featureTemplate.innerHTML : '';
     var sorted = arts.slice().sort(function (a, b) {
       return new Date(b.publishedAt || (b.seo && b.seo.datePublished) || 0) - new Date(a.publishedAt || (a.seo && a.seo.datePublished) || 0);
     });
@@ -70,6 +72,7 @@
       '<p class="kn-page-cat">' + esc(k.eyebrow || 'MEDIREALM KNOWLEDGE') + '</p>' +
       '<h1>' + esc(k.label || '醫境知識庫') + '</h1>' +
       '<p class="kn-page-intro">' + esc(k.intro || '') + '</p>' +
+      featureHTML +
       '<p class="kn-index-count">共 ' + sorted.length + ' 篇文章' + (total > 1 ? '・第 ' + page + ' / ' + total + ' 頁' : '') + '</p>' +
       (list.length ? '<div class="kn-index-grid">' + list.map(function (a) {
         var date = (a.seo && a.seo.datePublished) || '';

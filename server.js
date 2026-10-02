@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const cms = require('./cms'); // 醫境知識文章：Payload CMS 同步
+const faceTypesGuide = require('./data/face-types.json');
 
 const PORT = Number(process.env.PORT) || 3309;
 // 不指定 host：Node 預設以雙堆疊監聽（IPv4 0.0.0.0 + IPv6 ::1），
@@ -208,7 +209,24 @@ function loadSiteForLayout() {
 }
 // 站台資料 = site.json（依檔案修改時間快取）＋ Payload CMS 的醫境知識文章
 function getSiteData() {
-  return cms.mergeSite(loadSiteForLayout());
+  const site = cms.mergeSite(loadSiteForLayout());
+  if (!site || !Object.keys(site).length) return site;
+  const knowledge = site.knowledge || {};
+  const article = {
+    ...faceTypesGuide.article,
+    title: faceTypesGuide.title,
+    body: [
+      ...faceTypesGuide.paragraphs.map((text) => ({ type: 'p', text })),
+      { type: 'faq', items: faceTypesGuide.faq },
+    ],
+  };
+  return {
+    ...site,
+    knowledge: {
+      ...knowledge,
+      articles: [article, ...(knowledge.articles || []).filter((a) => a.id !== article.id)],
+    },
+  };
 }
 // site.json 的 nav 是寫給首頁用的相對錨點（#popular），其他頁要補成 /#popular
 function navHref(href) { return /^#/.test(href || '') ? '/' + href : (href || '/'); }
@@ -457,7 +475,7 @@ function buildSitemap(site) {
 }
 
 function serveKnowledgePage(res, slug) {
-  const file = path.join(PUBLIC_DIR, 'knowledge.html');
+  const file = path.join(PUBLIC_DIR, slug === faceTypesGuide.article.id ? 'face-types.html' : 'knowledge.html');
   let art = null, site = null;
   if (slug) {
     try {
@@ -475,6 +493,7 @@ function serveKnowledgePage(res, slug) {
     html = html
       .replace(/<title>[\s\S]*?<\/title>\s*/i, () => '')
       .replace(/<meta name="description"[^>]*>\s*/i, () => '')
+      .replace('<!-- @face-types-head -->', '')
       .replace(/(<meta name="viewport"[^>]*>)/i, (m) => m + '\n' + head);
     html = applyLayout(html, '/knowledge/' + slug, file);
     send(res, 200, html, { 'Content-Type': MIME['.html'] || 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
