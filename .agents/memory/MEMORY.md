@@ -6,3 +6,4 @@
 - [M4 page positioning](metabolic-positioning.md) — one main metabolic page for advertising and organic discovery; distinguish individualized care from guaranteed outcomes or fixed bundles.
 - [Preview verification](preview-verification.md) — the built-in Preview must work; verify its exact external URL, including any port, rather than only local screenshots.
 - [Social campaign CTAs](social-campaign-ctas.md) — adapt unsupported comment CTAs; manual ad pages stay in independent featured blocks, never in database article lists or counts.
+- [Production readiness checks](production-readiness.md) — verify actual page and asset content, not HTTP 200 alone; do not change the global search domain during an M4-only audit.
