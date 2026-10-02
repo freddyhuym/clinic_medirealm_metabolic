@@ -1,0 +1,72 @@
+
+tom200827@gmail.com 傳給您一組轉換追蹤代碼
+
+Google Ads 使用者「tom200827@gmail.com」與您共用了一個追蹤代碼，可用來追蹤您網站上的轉換。如要將這個代碼加進您的網站，請按照下方說明操作。
+
+如何使用代碼
+
+為了讓轉換追蹤功能順利運作，您必須安插由 Google 代碼和事件程式碼片段構成的轉換追蹤代碼。如果您使用 Google 代碼管理工具安插代碼，請改依這裡的說明操作。
+
+如果您有用 AMP 建立的網頁，就必須在 AMP 和 HTML 版本的網頁中都加入代碼，做法請見我們為這兩種網頁提供的操作說明。
+
+HTML 網頁
+
+在網站的每個網頁上安插 Google 代碼。
+開啟各個網頁的 HTML 程式碼。
+選擇下列其中一項做法：
+如果您尚未在網站上安插 Google 代碼，請複製下方代碼並貼到 head 代碼 (<head></head>) 之間：
+
+<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18469650813"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-18469650813'); </script>
+
+歡迎參閱設定 Google 代碼的詳細指南。
+
+如果您先前曾經在網站上安插 Google 代碼，而且該代碼取自別的 Google Ads 帳戶或 Google Analytics 之類的其他 Google 產品，請複製下列「config」指令，並加到每一個 Google 代碼的結尾代碼「</script>」正上方。
+
+gtag('config', 'AW-18469650813');
+
+如果您或管理員帳戶先前為其他轉換動作設定代碼時，就已經在您的網站上安插了 Google 代碼，請確認您網站的每一個網頁都有該代碼，而且「config」指令包含這個 Google Ads 帳戶的轉換 ID：AW-18469650813
+儲存您對網頁所做的變更。
+
+將事件程式碼片段加入轉換頁 (意即顧客在您網站上完成轉換後到達的頁面，例如「銘謝惠顧」網頁)。
+開啟轉換頁的 HTML 程式碼。
+複製下方程式碼片段並貼到網頁的 head 代碼 (<head></head>) 之間，緊接在 Google 代碼之後。
+
+<!-- Event snippet for 點擊官方 LINE conversion page --> <script> gtag('event', 'conversion', {'send_to': 'AW-18469650813/uDjRCPPtgo4dEP2CgudE'}); </script>
+
+儲存您對網頁所做的變更。
+AMP 網頁
+
+按照這些操作說明，設定每一個使用 AMP 架構建立的網頁。
+
+在網站的每個網頁上安插 Google 代碼。
+開啟各個網頁的 HTML 程式碼。
+選擇下列其中一項做法：
+如果您尚未在網站上安插 Google 代碼，請加入這兩個代碼：
+首先複製下方代碼並貼進 head 標記 (<head></head>) 之間，接在 AMP JS 程式庫前。
+
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+接著複製下方代碼，並貼到所有 AMP 網頁的 body 標記 (<body></body>) 之間
+
+<!-- Google tag (gtag.js) --> <amp-analytics type="gtag" data-credentials="include"> <script type="application/json"> { "vars": { "gtag_id": "AW-18469650813", "config": { "AW-18469650813": { "groups": "default" } } }, "triggers": { } } </script> </amp-analytics>
+
+歡迎參閱設定 Google 代碼的詳細指南。
+如果您先前曾經在網站上安插 Google 代碼，而且該代碼取自別的 Google Ads 帳戶或 Google Analytics 之類的其他 Google 產品，請複製下列這行程式碼，並加到每一個 Google 代碼的「config」部分。
+
+"AW-18469650813": { "groups": "default" }
+
+如果您或管理員帳戶先前為其他轉換動作設定代碼時，就已經在您的網站上安插了 Google 代碼，請確認您網站的每一個網頁都有該代碼，而且「config」部分包含這個 Google Ads 帳戶的轉換 ID：AW-18469650813
+儲存您對網頁所做的變更。
+
+將事件程式碼片段加入轉換頁 (意即顧客在您網站上完成轉換後到達的頁面，例如「銘謝惠顧」網頁)。
+開啟轉換頁的 HTML 程式碼。
+複製下方程式碼片段並貼到 Google 代碼的「triggers」部分。
+
+"C_pR4T8pbDBBQ": { "on": "visible", "vars": { "event_name": "conversion", "send_to": ["AW-18469650813/uDjRCPPtgo4dEP2CgudE"] } }
+
+儲存您對網頁所做的變更。
+進一步瞭解如何在網站中加入轉換追蹤代碼。
+
+感謝您！
+
+Google Ads 小組敬上
