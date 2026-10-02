@@ -8,6 +8,7 @@ const path = require('path');
 const crypto = require('crypto');
 const cms = require('./cms'); // 醫境知識文章：Payload CMS 同步
 const faceTypesGuide = require('./data/face-types.json');
+const injectGoogleAdsTag = require('./google-tag');
 
 const PORT = Number(process.env.PORT) || 3309;
 // 不指定 host：Node 預設以雙堆疊監聽（IPv4 0.0.0.0 + IPv6 ::1），
@@ -312,6 +313,7 @@ function buildLineFab(site) {
   ].join('\n');
 }
 function applyLayout(html, pathname, filePath) {
+  html = injectGoogleAdsTag(html);
   if (html.indexOf('<!-- @site-header -->') < 0 && html.indexOf('<!-- @site-footer -->') < 0) return html;
   const site = loadSiteForLayout();
   return html
