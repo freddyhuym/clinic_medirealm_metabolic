@@ -4,3 +4,4 @@
 - [Public form abuse controls](public-form-abuse-controls.md) — Replit proxy IP headers are not a trusted per-client identity; use bounded global safeguards unless verified edge bot control is configured.
 - [Editorial copy fidelity](editorial-copy-fidelity.md) — publish supplied article copy verbatim; preserve wording, order, labels, and paragraph breaks unless explicitly asked to edit.
 - [M4 page positioning](metabolic-positioning.md) — one main metabolic page for advertising and organic discovery; distinguish individualized care from guaranteed outcomes or fixed bundles.
+- [Preview verification](preview-verification.md) — the built-in Preview must work; verify its exact external URL, including any port, rather than only local screenshots.

@@ -887,3 +887,22 @@ server.on('error', (err) => {
   }
   throw err;
 });
+
+// Only the development workflow opts into this extra listener. It serves the
+// same application for Preview tabs retaining the external :5000 URL, while
+// the primary 5000 -> 80 mapping and production's single listener stay intact.
+const previewAliasArg = process.argv.find((arg) => arg.startsWith('--preview-alias-port='));
+if (previewAliasArg) {
+  const aliasPort = Number(previewAliasArg.split('=')[1]);
+  if (!Number.isInteger(aliasPort) || aliasPort < 1 || aliasPort > 65535 || aliasPort === PORT) {
+    throw new Error('Invalid development preview alias port');
+  }
+  const previewAlias = http.createServer(server.listeners('request')[0]);
+  previewAlias.on('error', (err) => {
+    console.error('[Preview] Alias listener failed:', err.message);
+    process.exit(1);
+  });
+  previewAlias.listen(aliasPort, '0.0.0.0', () => {
+    console.log(`  ▸ Preview compatibility listener: ${aliasPort}`);
+  });
+}
