@@ -42,13 +42,10 @@
 #metabolicPage .mw-trustline { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 28px; color: #68746e; font-size: 12.5px; }
 #metabolicPage .mw-trustline li { display: flex; align-items: center; gap: 8px; }
 #metabolicPage .mw-trustline li::before { content: ""; width: 5px; height: 5px; background: var(--xy-gold); border-radius: 50%; }
-#metabolicPage .mw-hero-aside { position: relative; padding: 46px 34px 42px; background: rgba(255, 253, 249, .62); border: 1px solid rgba(206, 154, 75, .3); border-radius: 2px 72px 2px 2px; box-shadow: 0 22px 56px rgba(62, 81, 78, .06); animation: mw-rise .8s .08s var(--ease) both; }
-#metabolicPage .mw-hero-aside::before { content: ""; position: absolute; right: 18px; top: 18px; width: 44px; height: 44px; border-top: 1px solid rgba(62, 119, 115, .35); border-right: 1px solid rgba(62, 119, 115, .35); }
-#metabolicPage .mw-aside-label { font-size: 10px; letter-spacing: .2em; color: var(--xy-gold); }
-#metabolicPage .mw-aside-quote { margin-top: 38px; font-size: clamp(22px, 2.5vw, 31px); line-height: 1.8; letter-spacing: .06em; color: var(--mw-teal); }
-#metabolicPage .mw-aside-rule { width: 42px; height: 1px; margin: 28px 0 18px; background: var(--xy-gold); }
-#metabolicPage .mw-aside-caption { font-size: 13px; color: var(--mw-ink); letter-spacing: .08em; }
-#metabolicPage .mw-aside-small { font-size: 12px; color: var(--mw-muted); margin-top: 8px; line-height: 1.8; }
+#metabolicPage .mw-hero-visual { width: 100%; margin: 0; animation: mw-rise .8s .08s var(--ease) both; }
+#metabolicPage .mw-hero-visual picture { display: block; overflow: hidden; border: 1px solid rgba(206, 154, 75, .34); border-radius: 2px 72px 2px 2px; background: #e9eee9; box-shadow: 0 22px 56px rgba(62, 81, 78, .09); }
+#metabolicPage .mw-hero-visual img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; }
+#metabolicPage .mw-hero-visual figcaption { margin-top: 8px; color: #77766f; font-size: 10px; line-height: 1.6; text-align: right; }
 #metabolicPage .mw-hero-foot { position: absolute; bottom: 22px; right: max(28px, calc((100% - 1140px) / 2)); display: flex; align-items: center; gap: 12px; color: rgba(62, 119, 115, .58); font-size: 9px; letter-spacing: .18em; }
 #metabolicPage .mw-hero-foot i { width: 26px; height: 1px; background: rgba(206, 154, 75, .65); }
 #metabolicPage .mw-empathy { padding: 100px 0 108px; background: var(--xy-warm-white); }
@@ -179,7 +176,7 @@
 @keyframes mw-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 900px) {
   #metabolicPage .mw-hero-grid { grid-template-columns: 1.1fr .9fr; gap: 34px; }
-  #metabolicPage .mw-hero-aside { padding: 36px 26px; }
+  #metabolicPage .mw-hero-visual picture { border-top-right-radius: 54px; }
   #metabolicPage .mw-pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
   #metabolicPage .mw-pillar-image { aspect-ratio: 1.18 / 1; }
 }
@@ -194,7 +191,10 @@
   #metabolicPage .mw-actions .btn { width: 100%; }
   #metabolicPage .mw-text-link { margin: 0 auto; }
   #metabolicPage .mw-trustline { gap: 8px 15px; font-size: 11px; }
-  #metabolicPage .mw-hero-aside { display: none; }
+  #metabolicPage .mw-hero-visual { width: min(100%, 440px); justify-self: center; }
+  #metabolicPage .mw-hero-visual img { aspect-ratio: 3 / 2; object-position: center; }
+  #metabolicPage .mw-hero-visual picture { border-top-right-radius: 38px; }
+  #metabolicPage .mw-hero-visual figcaption { text-align: left; }
   #metabolicPage .mw-hero-foot { position: static; justify-content: center; margin-top: 34px; }
   #metabolicPage .mw-empathy, #metabolicPage .mw-evaluation, #metabolicPage .mw-options, #metabolicPage .mw-adjuncts, #metabolicPage .mw-first-visit, #metabolicPage .mw-faq { padding: 70px 0; }
   #metabolicPage .mw-empathy-grid, #metabolicPage .mw-heading-split, #metabolicPage .mw-evaluation-grid, #metabolicPage .mw-care-layout, #metabolicPage .mw-adjunct-grid, #metabolicPage .mw-image-wrap, #metabolicPage .mw-faq-grid, #metabolicPage .mw-reference-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -236,6 +236,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   #metabolicPage *, #metabolicPage *::before, #metabolicPage *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
-  #metabolicPage .mw-hero-copy, #metabolicPage .mw-hero-aside { animation: none; }
+  #metabolicPage .mw-hero-copy, #metabolicPage .mw-hero-visual { animation: none; }
   #metabolicPage .mw-pillar:hover { transform: none; }
 }
