@@ -314,8 +314,12 @@ function buildLineFab(site) {
 }
 function applyLayout(html, pathname, filePath) {
   html = injectGoogleAdsTag(html);
-  if (html.indexOf('<!-- @site-header -->') < 0 && html.indexOf('<!-- @site-footer -->') < 0) return html;
   const site = loadSiteForLayout();
+  const officialLine = site.contact && site.contact.line;
+  if (officialLine && !html.includes('id="google-ads-line-tracking"')) {
+    html = html.replace(/<\/head>/i, '<script id="google-ads-line-tracking" defer src="/google-ads-line.js?v=1" data-official-line="' + htmlAttr(officialLine) + '"></script>\n</head>');
+  }
+  if (html.indexOf('<!-- @site-header -->') < 0 && html.indexOf('<!-- @site-footer -->') < 0) return html;
   return html
     .replace('<!-- @site-header -->', () => buildSiteHeader(site, pathname || '/'))
     .replace('<!-- @site-footer -->', () => buildSiteFooter(site, filePath) + '\n' + buildLineFab(site));

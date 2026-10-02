@@ -7,3 +7,4 @@
 - [Preview verification](preview-verification.md) — the built-in Preview must work; verify its exact external URL, including any port, rather than only local screenshots.
 - [Social campaign CTAs](social-campaign-ctas.md) — adapt unsupported comment CTAs; manual ad pages stay in independent featured blocks, never in database article lists or counts.
 - [Production readiness checks](production-readiness.md) — verify actual page and asset content, not HTTP 200 alone; do not change the global search domain during an M4-only audit.
+- [Advertising conversion meaning](ads-conversion-meaning.md) — LINE clicks are not confirmed leads or appointments; keep medical and form data out of click tracking.
